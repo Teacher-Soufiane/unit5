@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit 5 — Book Review — Writing Quiz 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#12365e;--blue:#2563eb;--paper:#f3f6fa;--green:#16804a;--red:#c5303c}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Poppins,sans-serif;color:#19314e;background:var(--paper)}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.48}
+    button:focus-visible,.timeline-card:focus-visible{outline:3px solid #f4a840;outline-offset:3px}
+    .quiz-header{background-color:#eaf4ff;padding:12px 22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.5fr) minmax(0,1fr);align-items:center;gap:8px;border-bottom:1px solid #d6e7fa}
+    .header-teacher-img,.header-logo-img{height:64px;width:auto;max-width:none;object-fit:contain}
+    .header-logo-img{justify-self:end}
+    .header-title{text-align:center;line-height:1.2}
+    .title-line1{font-family:Poppins,sans-serif;font-size:26px;font-weight:800;color:#1e3a5f}
+    .title-line2{font-family:Poppins,sans-serif;font-size:18px;font-weight:400;color:#2563eb}
+    .title-line3{font-family:Poppins,sans-serif;font-size:14px;font-weight:400;color:#64748b}
+    .info-bar{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:10px;padding:14px 20px;background:white;border-bottom:1px solid #dde6ef;font-weight:700;font-size:13px;letter-spacing:.04em}
+    .info-bar>:nth-child(2){text-align:center}.info-bar>:nth-child(3){text-align:right}
+    .shell{width:100%;max-width:1050px;margin:0 auto;padding:24px 22px 60px}
+    .instruction{background:var(--navy);color:white;padding:22px 28px;border-radius:15px;font-weight:800;letter-spacing:.035em;line-height:1.45;box-shadow:0 9px 24px #12365e20}
+    .task{background:white;border:1px solid #e0e7ef;border-radius:15px;padding:24px 28px;margin:18px 0;color:#263e59;line-height:1.85;white-space:pre-wrap}
+    .choices{display:grid;gap:11px}
+    .choice{width:100%;display:flex;align-items:flex-start;gap:15px;text-align:left;border:2px solid #dce5ef;border-radius:13px;background:white;padding:15px 18px;line-height:1.65;color:#1d344f;transition:border-color .18s,transform .18s,background .18s}
+    .choice:not(:disabled):hover{border-color:#2563eb;transform:translateY(-2px)}
+    .letter{flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#eaf1fb;color:#1e518d;font-weight:700}
+    .choice.correct,.timeline-card.correct{background:#e8f7ed;border-color:var(--green)}
+    .choice.incorrect,.timeline-card.incorrect{background:#fff0f0;border-color:var(--red)}
+    .choice.correct .letter{background:var(--green);color:white}
+    .choice.incorrect .letter{background:var(--red);color:white}
+    .long-choice{padding:22px 24px;line-height:1.85}
+    .feedback{margin-top:16px;padding:18px 21px;border-radius:13px;background:#edf4fd;border-left:4px solid var(--blue);line-height:1.75}
+    .feedback strong{display:block;margin-bottom:4px}
+    .actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:25px}
+    .action-button{background:var(--navy);color:white;border:0;border-radius:10px;padding:12px 20px;font-weight:700;min-height:46px}
+    .action-button:not(:disabled):hover{background:#205586}
+    .counter{font-weight:800;white-space:nowrap}
+    .stats{display:flex;justify-content:space-between;gap:10px;flex-wrap:nowrap;white-space:nowrap;background:white;border:1px solid #e0e7ef;border-radius:12px;margin-top:15px;padding:14px 18px;font-size:13px;font-weight:700}
+    .hint{font-size:13px;color:#526b85;margin:0 0 16px}
+    .timeline{position:relative;padding-left:29px;display:grid;gap:13px}
+    .timeline:before{content:"";position:absolute;left:12px;top:22px;bottom:22px;width:3px;background:#a9bed9}
+    .timeline-item{position:relative}
+    .timeline-item:before{content:"";position:absolute;left:-23px;top:25px;width:15px;height:15px;border-radius:50%;background:#2563eb;border:3px solid white;box-shadow:0 0 0 2px #2563eb;z-index:1}
+    .timeline-item.is-correct:before{background:var(--green);box-shadow:0 0 0 2px var(--green)}
+    .timeline-item.is-incorrect:before{background:var(--red);box-shadow:0 0 0 2px var(--red)}
+    .timeline-card{background:white;border:2px solid #dce5ef;border-radius:13px;padding:14px;display:flex;align-items:center;gap:14px;line-height:1.6;touch-action:pan-y}
+    .timeline-card[draggable=true]{cursor:grab}
+    .timeline-card.dragging{opacity:.5}
+    .timeline-text{flex:1}
+    .move-buttons{display:flex;flex-direction:column;gap:5px}
+    .move-buttons button{border:1px solid #aec4df;background:#eaf4ff;border-radius:7px;min-width:39px;min-height:36px;font-size:19px;font-weight:700;color:var(--navy)}
+    .move-buttons button:not(:disabled):hover{background:#cfe5ff}
+    .check-row{margin-top:19px}
+    .correct-order{margin-top:14px;background:#fff;border:1px solid #cbdceb;border-radius:12px;padding:17px 20px;line-height:1.8}
+    .result-panel{background:white;border:1px solid #e0e7ef;border-radius:20px;padding:35px;box-shadow:0 12px 35px #12365e12;text-align:center}
+    .result-panel h1{font-size:26px;font-weight:800;color:var(--navy);margin:0}
+    .result-subtitle{color:#64748b;margin:5px 0 24px}
+    .score-badge{width:190px;height:190px;margin:0 auto 20px;border:10px solid var(--blue);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy);font-size:29px;font-weight:800}
+    .score-badge small{font-size:13px;color:#64748b}
+    .remark{font-weight:800;font-size:23px;color:var(--navy);min-height:36px}
+    .remark-detail{line-height:1.6;margin:8px auto 26px;max-width:650px}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:left}
+    .summary div,.section-result{border:1px solid #e3eaf2;border-radius:10px;padding:13px;background:#f8fafc}
+    .summary strong{display:block;color:var(--navy);font-size:19px}
+    .breakdown{text-align:left;margin-top:26px}
+    .breakdown h2{font-size:18px;font-weight:800;margin-bottom:10px}
+    .section-result{margin-top:7px}
+    .result-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:27px}
+    .review-section{margin-top:28px}
+    .review-section h2{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px}
+    .review-entry{background:white;padding:20px;border:1px solid #e0e7ef;border-radius:13px;margin:10px 0;line-height:1.7}
+    .review-entry h3{font-size:15px;font-weight:800;margin:0 0 8px}
+    .review-entry p{margin:7px 0}
+    .good{color:var(--green)}.bad{color:var(--red)}
+    .hidden{display:none!important}
+    #confetti{pointer-events:none;position:fixed;inset:0;overflow:hidden;z-index:20}
+    .confetti-bit{position:absolute;top:-20px;width:9px;height:15px;animation:fall 3.8s linear forwards}
+    @keyframes fall{to{transform:translateY(calc(100 * min(var(--vh, 1vh), 1vh))) rotate(760deg);opacity:0}}
+    @media(min-width:600px){.header-teacher-img,.header-logo-img{height:80px}}
+    @media(min-width:1024px){.header-teacher-img,.header-logo-img{height:96px}}
+    @media(max-width:640px){
+      .quiz-header{padding:8px 12px}
+      .header-teacher-img,.header-logo-img{height:45px}
+      .title-line1{font-size:clamp(11px,3.1vw,17px)}
+      .title-line2{font-size:clamp(9px,2.4vw,13px)}
+      .title-line3{font-size:clamp(8px,2vw,11px)}
+      .info-bar{padding:11px 12px;font-size:clamp(8px,2.3vw,11px);gap:4px}
+      .shell{padding:16px 12px 45px}
+      .instruction{padding:17px;font-size:15px}
+      .task{padding:18px;margin:13px 0}
+      .choice{padding:12px;gap:9px}
+      .long-choice{padding:18px;line-height:1.75}
+      .stats{justify-content:center;flex-wrap:wrap;column-gap:16px;row-gap:5px;font-size:11px}
+      .action-button{padding:10px 12px;font-size:12px}
+      .summary{grid-template-columns:repeat(2,1fr)}
+      .result-panel{padding:20px 14px}
+    }
+    @media print{
+      header,.info-bar,.quiz-screen,.result-actions,#confetti{display:none!important}
+      body{background:white}
+      .shell{max-width:none;padding:0}
+      .result-panel{box-shadow:none;border:0}
+      .remark{animation:none}
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  
+  
+  
+ <script>(function(){var ok=true;try{window.localStorage.getItem("__t")}catch(e){ok=false}
+if(!ok){var m={};try{Object.defineProperty(window,"localStorage",{configurable:true,value:{
+getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},
+setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}}}})}catch(e2){}}})();</script></head>
+ <body class="w-full">
+  <header class="quiz-header canva-header"><img class="header-teacher-img" loading="lazy" src="teacher.png" alt="Teacher Soufiane">
+   <div class="header-title">
+    <div class="title-line1">
+     English2BAC Quizzes
+    </div>
+    <div class="title-line2">
+     Learn • Practice • Succeed
+    </div>
+    <div class="title-line3">
+     with Teacher.Soufiane
+    </div>
+   </div><img class="header-logo-img" loading="lazy" src="logo.png" alt="Level-UP 2BAC">
+  </header>
+  <nav class="info-bar" aria-label="Quiz information"><span class="">UNIT: 5</span> <span class="">BOOK REVIEW</span> <span class="">WRITING - QUIZ 1</span>
+  </nav>
+  <main class="shell">
+   <section id="quiz-screen" class="quiz-screen" aria-label="Questions">
+    <h1 id="instruction" class="instruction"></h1>
+    <div id="task" class="task"></div>
+    <div id="answer-area"></div>
+    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
+    <div class="actions"><button id="previous" type="button" class="action-button">◀ Previous</button> <span id="counter" class="counter" aria-live="polite"></span> <button id="next" type="button" class="action-button">Next ▶</button>
+    </div>
+    <div class="stats" aria-live="polite"><span id="correct-stat"></span><span id="wrong-stat"></span><span id="remaining-stat"></span><span id="score-stat"></span><span id="timer-stat"></span>
+    </div>
+   </section>
+   <section id="result-screen" class="result-panel hidden" aria-label="Quiz results">
+    <h1 class="">QUIZ / BOOK REVIEW</h1>
+    <p class="result-subtitle">WRITING - QUIZ 1</p>
+    <div class="score-badge">
+     <span id="final-score"></span><small>/20</small>
+    </div>
+    <div id="remark" class="remark" aria-live="polite"></div>
+    <p id="remark-detail" class="remark-detail"></p>
+    <div id="summary" class="summary"></div>
+    <div class="breakdown">
+     <h2 class="">Section breakdown</h2>
+     <div id="section-breakdown"></div>
+    </div>
+    <div class="result-actions"><button id="review-button" type="button" class="action-button">Review My Answers</button> <button id="restart-button" type="button" class="action-button">Restart Quiz</button> <button id="print-button" type="button" class="action-button">Print Results</button> <button id="save-button" type="button" class="action-button">Save Results</button>
+    </div>
+   </section>
+   <section id="review-screen" class="hidden" aria-label="Answer review">
+    <h1 class="instruction">REVIEW MY ANSWERS</h1>
+    <div id="review-content"></div>
+    <div class="actions"><button id="review-previous" type="button" class="action-button">◀ Previous</button> <span id="review-counter" class="counter"></span> <button id="review-next" type="button" class="action-button">Next ▶</button>
+    </div>
+    <div class="result-actions"><button id="back-results" type="button" class="action-button">Back to Results</button>
+    </div>
+   </section>
+  </main>
+  <div id="confetti" aria-hidden="true"></div>
+  <script>
+    // Question text is application data, not presentation configuration.
+    const quizConfig = {
+      unit:"5",title:"BOOK REVIEW",lesson:"WRITING - QUIZ 1",
+      randomizeQuestions:false,randomizeChoices:true,timerEnabled:true,
+      timerMode:"countup",showConfetti:true,enableSounds:true,totalPoints:20,
+      questions:[
+        {
+          type:"single-choice",category:"Understanding the Purpose of a Book Review",
+          question:"CHOOSE THE MAIN PURPOSE OF A BOOK REVIEW.",
+          task:"Your teacher asks you to write a book review of a novel you have read. What is the main purpose of a book review?",
+          choices:["To summarize the book, evaluate it, and help readers decide whether to read it","To retell the whole book chapter by chapter so readers know every event","To give a detailed biography of the author and list all of his books","To persuade readers to buy every book by the same author without exception"],
+          correctAnswer:"To summarize the book, evaluate it, and help readers decide whether to read it",
+          explanation:"A book review briefly summarizes the book, gives an evaluation, and helps readers decide whether it is worth reading. It is not a full retelling, an author biography, or an advertisement.",points:1
+        },
+        {
+          type:"single-choice",category:"Identifying Book Information",
+          question:"IDENTIFY THE AUTHOR AND THE PUBLICATION DATE.",
+          task:"\"Published in 1952, The Old Man and the Sea is a short novel by the American writer Ernest Hemingway. It tells the story of an elderly fisherman and his struggle with a giant fish.\" Who is the author and when was the book published?",
+          choices:["Ernest Hemingway, 1952","Ernest Hemingway, 1926","Mark Twain, 1952","Herman Melville, 1851"],
+          correctAnswer:"Ernest Hemingway, 1952",
+          explanation:"The extract states that the novel was published in 1952 and was written by the American writer Ernest Hemingway.",points:1
+        },
+        {
+          type:"single-choice",category:"Recognizing the Genre",
+          question:"IDENTIFY THE GENRE OF THE BOOK.",
+          task:"\"Set in a distant galaxy, this novel follows a crew of astronauts who discover an alien civilization that threatens Earth.\" What is the genre of this book?",
+          choices:["Science fiction","Historical fiction","Detective story","Autobiography"],
+          correctAnswer:"Science fiction",
+          explanation:"A distant galaxy, astronauts, and an alien civilization are typical features of science fiction.",points:1
+        },
+        {
+          type:"single-choice",category:"Distinguishing Facts from Opinions",
+          question:"CHOOSE THE SENTENCE THAT EXPRESSES A PERSONAL EVALUATION.",
+          task:"Which sentence expresses a personal evaluation rather than factual information?",
+          choices:["The novel was first published in the year 1952.","The story is set at sea near the coast of Cuba.","The book contains about one hundred printed pages.","I found the ending of the novel deeply moving."],
+          correctAnswer:"I found the ending of the novel deeply moving.",
+          explanation:"'I found the ending of the novel deeply moving' expresses the reviewer's own feelings. The other sentences state facts that can be checked.",points:1
+        },
+        {
+          type:"single-choice",category:"Identifying Essential Book Details",
+          question:"CHOOSE THE OPTION THAT CORRECTLY IDENTIFIES THE BOOK'S DETAILS.",
+          task:"\"This gripping adventure novel follows Santiago, an elderly fisherman, and Manolin, the young boy who admires him. When Santiago hooks an enormous marlin far from the shore, he must fight exhaustion, hunger, and eventually hungry sharks to bring his catch home.\" Which option correctly identifies the genre, the main characters, and the central conflict?",
+          choices:["Adventure novel; Santiago and Manolin; Santiago's struggle to bring his giant catch home","Romance; Santiago and a fisherman's wife; a quarrel between two fishing families in town","Adventure novel; Manolin and the sharks; a competition between two rival fishing boats","Detective story; Santiago and a police officer; the search for a missing fish in the bay"],
+          correctAnswer:"Adventure novel; Santiago and Manolin; Santiago's struggle to bring his giant catch home",
+          explanation:"The passage names the genre (adventure novel), the main characters (Santiago and Manolin), and the central conflict (Santiago's struggle against the marlin, exhaustion, and the sharks).",points:1
+        },
+        {
+          type:"single-choice",category:"Choosing the Best Plot Summary",
+          question:"CHOOSE THE BEST PLOT SUMMARY.",
+          task:"Which sentence best summarizes the central story of The Old Man and the Sea?",
+          choices:["After a long period without a catch, an old Cuban fisherman hooks a giant marlin and struggles for days to bring it home, only to lose most of it to sharks.","After a long period without a catch, an old Cuban fisherman travels to Havana and becomes a famous baseball player, winning a national title in the end.","The Old Man and the Sea is a famous short novel written by the American author Ernest Hemingway, first published in 1952 and read by students worldwide.","I think the story is about a man who is very sad, and I felt sorry for him because his life seemed so hard and lonely throughout the whole book."],
+          correctAnswer:"After a long period without a catch, an old Cuban fisherman hooks a giant marlin and struggles for days to bring it home, only to lose most of it to sharks.",
+          explanation:"A good plot summary states the main events of the story briefly and accurately. The other options are inaccurate, give only background information, or express a vague opinion.",points:1
+        },
+        {
+          type:"single-choice",category:"Identifying Characters",
+          question:"IDENTIFY THE CHARACTER'S ROLE.",
+          task:"\"Manolin is a young boy who used to fish with Santiago. Although his parents have made him work on another boat, he still brings Santiago food and bait and admires him deeply.\" What is Manolin's role in the story?",
+          choices:["Santiago's young friend and devoted helper who cares for him","Santiago's rival who competes with him for the biggest fish","Santiago's son who owns the fishing boat and gives him orders","The main enemy who tries to stop Santiago from going to sea"],
+          correctAnswer:"Santiago's young friend and devoted helper who cares for him",
+          explanation:"The review says Manolin used to fish with Santiago, still brings him food and bait, and admires him. This makes him a young friend and helper, not a rival, a son, or an enemy.",points:1
+        },
+        {
+          type:"single-choice",category:"Finding Unsupported Information",
+          question:"IDENTIFY THE STATEMENT THAT IS NOT SUPPORTED BY THE REVIEW.",
+          task:"\"The Old Man and the Sea tells the story of Santiago, an elderly Cuban fisherman who has gone eighty-four days without catching a fish. Far out at sea, he hooks an enormous marlin and spends three days fighting it. Although he finally secures the fish to his boat, sharks attack and eat most of it. Santiago returns to the harbour exhausted, with only the skeleton left.\" Which statement is NOT supported by the review?",
+          choices:["Santiago sold the marlin at the market for a high price.","Santiago spent three days fighting the enormous marlin.","Sharks attacked and ate most of the giant marlin.","Santiago had gone eighty-four days without catching a fish."],
+          correctAnswer:"Santiago sold the marlin at the market for a high price.",
+          explanation:"The review says sharks ate most of the fish and only the skeleton was left, so there is no support for Santiago selling it for a high price. The other three statements appear in the review.",points:1
+        },
+        {
+          type:"single-choice",category:"Expressing Likes and Giving Reasons",
+          question:"CHOOSE THE SENTENCE THAT EXPRESSES A POSITIVE OPINION WITH A RELEVANT REASON.",
+          task:"Which sentence correctly expresses a positive opinion about a novel and supports it with a relevant reason?",
+          choices:["I really enjoyed the novel because its simple language makes the powerful story easy to follow.","I really enjoyed the novel because it was published in 1952 by a very large and famous company.","I really enjoyed the novel because I really enjoyed it, and I enjoyed every single page of it.","I really enjoyed the novel, but the characters were boring and the story was too long to finish."],
+          correctAnswer:"I really enjoyed the novel because its simple language makes the powerful story easy to follow.",
+          explanation:"A good opinion sentence gives a reason connected to the book's quality. The publication date is not a reason, repeating the opinion is not a reason, and the remaining sentence contradicts the positive opinion.",points:1
+        },
+        {
+          type:"single-choice",category:"Completing an Opinion Sentence",
+          question:"COMPLETE THE SENTENCE WITH A LOGICAL REASON.",
+          task:"I did not enjoy this book because ______.",
+          choices:["the plot moved too slowly and little happened in the middle chapters","the story was full of exciting twists that kept me reading until the end","the writing was beautiful and the language was easy for me to read","its cover is blue and the pages are printed on thick white paper"],
+          correctAnswer:"the plot moved too slowly and little happened in the middle chapters",
+          explanation:"A reason for disliking a book must be negative and relevant to the book's content. Two of the options are positive, and the cover colour is not a relevant reason.",points:1
+        },
+        {
+          type:"single-choice",category:"Supporting a Personal Preference",
+          question:"CHOOSE THE MOST APPROPRIATE REASON.",
+          task:"My favourite part of the book is the final struggle with the marlin because ______.",
+          choices:["it shows Santiago's courage and determination in a dramatic way","the book has only one hundred pages and is easy to carry around","it was printed by a well-known company in a very large factory","I bought the book from a small bookshop near my house last year"],
+          correctAnswer:"it shows Santiago's courage and determination in a dramatic way",
+          explanation:"A reason for liking a part of the book should explain what makes that part special. Only one option refers to the content of the scene.",points:1
+        },
+        {
+          type:"single-choice",category:"Choosing the Most Appropriate Adjective",
+          question:"CHOOSE THE MOST APPROPRIATE ADJECTIVE.",
+          task:"This ______ novel explores deep questions about human life and suffering.",
+          choices:["profound","hilarious","ordinary","careless"],
+          correctAnswer:"profound",
+          explanation:"A novel that explores deep questions about life and suffering is best described as 'profound'. 'Hilarious', 'ordinary' and 'careless' do not suit such a serious theme.",points:1
+        },
+        {
+          type:"single-choice",category:"Improving a Weak Review Sentence",
+          question:"CHOOSE THE STRONGEST EVALUATION SENTENCE.",
+          task:"Weak sentence: \"The book was good.\" Which sentence improves it by giving a clearer evaluation supported by a specific reason?",
+          choices:["The book was gripping because its fast-paced plot kept me guessing until the final page.","The book was really, really good, and it was very good from the beginning to the end.","The book was good and I liked it a lot, because I like good books and this was one.","The book was good, I think, although I am not sure what exactly made it good for me."],
+          correctAnswer:"The book was gripping because its fast-paced plot kept me guessing until the final page.",
+          explanation:"A strong evaluation uses a precise adjective ('gripping') and a specific reason (the fast-paced plot). The other options only repeat vague opinions.",points:1
+        },
+        {
+          type:"single-choice",category:"Identifying the Function of a Conclusion",
+          question:"IDENTIFY THE FUNCTION OF THE CONCLUDING SECTION.",
+          task:"\"This is an inspiring story about courage and perseverance. I would recommend it to anyone who enjoys short, powerful novels.\" What is the function of this section of the review?",
+          choices:["It gives an overall evaluation and recommends the book to readers.","It introduces the author and gives the title and the publication date.","It describes the setting and introduces the main characters in detail.","It retells the whole plot from the beginning of the story to the end."],
+          correctAnswer:"It gives an overall evaluation and recommends the book to readers.",
+          explanation:"The section sums up the reviewer's overall opinion and tells readers who would enjoy the book, which is the function of a conclusion.",points:1
+        },
+        {
+          type:"single-choice",category:"Identifying an Irrelevant Sentence",
+          question:"IDENTIFY THE SENTENCE THAT DOES NOT BELONG IN THE REVIEW.",
+          task:"Read the sentences from a review of an adventure novel and identify the one that does NOT belong. 1) The novel follows a group of explorers searching for a lost island. 2) Their journey is full of danger and unexpected discoveries. 3) The author's neighbour has a pet parrot. 4) I recommend it to readers who enjoy exciting adventures.",
+          choices:["Sentence 1","Sentence 2","Sentence 3","Sentence 4"],
+          correctAnswer:"Sentence 3",
+          explanation:"The author's neighbour's pet has nothing to do with the plot, the characters, or the reviewer's evaluation of the novel.",points:1
+        },
+        {
+          type:"single-choice",category:"Detecting a Grammar Error",
+          question:"IDENTIFY THE SENTENCE THAT CONTAINS A GRAMMATICAL ERROR.",
+          task:"Which sentence contains a grammatical error? (Hint: check subject–verb agreement.)",
+          choices:["The characters in this novel is very realistic and lively.","The plot of this novel is clear and easy to follow.","Santiago shows great courage during the long fight at sea.","The readers enjoy the ending of this novel very much."],
+          correctAnswer:"The characters in this novel is very realistic and lively.",
+          explanation:"The subject 'characters' is plural, so the verb must be 'are': 'The characters in this novel are very realistic and lively.' The other sentences have correct subject–verb agreement.",points:1
+        },
+        {
+          type:"single-choice",category:"Writing an Effective Recommendation",
+          question:"CHOOSE THE STRONGEST RECOMMENDATION.",
+          task:"Which is the strongest recommendation for The Old Man and the Sea, considering its content and its intended audience?",
+          choices:["I would recommend this novel to teenagers and adults who enjoy inspiring stories about courage, because its short length and simple language make it easy to read.","I would recommend this novel to readers who enjoy fast-paced science fiction with lots of explosions, because its long chapters make it easy to read.","I would recommend this novel to everyone in the world, because every single person must read it immediately and nobody should ever ignore it.","I would recommend this novel to anyone who visits a bookshop, because it can be found in bookshops and libraries in many different cities."],
+          correctAnswer:"I would recommend this novel to teenagers and adults who enjoy inspiring stories about courage, because its short length and simple language make it easy to read.",
+          explanation:"A strong recommendation names a suitable audience and gives a reason linked to the book's content. The other options suggest the wrong audience, exaggerate, or give only practical information.",points:1
+        },
+        {
+          type:"single-choice",category:"Completing a Missing Section",
+          question:"CHOOSE THE PARAGRAPH THAT LOGICALLY COMPLETES THE REVIEW.",
+          task:"\"The Old Man and the Sea is a short novel by Ernest Hemingway, published in 1952. It is an adventure story about an elderly Cuban fisherman named Santiago and Manolin, the young boy who admires him. ______ I found the novel deeply moving because of Santiago's courage, and I would recommend it to anyone who enjoys inspiring stories.\" Which paragraph best fills the gap by providing a summary of the plot?",
+          choices:["After eighty-four days without catching a fish, Santiago sails far out to sea and hooks an enormous marlin. He fights the fish for three days, but sharks eat it before he can bring it home.","Ernest Hemingway was an American writer who also worked as a journalist before becoming a novelist. He lived in several countries and wrote many novels and short stories during his long career.","I would strongly recommend this novel to teenagers and adults who enjoy short, powerful stories. Its simple language and inspiring message make it a rewarding read for almost any reader.","The novel is available in many bookshops and libraries, and it has been translated into many languages. Readers can borrow it, buy it online, or download a digital copy easily."],
+          correctAnswer:"After eighty-four days without catching a fish, Santiago sails far out to sea and hooks an enormous marlin. He fights the fish for three days, but sharks eat it before he can bring it home.",
+          explanation:"The missing section is the plot summary, which tells the main events of the story. The other options give author information, repeat the recommendation, or give practical information.",points:1
+        },
+        {
+          type:"single-choice",category:"Evaluating a Complete Book Review",
+          question:"CHOOSE THE BEST-WRITTEN BOOK REVIEW.",
+          task:"Which review is the best written, considering accuracy, organization, plot summary, personal evaluation, and recommendation?",
+          choices:[
+            "The Old Man and the Sea is a short novel by Ernest Hemingway, published in 1952. It is an adventure story set at sea near Cuba. The main characters are Santiago, an elderly fisherman, and Manolin, the young boy who admires him. After eighty-four days without a catch, Santiago hooks an enormous marlin and fights it for three days, only for sharks to destroy his prize before he reaches the harbour. I found the story deeply moving because Santiago's courage never fades, even in defeat. I would recommend it to readers who enjoy short, inspiring stories.",
+            "The Old Man and the Sea is a short novel by Ernest Hemingway, published in 1952. It is an adventure story set at sea near Cuba. The main characters are Santiago, an elderly fisherman, and Manolin, the young boy who admires him. The book is divided into short sections, and the language is simple, clear, and direct, which suits young readers. I found it deeply moving and beautifully written, and the characters are very memorable and realistic throughout the whole story. I would recommend it to readers who enjoy short, inspiring stories.",
+            "The Old Man and the Sea is a long romance by Mark Twain, published in 1920. It is a love story set in a big city in Italy. The main characters are Santiago, a young sailor, and his wife. Santiago wins a fishing competition in the final chapter and becomes very rich and famous. Together they open a restaurant in Paris and live happily there for many years. I found the story exciting because the ending is happy and full of joy. I would recommend it to everyone who enjoys romantic stories.",
+            "I would recommend this book to everyone, and I loved it a lot. Santiago catches a fish and then some sharks come. Hemingway wrote it. It is good and the characters are good and the sea is big. The book is from 1952, I think. Then there is the boy, and then there is the old man, and then there is the fish again. My friends told me that it is a very good book, and my teacher said that it is good to read. Some people say it is short, but I think short books are good too. In the end it is a good book and you should read it because it is good."
+          ],
+          correctAnswer:"The Old Man and the Sea is a short novel by Ernest Hemingway, published in 1952. It is an adventure story set at sea near Cuba. The main characters are Santiago, an elderly fisherman, and Manolin, the young boy who admires him. After eighty-four days without a catch, Santiago hooks an enormous marlin and fights it for three days, only for sharks to destroy his prize before he reaches the harbour. I found the story deeply moving because Santiago's courage never fades, even in defeat. I would recommend it to readers who enjoy short, inspiring stories.",
+          explanation:"The correct review is accurate and well organized: introduction, genre, characters, plot summary, personal evaluation with a reason, and a recommendation. The others have no plot summary, contain wrong facts, or are disorganized and vague.",points:1
+        },
+        {
+          type:"sentence-ordering",category:"Reorder the parts of a book review",
+          question:"ARRANGE THE PARTS IN THE CORRECT ORDER TO FORM A BOOK REVIEW.",
+          structureHint:"Introduction → Genre → Characters → Plot summary → Personal evaluation → Conclusion & recommendation",
+          sentences:[
+            {id:"A",text:"I would recommend The Old Man and the Sea to anyone who enjoys short, inspiring stories about courage."},
+            {id:"B",text:"The Old Man and the Sea is a short novel written by Ernest Hemingway and published in 1952."},
+            {id:"C",text:"It is an adventure novel set at sea near the coast of Cuba."},
+            {id:"D",text:"The story centres on Santiago, an elderly fisherman, and Manolin, the young boy who admires and helps him."},
+            {id:"E",text:"After eighty-four days without catching a fish, Santiago hooks an enormous marlin and fights it for three days, but sharks devour the fish before he reaches the harbour."},
+            {id:"F",text:"I found the novel deeply moving because Santiago's courage and determination inspire the reader, even in defeat."}
+          ],
+          correctOrder:["B","C","D","E","F","A"],
+          explanation:"A well-organized book review follows this order: book introduction, genre, main characters, plot summary, personal evaluation, and a conclusion with a recommendation.",points:1
+        }
+      ]
+    };
+
+    const sections=[
+      {name:"Section 1 — Book Review Basics",start:0,end:5},
+      {name:"Section 2 — Plot and Characters",start:5,end:8},
+      {name:"Section 3 — Expressing Opinions",start:8,end:13},
+      {name:"Section 4 — Structure and Language of a Review",start:13,end:17},
+      {name:"Section 5 — Build the Book Review",start:17,end:20}
+    ];
+    const $=id=>document.getElementById(id);
+    const state={index:0,choices:[],answers:[],order:[],reviewIndex:0,finished:false};
+    const positive=["Excellent!","Great Job!","Perfect!","Keep Going!"];
+    const negative=["Almost!","Review this rule.","Keep learning!","You'll get the next one!"];
+    const remarkScale=[
+      {min:18,label:"Excellent",detail:"You can write a clear, well-organized book review."},
+      {min:15,label:"Very Good",detail:"You understand the main conventions of book-review writing."},
+      {min:12,label:"Good",detail:"Review plot summaries, opinions with reasons, and recommendations."},
+      {min:8,label:"Needs Improvement",detail:"Review the structure and language of a book review."},
+      {min:0,label:"Keep Practising",detail:"Start with the basic purpose and parts of a book review."}
+    ];
+    const shuffle=items=>{
+      const result=[...items];
+      for(let i=result.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [result[i],result[j]]=[result[j],result[i]];
+      }
+      return result;
+    };
+    const node=(tag,className,text)=>{
+      const element=document.createElement(tag);
+      if(className)element.className=className;
+      if(text!==undefined)element.textContent=text;
+      return element;
+    };
+    const safeStore={
+      get(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}},
+      set(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch{}}
+    };
+
+    // Independent count-up timer; rendering questions never resets its elapsed time.
+    const timer=(()=>{
+      let seconds=0,interval=null;
+      const format=value=>`${String(Math.floor(value/60)).padStart(2,"0")}:${String(value%60).padStart(2,"0")}`;
+      const paint=()=>{$("timer-stat").textContent=`Timer: ${format(seconds)}`};
+      return {
+        start(){if(interval)return;paint();interval=setInterval(()=>{seconds++;paint()},1000)},
+        pause(){clearInterval(interval);interval=null},
+        reset(){clearInterval(interval);interval=null;seconds=0;paint()},
+        format,elapsed(){return seconds}
+      };
+    })();
+
+    let audioContext;
+    function sound(kind){
+      if(!quizConfig.enableSounds)return;
+      try{
+        audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+        if(audioContext.state==="suspended")audioContext.resume();
+        const notes=kind==="correct"?[523,659]:kind==="wrong"?[330,277]:kind==="completed"?[523,659,784,1047]:[440];
+        notes.forEach((frequency,index)=>{
+          const oscillator=audioContext.createOscillator(),gain=audioContext.createGain();
+          const at=audioContext.currentTime+index*.105;
+          oscillator.type="sine";oscillator.frequency.value=frequency;
+          gain.gain.setValueAtTime(.0001,at);
+          gain.gain.exponentialRampToValueAtTime(kind==="move"?.035:.075,at+.015);
+          gain.gain.exponentialRampToValueAtTime(.0001,at+.18);
+          oscillator.connect(gain).connect(audioContext.destination);
+          oscillator.start(at);oscillator.stop(at+.2);
+        });
+      }catch{}
+    }
+    function counts(){
+      const answered=state.answers.filter(Boolean);
+      return {correct:answered.filter(item=>item.correct).length,wrong:answered.filter(item=>!item.correct).length,remaining:20-answered.length};
+    }
+    function updateStats(){
+      const value=counts();
+      $("correct-stat").textContent=`✅ Correct: ${value.correct}`;
+      $("wrong-stat").textContent=`❌ Wrong: ${value.wrong}`;
+      $("remaining-stat").textContent=`Remaining: ${value.remaining}`;
+      $("score-stat").textContent=`Score: ${value.correct.toFixed(2)} /20`;
+    }
+    function prepareAttempt(){
+      state.index=0;state.finished=false;state.answers=Array(20).fill(null);
+      state.choices=quizConfig.questions.map(question=>{
+        if(question.type!=="single-choice")return null;
+        const original=question.choices.map((text,index)=>({id:`c${index+1}`,text}));
+        const matches=original.filter(choice=>choice.text===question.correctAnswer);
+        if(matches.length!==1)throw new Error("Every single-choice question needs exactly one matching answer.");
+        question.correctId=matches[0].id;
+        return shuffle(original);
+      });
+      state.order=[];
+      timer.reset();updateStats();$("confetti").replaceChildren();
+      $("result-screen").classList.add("hidden");
+      $("review-screen").classList.add("hidden");
+      $("quiz-screen").classList.remove("hidden");
+      renderQuestion();timer.start();
+    }
+    function renderQuestion(){
+      const question=quizConfig.questions[state.index];
+      $("instruction").textContent=question.question;
+      $("task").textContent=question.type==="sentence-ordering"?"":question.task;
+      $("task").classList.toggle("hidden",question.type==="sentence-ordering");
+      $("counter").textContent=`${state.index+1} / 20`;
+      $("previous").disabled=state.index===0;
+      $("next").disabled=!state.answers[state.index];
+      $("next").textContent=state.index===19?"See Results ▶":"Next ▶";
+      $("answer-area").replaceChildren();
+      $("feedback").replaceChildren();
+      $("feedback").classList.add("hidden");
+      if(question.type==="single-choice")renderSingleChoice(question);
+      else{
+        // Entering Q20 starts with a fresh scramble; returning to an answered Q20
+        // retains the submitted arrangement so its evaluation remains visible.
+        if(!state.answers[state.index]){
+          state.order=shuffle(question.sentences.map(sentence=>sentence.id));
+          while(state.order.every((id,index)=>id===question.correctOrder[index])){
+            state.order=shuffle(question.sentences.map(sentence=>sentence.id));
+          }
+        }else state.order=[...state.answers[state.index].submittedOrder];
+        renderOrdering(question);
+      }
+      if(state.answers[state.index])showFeedback(question,state.answers[state.index]);
+      updateStats();
+    }
+    function renderSingleChoice(question){
+      const wrapper=node("div","choices");
+      const answer=state.answers[state.index];
+      state.choices[state.index].forEach((choice,position)=>{
+        const button=node("button",`choice${state.index>=17?" long-choice":""}`);
+        button.type="button";
+        button.dataset.choiceId=choice.id;
+        button.disabled=!!answer;
+        if(answer){
+          if(choice.id===question.correctId)button.classList.add("correct");
+          else if(choice.id===answer.selectedId)button.classList.add("incorrect");
+        }
+        button.append(node("span","letter","ABCD"[position]),node("span","",choice.text));
+        button.addEventListener("click",()=>selectChoice(choice.id));
+        wrapper.append(button);
+      });
+      $("answer-area").append(wrapper);
+    }
+    function selectChoice(selectedId){
+      const index=state.index,question=quizConfig.questions[index];
+      if(question.type!=="single-choice"||state.answers[index])return;
+      const correct=selectedId===question.correctId;
+      state.answers[index]={selectedId,correct};
+      sound(correct?"correct":"wrong");
+      renderQuestion();
+    }
+    function showFeedback(question,answer){
+      const box=$("feedback");
+      const label=answer.feedback||(answer.feedback=(answer.correct?positive:negative)[Math.floor(Math.random()*4)]);
+      box.append(node("strong","",label),node("span","",question.explanation));
+      box.classList.remove("hidden");
+    }
+
+    // The single order array is read fresh for every arrow, drag, and touch action.
+    // Rebuilding the cards rebinds every handler to its currently rendered element.
+    function moveItem(from,to){
+      if(state.answers[19]||from<0||to<0||from>=state.order.length||to>=state.order.length||from===to)return;
+      const updated=[...state.order];
+      updated.splice(to,0,updated.splice(from,1)[0]);
+      state.order=updated;
+      sound("move");
+      renderOrdering(quizConfig.questions[19],updated[to]);
+    }
+    function renderOrdering(question,focusId){
+      const answer=state.answers[19],area=$("answer-area");
+      area.replaceChildren();
+      area.append(node("p","hint",question.structureHint));
+      const timeline=node("div","timeline");
+      let draggedId=null,touchStartY=null,touchId=null;
+      state.order.forEach((id,index)=>{
+        const sentence=question.sentences.find(item=>item.id===id);
+        const item=node("div","timeline-item");
+        const card=node("div","timeline-card");
+        card.tabIndex=answer?-1:0;
+        card.draggable=!answer;
+        card.dataset.sentenceId=id;
+        card.setAttribute("aria-label",`Position ${index+1}: ${sentence.text}. Use arrow keys to move.`);
+        if(answer){
+          const matching=id===question.correctOrder[index];
+          card.classList.add(matching?"correct":"incorrect");
+          item.classList.add(matching?"is-correct":"is-incorrect");
+        }
+        card.append(node("span","timeline-text",sentence.text));
+        if(!answer){
+          const controls=node("div","move-buttons");
+          const up=node("button","","↑"),down=node("button","","↓");
+          up.type=down.type="button";
+          up.setAttribute("aria-label",`Move part ${index+1} up`);
+          down.setAttribute("aria-label",`Move part ${index+1} down`);
+          up.disabled=index===0;down.disabled=index===state.order.length-1;
+          up.addEventListener("click",event=>{event.stopPropagation();moveItem(state.order.indexOf(id),state.order.indexOf(id)-1)});
+          down.addEventListener("click",event=>{event.stopPropagation();moveItem(state.order.indexOf(id),state.order.indexOf(id)+1)});
+          controls.append(up,down);card.append(controls);
+          card.addEventListener("keydown",event=>{
+            if(event.target!==card)return;
+            if(event.key==="ArrowUp"||event.key==="ArrowDown"){
+              event.preventDefault();
+              const current=state.order.indexOf(id);
+              moveItem(current,current+(event.key==="ArrowUp"?-1:1));
+            }else if(event.key==="Enter"){
+              event.preventDefault();checkOrder();
+            }
+          });
+          card.addEventListener("dragstart",event=>{
+            draggedId=id;
+            event.dataTransfer.effectAllowed="move";
+            event.dataTransfer.setData("text/plain",id);
+            card.classList.add("dragging");
+          });
+          // preventDefault is required for the browser to dispatch drop.
+          card.addEventListener("dragover",event=>event.preventDefault());
+          card.addEventListener("drop",event=>{
+            event.preventDefault();
+            const source=event.dataTransfer.getData("text/plain")||draggedId;
+            moveItem(state.order.indexOf(source),state.order.indexOf(id));
+          });
+          card.addEventListener("dragend",()=>card.classList.remove("dragging"));
+          card.addEventListener("touchstart",event=>{
+            if(event.target.closest("button"))return;
+            touchId=id;touchStartY=event.touches[0].clientY;
+          },{passive:true});
+          card.addEventListener("touchmove",event=>{
+            if(touchId)event.preventDefault();
+          },{passive:false});
+          card.addEventListener("touchend",event=>{
+            if(!touchId||touchStartY===null)return;
+            const point=event.changedTouches[0];
+            const target=document.elementFromPoint(point.clientX,point.clientY)?.closest(".timeline-card");
+            if(target&&target.dataset.sentenceId!==touchId){
+              moveItem(state.order.indexOf(touchId),state.order.indexOf(target.dataset.sentenceId));
+            }else if(Math.abs(point.clientY-touchStartY)>28){
+              const current=state.order.indexOf(touchId);
+              moveItem(current,current+(point.clientY<touchStartY?-1:1));
+            }
+            touchId=null;touchStartY=null;
+          },{passive:true});
+        }
+        item.append(card);timeline.append(item);
+      });
+      area.append(timeline);
+      if(!answer){
+        const row=node("div","check-row"),check=node("button","action-button","Check Order");
+        check.type="button";check.addEventListener("click",checkOrder);
+        row.append(check);area.append(row);
+      }else if(!answer.correct){
+        const reference=node("div","correct-order");
+        reference.append(node("strong","","Correct order:"));
+        question.correctOrder.forEach((id,index)=>{
+          const sentence=question.sentences.find(item=>item.id===id);
+          reference.append(node("p","",`${index+1}. ${sentence.text}`));
+        });
+        area.append(reference);
+      }
+      if(focusId)area.querySelectorAll(".timeline-card").forEach(card=>{
+        if(card.dataset.sentenceId===focusId)card.focus();
+      });
+    }
+    // Ordering is evaluated only on an explicit Check Order activation.
+    function checkOrder(){
+      if(state.index!==19||state.answers[19])return;
+      const question=quizConfig.questions[19];
+      const submittedOrder=[...state.order];
+      const correct=submittedOrder.every((id,index)=>id===question.correctOrder[index]);
+      state.answers[19]={submittedOrder,correct};
+      sound(correct?"correct":"wrong");
+      renderQuestion();
+    }
+    function navigate(direction){
+      if(direction>0&&!state.answers[state.index])return;
+      if(direction>0&&state.index===19){finishQuiz();return}
+      state.index=Math.max(0,Math.min(19,state.index+direction));
+      renderQuestion();
+    }
+
+    function finishQuiz(){
+      if(state.finished||!state.answers.every(Boolean))return;
+      state.finished=true;timer.pause();
+      const score=counts().correct;
+      const attempts=safeStore.get("book-review-attempts",0)+1;
+      const best=Math.max(score,safeStore.get("book-review-best",0));
+      safeStore.set("book-review-attempts",attempts);
+      safeStore.set("book-review-best",best);
+      safeStore.set("book-review-last-score",score);
+      safeStore.set("book-review-time-taken",timer.format(timer.elapsed()));
+      $("quiz-screen").classList.add("hidden");
+      $("result-screen").classList.remove("hidden");
+      $("final-score").textContent=score.toFixed(2);
+      renderResults(score,attempts,best);
+      animateRemark(score);
+      sound("completed");
+      if(score>=18)makeConfetti();
+    }
+    function renderResults(score,attempts,best){
+      const summary=$("summary");summary.replaceChildren();
+      const data=[
+        ["Final Score",`${score.toFixed(2)} /20`],
+        ["Correct Answers",String(score)],
+        ["Wrong Answers",String(20-score)],
+        ["Accuracy",`${Math.round(score/20*100)}%`],
+        ["Time Taken",timer.format(timer.elapsed())],
+        ["Number of Attempts",String(attempts)],
+        ["Best Score",`${best.toFixed(2)} /20`]
+      ];
+      data.forEach(([label,value])=>{
+        const box=node("div");
+        box.append(node("span","",label),node("strong","",value));summary.append(box);
+      });
+      const breakdown=$("section-breakdown");breakdown.replaceChildren();
+      sections.forEach(section=>{
+        const earned=state.answers.slice(section.start,section.end).filter(answer=>answer?.correct).length;
+        breakdown.append(node("div","section-result",`${section.name}: ${earned}/${section.end-section.start}`));
+      });
+    }
+    function animateRemark(score){
+      const target=remarkScale.find(item=>score>=item.min);
+      $("remark-detail").textContent="";
+      const start=performance.now(),duration=3000;
+      let lastIndex=-1;
+      function frame(now){
+        const progress=Math.min(1,(now-start)/duration);
+        const index=Math.floor((now-start)/(65+progress*330))%remarkScale.length;
+        if(index!==lastIndex){$("remark").textContent=remarkScale[index].label;lastIndex=index}
+        if(progress<1)requestAnimationFrame(frame);
+        else{$("remark").textContent=target.label;$("remark-detail").textContent=target.detail}
+      }
+      requestAnimationFrame(frame);
+    }
+    function makeConfetti(){
+      const layer=$("confetti"),colors=["#2563eb","#16804a","#f2bb42","#df5365"];
+      for(let i=0;i<75;i++){
+        const bit=node("span","confetti-bit");
+        bit.style.left=`${Math.random()*100}%`;
+        bit.style.background=colors[i%colors.length];
+        bit.style.animationDelay=`${Math.random()*1.2}s`;
+        layer.append(bit);
+      }
+      setTimeout(()=>layer.replaceChildren(),5500);
+    }
+    function renderReview(){
+      const index=state.reviewIndex,question=quizConfig.questions[index],answer=state.answers[index];
+      const content=$("review-content");content.replaceChildren();
+      const section=sections.find(item=>index>=item.start&&index<item.end);
+      const group=node("div","review-section");
+      group.append(node("h2","",section.name));
+      const entry=node("article","review-entry");
+      entry.append(node("h3","",`Question ${index+1}: ${question.question}`));
+      if(question.type==="single-choice"){
+        const selected=question.choices[Number(answer.selectedId.slice(1))-1];
+        entry.append(node("p",answer.correct?"good":"bad",`Student Answer: ${selected}`));
+        entry.append(node("p","good",`Correct Answer: ${question.correctAnswer}`));
+      }else{
+        const textFor=id=>question.sentences.find(item=>item.id===id).text;
+        entry.append(node("p",answer.correct?"good":"bad",`Student's Submitted Order: ${answer.submittedOrder.map(textFor).join(" → ")}`));
+        entry.append(node("p","good",`Correct Order: ${question.correctOrder.map(textFor).join(" → ")}`));
+      }
+      entry.append(node("p","",`Explanation: ${question.explanation}`));
+      group.append(entry);content.append(group);
+      $("review-counter").textContent=`${index+1} / 20`;
+      $("review-previous").disabled=index===0;
+      $("review-next").disabled=index===19;
+    }
+    function openReview(){
+      state.reviewIndex=0;
+      $("result-screen").classList.add("hidden");
+      $("review-screen").classList.remove("hidden");
+      renderReview();
+    }
+    function reportText(){
+      const score=counts().correct,remark=remarkScale.find(item=>score>=item.min);
+      return [
+        "UNIT 5 — BOOK REVIEW — WRITING - QUIZ 1",
+        `Final Score: ${score.toFixed(2)} /20`,
+        `Remark: ${remark.label} — ${remark.detail}`,
+        `Correct Answers: ${score}`,
+        `Wrong Answers: ${20-score}`,
+        `Accuracy: ${Math.round(score/20*100)}%`,
+        `Time Taken: ${timer.format(timer.elapsed())}`,
+        `Number of Attempts: ${safeStore.get("book-review-attempts",0)}`,
+        `Best Score: ${Number(safeStore.get("book-review-best",0)).toFixed(2)} /20`,
+        "",
+        ...sections.map(section=>`${section.name}: ${state.answers.slice(section.start,section.end).filter(answer=>answer?.correct).length}/${section.end-section.start}`)
+      ].join("\n");
+    }
+    function saveResults(){
+      const blob=new Blob([reportText()],{type:"text/plain;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      const link=document.createElement("a");
+      link.href=url;link.download="unit-5-book-review-results.txt";
+      document.body.append(link);link.click();link.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }
+
+    $("previous").addEventListener("click",()=>navigate(-1));
+    $("next").addEventListener("click",()=>navigate(1));
+    $("review-button").addEventListener("click",openReview);
+    $("restart-button").addEventListener("click",prepareAttempt);
+    $("print-button").addEventListener("click",()=>window.print());
+    $("save-button").addEventListener("click",saveResults);
+    $("back-results").addEventListener("click",()=>{
+      $("review-screen").classList.add("hidden");
+      $("result-screen").classList.remove("hidden");
+    });
+    $("review-previous").addEventListener("click",()=>{
+      state.reviewIndex=Math.max(0,state.reviewIndex-1);renderReview();
+    });
+    $("review-next").addEventListener("click",()=>{
+      state.reviewIndex=Math.min(19,state.reviewIndex+1);renderReview();
+    });
+    document.addEventListener("keydown",event=>{
+      if($("quiz-screen").classList.contains("hidden"))return;
+      if(event.target.closest("button,.timeline-card,input,textarea,select"))return;
+      const question=quizConfig.questions[state.index];
+      if(question.type==="single-choice"&&!state.answers[state.index]&&/^[1-4]$/.test(event.key)){
+        event.preventDefault();
+        selectChoice(state.choices[state.index][Number(event.key)-1].id);
+      }
+    });
+    prepareAttempt();
+  </script>
+ 
+</body></html>

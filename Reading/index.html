@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Women and Power Vocabulary Quiz</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #083c75;
+      --blue: #126bc2;
+      --light-blue: #e9f5ff;
+      --green: #16864b;
+      --red: #d94444;
+      --gray: #eef2f6;
+      --ink: #142236;
+      --muted: #627084;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      font-family: "Poppins", sans-serif;
+      color: var(--ink);
+      background: #eef5fa;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:focus-visible {
+      outline: 4px solid #79bdf6;
+      outline-offset: 3px;
+    }
+
+    .app-shell {
+      width: 100%;
+      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
+      padding: 18px;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(43, 137, 214, .13), transparent 23rem),
+        radial-gradient(circle at 90% 80%, rgba(33, 141, 83, .12), transparent 25rem),
+        #eef5fa;
+    }
+
+    .quiz-frame {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 26px;
+      background: #ffffff;
+      box-shadow: 0 18px 60px rgba(8, 60, 117, .16);
+    }
+
+    .quiz-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      min-height: 110px;
+      padding: 10px 20px;
+      background: #dff1ff;
+      color: #083c75;
+    }
+
+    .header-media {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .header-teacher-img,
+    .header-logo-img {
+      height: 64px;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-logo-img { filter: drop-shadow(0 3px 6px rgba(0,0,0,.22)); }
+
+    .header-copy {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .header-copy h1 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: .02em;
+      line-height: 1.2;
+    }
+
+    .header-copy p {
+      margin: 7px 0 0;
+      line-height: 1.2;
+    }
+
+    .header-copy [data-template-id="quiz-header-subtitle-credit"] {
+      margin-top: 4px;
+    }
+
+    .metadata-bar {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 8px;
+      padding: 12px 18px;
+      background: #083c75;
+      border-bottom: 1px solid #062f5d;
+      text-align: center;
+      font-size: .76rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: .06em;
+    }
+
+    .metadata-bar span:nth-child(2) { color: #ffffff; }
+
+    .progress-track {
+      height: 7px;
+      background: #d9e5ee;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1e8dde, #29b86d);
+      transition: width .5s ease;
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      padding: 24px;
+    }
+
+    .category-chip {
+      display: inline-flex;
+      margin-bottom: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #e8f4ff;
+      color: #07569e;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .question-box {
+      padding: 23px 24px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #0a5194, #117bc8);
+      box-shadow: 0 10px 24px rgba(16, 107, 194, .20);
+      color: white;
+    }
+
+    .question-box h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: .045em;
+      line-height: 1.5;
+    }
+
+    .task-card {
+      margin-top: 16px;
+      padding: 22px 24px;
+      border: 1px solid #dce8f0;
+      border-radius: 18px;
+      background: #fbfdff;
+      box-shadow: 0 6px 18px rgba(36, 72, 112, .07);
+    }
+
+    .task-card p {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.72;
+      font-weight: 600;
+      color: #233b55;
+    }
+
+    .target-label {
+      font-size: .78rem;
+      letter-spacing: .09em;
+      color: #5e7185;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .target-word {
+      margin-top: 0 !important;
+      color: #07569e !important;
+      font-size: 1.7rem !important;
+      letter-spacing: .07em;
+      text-align: center;
+    }
+
+    .choices-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .choice-button {
+      position: relative;
+      min-height: 60px;
+      padding: 14px 48px 14px 16px;
+      border: 2px solid #d6e3ed;
+      border-radius: 15px;
+      background: white;
+      color: #24405b;
+      text-align: left;
+      font-weight: 700;
+      transition: transform .18s ease, background .18s ease, border .18s ease, box-shadow .18s ease;
+      box-shadow: 0 4px 11px rgba(29, 67, 105, .07);
+    }
+
+    .choice-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: #50a4e5;
+      box-shadow: 0 8px 16px rgba(29, 98, 153, .12);
+    }
+
+    .choice-number {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: grid;
+      place-items: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #edf4f8;
+      color: #39607e;
+      font-size: .75rem;
+    }
+
+    .choice-button.selected {
+      border-color: #167bd1;
+      background: #e7f4ff;
+      color: #07569e;
+    }
+
+    .choice-button.correct {
+      border-color: var(--green);
+      background: #e3f8ea;
+      color: #096935;
+    }
+
+    .choice-button.wrong {
+      border-color: var(--red);
+      background: #ffebeb;
+      color: #a02020;
+    }
+
+    .choice-button.antonym {
+      border-color: #aebac5;
+      background: #f0f3f5;
+      color: #596673;
+    }
+
+    .answer-tag {
+      position: absolute;
+      right: 12px;
+      bottom: 7px;
+      font-size: .58rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 16px;
+      padding: 15px 18px;
+      border-radius: 14px;
+      line-height: 1.55;
+    }
+
+    .feedback.show { display: block; }
+    .feedback.good { background: #e3f8ea; color: #096935; }
+    .feedback.bad { background: #fff0f0; color: #9c2525; }
+    .feedback strong { display: block; margin-bottom: 4px; }
+
+    .navigation-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .nav-button, .action-button {
+      border: 0;
+      border-radius: 13px;
+      padding: 12px 16px;
+      background: #eaf1f6;
+      color: #173a5b;
+      font-weight: 800;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .nav-button:hover:not(:disabled), .action-button:hover { transform: translateY(-1px); }
+    .nav-button.primary, .action-button.primary { background: #0d6ebd; color: white; }
+    .nav-button:disabled { opacity: .42; cursor: not-allowed; }
+    .question-counter { font-weight: 800; color: #315b7e; }
+
+    .side-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px 18px;
+      padding: 14px 18px;
+      border-radius: 19px;
+      background: #f8fbfd;
+      border: 1px solid #dce8f0;
+      height: fit-content;
+    }
+
+    .side-panel h3:first-child { grid-column: 1; margin: 0; }
+    .side-panel .stats-list { grid-column: 1; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .side-panel .stat-row { border-bottom: 0; padding-bottom: 0; }
+    .side-panel .timer-box { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; min-width: 125px; }
+    .side-panel .navigator-title, .side-panel .nav-groups { grid-column: 1 / -1; }
+
+    .side-panel h3 {
+      margin: 0 0 12px;
+      color: #0b4f89;
+      font-size: .88rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .stats-list { display: grid; gap: 10px; }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 9px;
+      border-bottom: 1px dashed #d5e1ea;
+      font-size: .85rem;
+    }
+
+    .stat-row strong { color: #0c467a; }
+
+    .timer-box {
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 13px;
+      background: #073b71;
+      color: white;
+      text-align: center;
+    }
+
+    .timer-box span {
+      display: block;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .8;
+    }
+
+    .timer-box strong { font-size: 1.4rem; letter-spacing: .08em; }
+
+    .navigator-title { margin-top: 20px !important; }
+    .nav-groups { display: grid; gap: 9px; }
+    .nav-group {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      padding: 7px;
+      border-radius: 11px;
+      background: #edf4f8;
+    }
+
+    .question-jump {
+      border: 0;
+      border-radius: 8px;
+      min-height: 30px;
+      background: #bdc7d0;
+      color: white;
+      font-size: .72rem;
+      font-weight: 800;
+    }
+
+    .question-jump.answered { background: #24a261; }
+    .question-jump.current { background: #147bc9; box-shadow: inset 0 0 0 2px white; }
+
+    .result-page {
+      display: none;
+      padding: 34px 24px;
+      text-align: center;
+    }
+
+    .result-page.active { display: block; }
+
+    .result-kicker {
+      color: #147bc9;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      font-weight: 800;
+    }
+
+    .result-page h2 { margin: 8px 0 2px; color: #073b71; font-size: 1.85rem; }
+    .result-meta { margin: 0; color: #64758a; font-size: .9rem; }
+
+    .score-badge {
+      display: grid;
+      place-items: center;
+      width: 190px;
+      height: 190px;
+      margin: 24px auto 16px;
+      border: 12px solid #e4f4ff;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a5194, #22a76a);
+      color: white;
+      box-shadow: 0 13px 30px rgba(15, 101, 158, .25);
+    }
+
+    .score-badge span { font-size: 2rem; font-weight: 800; }
+    .score-badge small { font-size: .75rem; opacity: .87; }
+
+    .remark-window {
+      width: min(340px, 100%);
+      margin: 0 auto 22px;
+      padding: 14px;
+      overflow: hidden;
+      border-top: 3px solid #d6e3ed;
+      border-bottom: 3px solid #d6e3ed;
+      color: #0b4f89;
+      font-size: 1.45rem;
+      font-weight: 800;
+      min-height: 63px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .summary-card {
+      padding: 15px;
+      border-radius: 15px;
+      background: #f7fbfe;
+      border: 1px solid #dbe8f0;
+    }
+
+    .summary-card span { display: block; color: #66788d; font-size: .72rem; font-weight: 700; }
+    .summary-card strong { color: #0b4f89; font-size: 1.05rem; }
+
+    .breakdown-card {
+      max-width: 850px;
+      margin: 15px auto;
+      padding: 18px;
+      border-radius: 16px;
+      background: #fbfdff;
+      border: 1px solid #dbe8f0;
+      text-align: left;
+    }
+
+    .breakdown-card h3 { margin: 0 0 10px; color: #0b4f89; }
+    .breakdown-line { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed #d7e1e8; }
+    .result-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .action-button.secondary { background: #edf3f7; color: #154365; }
+
+    .review-page { display: none; padding: 24px; }
+    .review-page.active { display: block; }
+    .review-head { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+    .review-head h2 { margin: 0; color: #073b71; }
+    .review-category { margin-top: 24px; color: #0b579c; font-size: 1rem; }
+    .review-item {
+      margin-top: 11px;
+      padding: 17px;
+      border-left: 5px solid #bfd5e6;
+      border-radius: 12px;
+      background: #fbfdff;
+      box-shadow: 0 4px 10px rgba(30,70,100,.05);
+      text-align: left;
+    }
+
+    .review-item.correct-review { border-left-color: var(--green); }
+    .review-item.wrong-review { border-left-color: var(--red); }
+    .review-item p { margin: 7px 0; line-height: 1.55; }
+    .review-label { color: #61748a; font-weight: 800; }
+    .green-text { color: #128144; font-weight: 700; }
+    .red-text { color: #bc3030; font-weight: 700; }
+
+    .confetti-piece {
+      position: fixed;
+      z-index: 30;
+      width: 9px;
+      height: 14px;
+      pointer-events: none;
+      animation: fall 3.6s linear forwards;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+      to { transform: translateY(calc(100 * min(var(--vh, 1vh), 1vh) + 50px)) rotate(760deg); opacity: .1; }
+    }
+
+    @media (min-width: 600px) {
+      .header-teacher-img, .header-logo-img { height: 80px; }
+    }
+
+    @media (min-width: 1024px) {
+      .header-teacher-img, .header-logo-img { height: 96px; }
+    }
+
+    @media (max-width: 850px) {
+      .quiz-layout { grid-template-columns: 1fr; }
+      .side-panel { order: 2; }
+      .nav-groups { grid-template-columns: repeat(5, 1fr); }
+      .navigator-title { margin-top: 0 !important; }
+    }
+
+    @media (max-width: 570px) {
+      .side-panel { grid-template-columns: 1fr; gap: 10px; }
+      .side-panel h3:first-child, .side-panel .stats-list, .side-panel .timer-box { grid-column: 1; }
+      .side-panel .timer-box { grid-row: auto; min-width: 0; }
+    }
+
+    @media (max-width: 570px) {
+      .app-shell { padding: 0; }
+      .quiz-frame { border-radius: 0; min-height: calc(100 * min(var(--vh, 1vh), 1vh)); }
+      .quiz-header { padding: 8px 12px; gap: 8px; min-height: 88px; }
+      .header-teacher-img, .header-logo-img { height: 45px; }
+      .header-copy h1 { line-height: 1.2; }
+      .header-copy p { line-height: 1.2; }
+      .metadata-bar { padding: 10px 6px; font-size: .59rem; gap: 4px; }
+      .quiz-layout { padding: 16px; }
+      .question-box, .task-card { padding: 18px; }
+      .question-box h2 { font-size: .88rem; }
+      .task-card p { font-size: .96rem; }
+      .choices-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+      .choice-button { min-height: 68px; padding: 11px 30px 11px 11px; font-size: .77rem; }
+      .choice-number { right: 7px; width: 21px; height: 21px; }
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-groups { grid-template-columns: 1fr; }
+      .navigation-row { gap: 7px; }
+      .nav-button { padding: 10px 11px; font-size: .78rem; }
+    }
+
+    @media print {
+      body { background: white; }
+      .app-shell { padding: 0; background: white; }
+      .quiz-header, .metadata-bar, .progress-track, .quiz-layout, .result-actions, .review-page { display: none !important; }
+      .quiz-frame { box-shadow: none; max-width: none; }
+      .result-page { display: block !important; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  
+  
+ <script>(function(){var ok=true;try{window.localStorage.getItem("__t")}catch(e){ok=false}
+if(!ok){var m={};try{Object.defineProperty(window,"localStorage",{configurable:true,value:{
+getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},
+setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}}}})}catch(e2){}}})();</script></head>
+ <body>
+  <div class="app-shell">
+   <div class="quiz-frame">
+    <header class="quiz-header canva-header">
+     <div class="header-media"><img class="header-teacher-img" loading="lazy" src="teacher.png" alt="Teacher Soufiane">
+     </div>
+     <div class="header-copy">
+      <h1 class=""></h1>
+      <p class=""></p>
+      <p class=""></p>
+     </div>
+     <div class="header-media" style="justify-content:flex-end;"><img class="header-logo-img" loading="lazy" src="logo.png" alt="Level-UP 2BAC">
+     </div>
+    </header>
+    <section class="metadata-bar canva-banner" aria-label="Quiz information"><span class="">UNIT: UNIT 5</span> <span class=""></span> <span class="">VOCABULARY - QUIZ 1</span>
+    </section>
+    <div class="progress-track" aria-label="Quiz progress">
+     <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <main id="quizView">
+     <div class="quiz-layout">
+      <section aria-live="polite">
+       <div class="question-box canva-panel">
+        <h2 id="instructionText"></h2>
+       </div>
+       <div class="task-card canva-card">
+        <div id="taskContent"></div>
+       </div>
+       <div id="choicesGrid" class="choices-grid" aria-label="Answer choices"></div>
+       <div id="feedbackBox" class="feedback" aria-live="polite"></div>
+       <div class="navigation-row"><button id="previousButton" class="nav-button" type="button">◀ Previous</button> <span id="questionCounter" class="question-counter" aria-live="polite"></span> <button id="nextButton" class="nav-button primary" type="button">Next ▶</button>
+       </div>
+       <aside class="side-panel canva-sidebar" aria-label="Quiz statistics">
+        <h3 class=""></h3>
+        <div class="stats-list">
+         <div class="stat-row">
+          <span class=""></span><strong id="correctCount">0</strong>
+         </div>
+         <div class="stat-row">
+          <span class=""></span><strong id="wrongCount">0</strong>
+         </div>
+         <div class="stat-row">
+          <span class=""></span><strong id="scoreCount">0.00 /20</strong>
+         </div>
+         <div class="stat-row">
+          <span class=""></span><strong id="remainingCount">20</strong>
+         </div>
+        </div>
+        <div class="timer-box"><span class=""></span> <strong id="timerDisplay">00:00</strong>
+        </div>
+        <h3 class="navigator-title">Question Navigator</h3>
+        <div id="navGroups" class="nav-groups" aria-label="Question navigator"></div>
+       </aside>
+      </section>
+     </div>
+    </main>
+    <section id="resultPage" class="result-page" aria-live="polite">
+     <div class="result-kicker"></div>
+     <h2 class="">Your Results</h2>
+     <p id="resultMeta" class="result-meta"></p>
+     <div class="score-badge">
+      <div><span id="finalScore">0.00 /20</span> <small class=""></small>
+      </div>
+     </div>
+     <div id="remarkWindow" class="remark-window" aria-live="polite"></div>
+     <div id="summaryGrid" class="summary-grid"></div>
+     <div class="breakdown-card">
+      <h3 class=""></h3>
+      <div id="breakdownList"></div>
+     </div>
+     <div class="result-actions"><button id="reviewButton" class="action-button primary" type="button">Review My Answers</button> <button id="printButton" class="action-button secondary" type="button">Print Results</button> <button id="saveButton" class="action-button secondary" type="button">Save Results</button> <button id="restartButton" class="action-button" type="button">Restart Quiz</button>
+     </div>
+    </section>
+    <section id="reviewPage" class="review-page">
+     <div class="review-head">
+      <div>
+       <h2 class="">Review My Answers</h2>
+       <p class="">Review My Answers</p>
+      </div><button id="backResultsButton" class="action-button primary" type="button">Back to Results</button>
+     </div>
+     <div id="reviewContent"></div>
+    </section>
+   </div>
+  </div>
+  <script>
+    const quizConfig = {
+      unit: "UNIT 5",
+      title: "WOMEN AND POWER",
+      lesson: "VOCABULARY - QUIZ 1",
+      teacherName: "Teacher Soufiane",
+      teacherImage: "https://i.imgur.com/vvyZAnr.png",
+      logo: "https://i.imgur.com/XPOYllA.png",
+      randomizeQuestions: false,
+      randomizeChoices: true,
+      timerEnabled: true,
+      timerMode: "countup",
+      countdownSeconds: 600,
+      showConfetti: true,
+      enableSounds: true,
+      questions: [
+        {type:"single-choice",category:"Choose the word that matches the definition",question:"CHOOSE THE WORD THAT MATCHES THE DEFINITION.",task:"Everyone having the same chances and treatment.",choices:["equal rights","freedom","family code","polygamy"],correctAnswer:"equal rights",explanation:"Equal rights means everyone is given the same chances and treatment regardless of their differences.",points:1},
+        {type:"single-choice",category:"Choose the word that matches the definition",question:"CHOOSE THE WORD THAT MATCHES THE DEFINITION.",task:"Being free from control or restrictions.",choices:["freedom","equal rights","family code","polygamy"],correctAnswer:"freedom",explanation:"Freedom is the state of being free from control or unnecessary restrictions.",points:1},
+        {type:"single-choice",category:"Choose the word that matches the definition",question:"CHOOSE THE WORD THAT MATCHES THE DEFINITION.",task:"Rules and laws about family relationships.",choices:["family code","equal rights","freedom","polygamy"],correctAnswer:"family code",explanation:"The family code refers to the set of laws governing family relationships, such as marriage and divorce.",points:1},
+        {type:"single-choice",category:"Choose the word that matches the definition",question:"CHOOSE THE WORD THAT MATCHES THE DEFINITION.",task:"Being married to more than one person at the same time.",choices:["polygamy","family code","freedom","equal rights"],correctAnswer:"polygamy",explanation:"Polygamy refers to the practice of being married to more than one spouse simultaneously.",points:1},
+        {type:"single-choice",category:"Put the word in brackets in its correct form",question:"PUT THE WORD IN BRACKETS IN ITS CORRECT FORM.",task:"John is sometimes ______ and forgets to complete his assignments. (responsible)",choices:["irresponsible","responsible","responsibly","irresponsibility"],correctAnswer:"irresponsible",explanation:"We add the prefix 'ir-' to 'responsible' to form its opposite, 'irresponsible'.",points:1},
+        {type:"single-choice",category:"Put the word in brackets in its correct form",question:"PUT THE WORD IN BRACKETS IN ITS CORRECT FORM.",task:"Buying another pair of shoes was ______ because she already had so many. (necessary)",choices:["unnecessary","necessary","necessarily","unnecessity"],correctAnswer:"unnecessary",explanation:"We add the prefix 'un-' to 'necessary' to form its opposite, 'unnecessary'.",points:1},
+        {type:"single-choice",category:"Put the word in brackets in its correct form",question:"PUT THE WORD IN BRACKETS IN ITS CORRECT FORM.",task:"It seemed ______ to climb the mountain, but they did it. (possible)",choices:["impossible","possible","possibly","impossibility"],correctAnswer:"impossible",explanation:"We add the prefix 'im-' to 'possible' to form its opposite, 'impossible'.",points:1},
+        {type:"single-choice",category:"Put the word in brackets in its correct form",question:"PUT THE WORD IN BRACKETS IN ITS CORRECT FORM.",task:"It is ______ to park in this area without a permit. (legal)",choices:["illegal","legal","legally","illegality"],correctAnswer:"illegal",explanation:"We add the prefix 'il-' to 'legal' to form its opposite, 'illegal'.",points:1},
+        {type:"single-choice",category:"Fill in the gap with the appropriate word from the list",question:"FILL IN THE GAP WITH THE APPROPRIATE WORD FROM THE LIST.",task:"Women are becoming more ______, which means they can make their own decisions without needing help from others.",choices:["independent","patriarchy","stereotypes","harassment"],correctAnswer:"independent",explanation:"'Independent' fits because the sentence describes making decisions without needing help from others.",points:1},
+        {type:"single-choice",category:"Fill in the gap with the appropriate word from the list",question:"FILL IN THE GAP WITH THE APPROPRIATE WORD FROM THE LIST.",task:"Many women face ______, such as the false belief that they are weaker than men.",choices:["stereotypes","patriarchy","independent","harassment"],correctAnswer:"stereotypes",explanation:"'Stereotypes' fits because it refers to false, oversimplified beliefs about a group of people.",points:1},
+        {type:"single-choice",category:"Fill in the gap with the appropriate word from the list",question:"FILL IN THE GAP WITH THE APPROPRIATE WORD FROM THE LIST.",task:"The fight against ______, a system where men traditionally hold more power, is helping women gain equality.",choices:["patriarchy","empowerment","independent","stereotypes"],correctAnswer:"patriarchy",explanation:"'Patriarchy' fits because it refers to a social system where men hold most of the power.",points:1},
+        {type:"single-choice",category:"Fill in the gap with the appropriate word from the list",question:"FILL IN THE GAP WITH THE APPROPRIATE WORD FROM THE LIST.",task:"______ such as unwanted comments or actions, is a challenge many women are working to stop.",choices:["Harassment","Empowerment","Independent","Patriarchy"],correctAnswer:"Harassment",explanation:"'Harassment' fits because it refers to unwanted comments or actions directed at someone.",points:1},
+        {type:"single-choice",category:"Choose the word that completes the collocation",question:"CHOOSE THE WORD THAT COMPLETES THE COLLOCATION.",task:"Shouting insults and threats at someone is a form of verbal ______.",choices:["abuse","empowerment","equality","violence"],correctAnswer:"abuse",explanation:"'Verbal abuse' is the correct natural collocation meaning harmful language directed at someone.",points:1},
+        {type:"single-choice",category:"Choose the word that completes the collocation",question:"CHOOSE THE WORD THAT COMPLETES THE COLLOCATION.",task:"Education is one of the most effective tools for women's ______.",choices:["empowerment","abuse","equality","violence"],correctAnswer:"empowerment",explanation:"'Women's empowerment' is the correct natural collocation meaning giving women confidence and control over their lives.",points:1},
+        {type:"single-choice",category:"Choose the word that completes the collocation",question:"CHOOSE THE WORD THAT COMPLETES THE COLLOCATION.",task:"Advocating for gender ______ remains a key objective for many human rights organizations.",choices:["equality","empowerment","abuse","violence"],correctAnswer:"equality",explanation:"'Gender equality' is the correct natural collocation meaning equal rights and treatment regardless of gender.",points:1},
+        {type:"single-choice",category:"Choose the word that completes the collocation",question:"CHOOSE THE WORD THAT COMPLETES THE COLLOCATION.",task:"Women's rights organizations protect victims of domestic ______.",choices:["violence","abuse","equality","empowerment"],correctAnswer:"violence",explanation:"'Domestic violence' is the correct natural collocation meaning violence that occurs within the home or family.",points:1},
+        {type:"three-synonyms",category:"Three Synonyms Challenge",question:"SELECT THE THREE WORDS THAT ARE SYNONYMS OF THE TARGET WORD.",targetWord:"INDEPENDENT",options:["self-sufficient","autonomous","free","dependent"],correctSynonyms:["self-sufficient","autonomous","free"],antonym:"dependent",explanation:"'Self-sufficient', 'autonomous', and 'free' all describe someone able to act without relying on others, like 'independent'. 'Dependent' means the opposite — relying on others.",points:1},
+        {type:"three-synonyms",category:"Three Synonyms Challenge",question:"SELECT THE THREE WORDS THAT ARE SYNONYMS OF THE TARGET WORD.",targetWord:"FAIR",options:["just","equitable","impartial","unfair"],correctSynonyms:["just","equitable","impartial"],antonym:"unfair",explanation:"'Just', 'equitable', and 'impartial' all describe treating people equally and without bias, like 'fair'. 'Unfair' means the opposite — treating people unequally or unjustly.",points:1},
+        {type:"three-synonyms",category:"Three Synonyms Challenge",question:"SELECT THE THREE WORDS THAT ARE SYNONYMS OF THE TARGET WORD.",targetWord:"STRUGGLE",options:["fight","battle","effort","ease"],correctSynonyms:["fight","battle","effort"],antonym:"ease",explanation:"'Fight', 'battle', and 'effort' all describe working hard to overcome difficulty, like 'struggle'. 'Ease' means the opposite — doing something without difficulty.",points:1},
+        {type:"three-synonyms",category:"Three Synonyms Challenge",question:"SELECT THE THREE WORDS THAT ARE SYNONYMS OF THE TARGET WORD.",targetWord:"EMPOWERED",options:["confident","capable","strong","powerless"],correctSynonyms:["confident","capable","strong"],antonym:"powerless",explanation:"'Confident', 'capable', and 'strong' all describe having the ability and belief to control one's own life, like 'empowered'. 'Powerless' means the opposite — lacking control or influence.",points:1}
+      ]
+    };
+
+    const categoryNames = ["Definitions", "Word Forms", "Word Bank", "Collocations", "Synonyms Challenge"];
+    const positiveFeedback = ["Excellent!", "Great Job!", "Perfect!", "Keep Going!"];
+    const negativeFeedback = ["Almost!", "Review this rule.", "Keep learning!", "You'll get the next one!"];
+
+    const state = {
+      questions: [],
+      currentIndex: 0,
+      answers: [],
+      score: 0,
+      correct: 0,
+      wrong: 0,
+      completed: false,
+      synonymTimer: null
+    };
+
+    const elements = {
+      quizView: document.getElementById("quizView"),
+      resultPage: document.getElementById("resultPage"),
+      reviewPage: document.getElementById("reviewPage"),
+      instructionText: document.getElementById("instructionText"),
+      taskContent: document.getElementById("taskContent"),
+      choicesGrid: document.getElementById("choicesGrid"),
+      feedbackBox: document.getElementById("feedbackBox"),
+      previousButton: document.getElementById("previousButton"),
+      nextButton: document.getElementById("nextButton"),
+      questionCounter: document.getElementById("questionCounter"),
+      progressFill: document.getElementById("progressFill"),
+      correctCount: document.getElementById("correctCount"),
+      wrongCount: document.getElementById("wrongCount"),
+      scoreCount: document.getElementById("scoreCount"),
+      remainingCount: document.getElementById("remainingCount"),
+      timerDisplay: document.getElementById("timerDisplay"),
+      navGroups: document.getElementById("navGroups"),
+      finalScore: document.getElementById("finalScore"),
+      remarkWindow: document.getElementById("remarkWindow"),
+      summaryGrid: document.getElementById("summaryGrid"),
+      breakdownList: document.getElementById("breakdownList"),
+      reviewContent: document.getElementById("reviewContent"),
+      resultMeta: document.getElementById("resultMeta")
+    };
+
+    /* Independent timer module used across all quiz screens. */
+    const quizTimer = (() => {
+      let intervalId = null;
+      let seconds = quizConfig.timerMode === "countdown" ? quizConfig.countdownSeconds : 0;
+      let finishedTime = 0;
+
+      function format(value) {
+        const safeValue = Math.max(0, value);
+        return `${String(Math.floor(safeValue / 60)).padStart(2, "0")}:${String(safeValue % 60).padStart(2, "0")}`;
+      }
+
+      function render() {
+        elements.timerDisplay.textContent = format(seconds);
+      }
+
+      function start() {
+        if (!quizConfig.timerEnabled || intervalId) return;
+        intervalId = setInterval(() => {
+          if (quizConfig.timerMode === "countdown") {
+            seconds--;
+            if (seconds <= 0) {
+              seconds = 0;
+              render();
+              pause();
+              submitTimedOutQuiz();
+              return;
+            }
+          } else {
+            seconds++;
+          }
+          render();
+        }, 1000);
+      }
+
+      function pause() {
+        if (intervalId) clearInterval(intervalId);
+        intervalId = null;
+        finishedTime = seconds;
+      }
+
+      function reset() {
+        pause();
+        seconds = quizConfig.timerMode === "countdown" ? quizConfig.countdownSeconds : 0;
+        finishedTime = 0;
+        render();
+      }
+
+      function getDisplayTime() {
+        return format(finishedTime || seconds);
+      }
+
+      function getTimeTaken() {
+        return quizConfig.timerMode === "countdown"
+          ? quizConfig.countdownSeconds - seconds
+          : seconds;
+      }
+
+      return { start, pause, reset, format, getDisplayTime, getTimeTaken, render };
+    })();
+
+    function shuffle(values) {
+      const result = [...values];
+      for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function setupQuestions() {
+      const grouped = [];
+      for (let group = 0; group < 5; group++) {
+        const batch = quizConfig.questions.slice(group * 4, group * 4 + 4).map(question => ({
+          ...question,
+          choices: question.choices ? (quizConfig.randomizeChoices ? shuffle(question.choices) : [...question.choices]) : undefined,
+          options: question.options ? (quizConfig.randomizeChoices ? shuffle(question.options) : [...question.options]) : undefined
+        }));
+        grouped.push(quizConfig.randomizeQuestions ? shuffle(batch) : batch);
+      }
+      state.questions = grouped.flat();
+    }
+
+    function updateStats() {
+      const answered = state.answers.filter(Boolean).length;
+      elements.correctCount.textContent = state.correct;
+      elements.wrongCount.textContent = state.wrong;
+      elements.scoreCount.textContent = `${state.score.toFixed(2)} /20`;
+      elements.remainingCount.textContent = 20 - answered;
+      elements.progressFill.style.width = `${(answered / 20) * 100}%`;
+    }
+
+    function createAnswerButton(option, index, onClick) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "choice-button";
+      button.dataset.option = option;
+      button.innerHTML = `<span>${option}</span><span class="choice-number">${index + 1}</span>`;
+      button.addEventListener("click", onClick);
+      return button;
+    }
+
+    function showFeedback(isCorrect, explanation) {
+      const heading = isCorrect
+        ? positiveFeedback[Math.floor(Math.random() * positiveFeedback.length)]
+        : negativeFeedback[Math.floor(Math.random() * negativeFeedback.length)];
+
+      elements.feedbackBox.className = `feedback show ${isCorrect ? "good" : "bad"}`;
+      elements.feedbackBox.innerHTML = `<strong>${isCorrect ? "✓ " : "✕ "}${heading}</strong><span>${explanation}</span>`;
+    }
+
+    /* Type A rendering and one-click evaluation. */
+    function renderSingleChoice(question, storedAnswer) {
+      elements.taskContent.innerHTML = `<p>${question.task}</p>`;
+      question.choices.forEach((choice, index) => {
+        const button = createAnswerButton(choice, index, () => evaluateSingleChoice(choice));
+        if (storedAnswer) {
+          button.disabled = true;
+          if (choice === question.correctAnswer) button.classList.add("correct");
+          if (choice === storedAnswer.selected && !storedAnswer.correct) button.classList.add("wrong");
+        }
+        elements.choicesGrid.appendChild(button);
+      });
+
+      if (storedAnswer) showFeedback(storedAnswer.correct, question.explanation);
+    }
+
+    function evaluateSingleChoice(selected) {
+      const question = state.questions[state.currentIndex];
+      if (state.answers[state.currentIndex]) return;
+
+      const correct = selected === question.correctAnswer;
+      state.answers[state.currentIndex] = { selected, correct };
+      if (correct) state.correct++; else state.wrong++;
+      state.score += correct ? question.points : 0;
+
+      document.querySelectorAll(".choice-button").forEach(button => {
+        button.disabled = true;
+        if (button.dataset.option === question.correctAnswer) button.classList.add("correct");
+        if (button.dataset.option === selected && !correct) button.classList.add("wrong");
+      });
+
+      playSound(correct ? "correct" : "wrong");
+      showFeedback(correct, question.explanation);
+      updateStats();
+      updateNavigation();
+    }
+
+    /* Type B selection supports deselection until exactly three choices stay selected for 500ms. */
+    function renderSynonyms(question, storedAnswer) {
+      elements.taskContent.innerHTML = `
+        <p class="target-word">${question.targetWord}</p>
+      `;
+
+      const selected = storedAnswer ? storedAnswer.selected : [];
+      question.options.forEach((option, index) => {
+        const button = createAnswerButton(option, index, () => toggleSynonym(option));
+        if (selected.includes(option)) button.classList.add("selected");
+        if (storedAnswer) {
+          button.disabled = true;
+          applySynonymEvaluationStyles(button, question, storedAnswer);
+        }
+        elements.choicesGrid.appendChild(button);
+      });
+
+      if (storedAnswer) showFeedback(storedAnswer.correct, question.explanation);
+    }
+
+    function toggleSynonym(option) {
+      const question = state.questions[state.currentIndex];
+      if (state.answers[state.currentIndex]) return;
+
+      const buttons = [...document.querySelectorAll(".choice-button")];
+      const selectedNow = buttons.filter(button => button.classList.contains("selected")).map(button => button.dataset.option);
+      const button = buttons.find(item => item.dataset.option === option);
+
+      if (selectedNow.includes(option)) {
+        button.classList.remove("selected");
+        clearTimeout(state.synonymTimer);
+        state.synonymTimer = null;
+        playSound("click");
+        return;
+      }
+
+      if (selectedNow.length >= 3) return;
+      button.classList.add("selected");
+      playSound("click");
+
+      const totalSelected = buttons.filter(item => item.classList.contains("selected")).length;
+      clearTimeout(state.synonymTimer);
+
+      if (totalSelected === 3) {
+        state.synonymTimer = setTimeout(() => {
+          const finalSelections = [...document.querySelectorAll(".choice-button.selected")].map(item => item.dataset.option);
+          if (finalSelections.length === 3) evaluateSynonyms(finalSelections, question);
+        }, 500);
+      }
+    }
+
+    function applySynonymEvaluationStyles(button, question, answer) {
+      const option = button.dataset.option;
+      if (question.correctSynonyms.includes(option)) button.classList.add("correct");
+      if (option === question.antonym) {
+        button.classList.remove("selected");
+        button.classList.add(answer.selected.includes(option) ? "wrong" : "antonym");
+        const tag = document.createElement("span");
+        tag.className = "answer-tag";
+        tag.textContent = answer.selected.includes(option) ? "antonym, not a synonym" : "antonym";
+        button.appendChild(tag);
+      }
+      if (!question.correctSynonyms.includes(option) && answer.selected.includes(option)) button.classList.add("wrong");
+    }
+
+    function evaluateSynonyms(selected, question) {
+      if (state.answers[state.currentIndex]) return;
+      const correct = selected.length === 3 && selected.every(item => question.correctSynonyms.includes(item));
+
+      state.answers[state.currentIndex] = { selected, correct };
+      if (correct) state.correct++; else state.wrong++;
+      state.score += correct ? question.points : 0;
+
+      document.querySelectorAll(".choice-button").forEach(button => {
+        button.disabled = true;
+        applySynonymEvaluationStyles(button, question, state.answers[state.currentIndex]);
+      });
+
+      playSound(correct ? "correct" : "wrong");
+      showFeedback(correct, question.explanation);
+      updateStats();
+      renderNavigator();
+      updateNavigation();
+    }
+
+    function renderQuestion() {
+      clearTimeout(state.synonymTimer);
+      state.synonymTimer = null;
+
+      const question = state.questions[state.currentIndex];
+      const answer = state.answers[state.currentIndex];
+
+      elements.instructionText.textContent = question.question;
+      elements.choicesGrid.innerHTML = "";
+      elements.feedbackBox.className = "feedback";
+      elements.feedbackBox.innerHTML = "";
+      elements.questionCounter.textContent = `${state.currentIndex + 1} / 20`;
+
+      if (question.type === "single-choice") renderSingleChoice(question, answer);
+      else renderSynonyms(question, answer);
+
+      updateNavigation();
+      updateStats();
+    }
+
+    function updateNavigation() {
+      const answered = Boolean(state.answers[state.currentIndex]);
+      elements.previousButton.disabled = state.currentIndex === 0;
+      elements.nextButton.disabled = !answered;
+      elements.nextButton.textContent = state.currentIndex === 19 ? "Finish Quiz ▶" : "Next ▶";
+    }
+
+    function renderNavigator() {
+      elements.navGroups.innerHTML = "";
+      for (let group = 0; group < 5; group++) {
+        const groupElement = document.createElement("div");
+        groupElement.className = "nav-group";
+        for (let item = 0; item < 4; item++) {
+          const index = group * 4 + item;
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "question-jump";
+          button.textContent = index + 1;
+          button.setAttribute("aria-label", `Question ${index + 1}`);
+          if (state.answers[index]) button.classList.add("answered");
+          if (index === state.currentIndex) button.classList.add("current");
+          button.addEventListener("click", () => {
+            if (index === state.currentIndex || state.completed) return;
+            if (index > state.currentIndex && !state.answers[state.currentIndex]) return;
+            state.currentIndex = index;
+            renderQuestion();
+          });
+          groupElement.appendChild(button);
+        }
+        elements.navGroups.appendChild(groupElement);
+      }
+    }
+
+    function getRemark(score) {
+      if (score < 10) return "Fail";
+      if (score < 12) return "Pass";
+      if (score < 14) return "Fairly Good";
+      if (score < 16) return "Good";
+      if (score < 18) return "Very Good";
+      return "Excellent!";
+    }
+
+    function categoryScore(groupIndex) {
+      return state.answers.slice(groupIndex * 4, groupIndex * 4 + 4).filter(answer => answer && answer.correct).length;
+    }
+
+    function getLocalStats() {
+      return {
+        attempts: Number(localStorage.getItem("womenPowerAttempts") || 0),
+        bestScore: Number(localStorage.getItem("womenPowerBestScore") || 0)
+      };
+    }
+
+    function saveLocalStats() {
+      const stats = getLocalStats();
+      const attempts = stats.attempts + 1;
+      const bestScore = Math.max(stats.bestScore, state.score);
+      localStorage.setItem("womenPowerAttempts", attempts);
+      localStorage.setItem("womenPowerBestScore", bestScore.toFixed(2));
+      localStorage.setItem("womenPowerLastScore", state.score.toFixed(2));
+      localStorage.setItem("womenPowerTimeTaken", quizTimer.getDisplayTime());
+    }
+
+    function animateRemark(finalRemark) {
+      const labels = ["Fail", "Pass", "Fairly Good", "Good", "Very Good", "Excellent!"];
+      let tick = 0;
+      let delay = 65;
+      const started = Date.now();
+
+      function spin() {
+        elements.remarkWindow.textContent = labels[tick % labels.length];
+        tick++;
+        if (Date.now() - started < 3000) {
+          delay += 8;
+          setTimeout(spin, delay);
+        } else {
+          elements.remarkWindow.textContent = finalRemark;
+        }
+      }
+      spin();
+    }
+
+    function showResultPage() {
+      state.completed = true;
+      quizTimer.pause();
+      saveLocalStats();
+
+      elements.quizView.style.display = "none";
+      elements.resultPage.classList.add("active");
+      elements.reviewPage.classList.remove("active");
+
+      const stats = getLocalStats();
+      const accuracy = ((state.correct / 20) * 100).toFixed(2);
+      elements.resultMeta.textContent = `${quizConfig.unit} • ${quizConfig.title} • ${quizConfig.lesson}`;
+      elements.finalScore.textContent = `${state.score.toFixed(2)} /20`;
+
+      const summary = [
+        ["Final Score", `${state.score.toFixed(2)} /20`],
+        ["Correct Answers", state.correct],
+        ["Wrong Answers", state.wrong],
+        ["Accuracy Percentage", `${accuracy}%`],
+        ["Time Taken", quizTimer.getDisplayTime()],
+        ["Number of Attempts", stats.attempts]
+      ];
+
+      elements.summaryGrid.innerHTML = summary.map(item =>
+        `<div class="summary-card"><span>${item[0]}</span><strong>${item[1]}</strong></div>`
+      ).join("");
+
+      elements.breakdownList.innerHTML =
+        `<div class="breakdown-line"><span>Best Score</span><strong>${stats.bestScore.toFixed(2)} /20</strong></div>` +
+        categoryNames.map((name, index) =>
+          `<div class="breakdown-line"><span>${name}</span><strong>${categoryScore(index)}/4</strong></div>`
+        ).join("");
+
+      const remark = getRemark(state.score);
+      animateRemark(remark);
+      if (quizConfig.showConfetti && state.score >= 16) createConfetti();
+      playSound("complete");
+    }
+
+    function submitTimedOutQuiz() {
+      if (state.completed) return;
+      if (!state.answers[state.currentIndex]) {
+        state.answers[state.currentIndex] = { selected: [], correct: false, timedOut: true };
+        state.wrong++;
+      }
+      updateStats();
+      showResultPage();
+    }
+
+    function createConfetti() {
+      const colors = ["#0a5194", "#1bb76c", "#f2c141", "#db4a4a", "#5db9eb"];
+      for (let i = 0; i < 90; i++) {
+        const piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = `${Math.random() * .8}s`;
+        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 4700);
+      }
+    }
+
+    /* Web Audio sounds are only created after a direct user interaction. */
+    function playSound(kind) {
+      if (!quizConfig.enableSounds) return;
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        const patterns = {
+          correct: [660, 880, .16],
+          wrong: [220, 150, .20],
+          click: [440, 520, .06],
+          complete: [523, 659, .25]
+        };
+        const [startFrequency, endFrequency, duration] = patterns[kind];
+        oscillator.frequency.setValueAtTime(startFrequency, audioContext.currentTime);
+        oscillator.frequency.linearRampToValueAtTime(endFrequency, audioContext.currentTime + duration);
+        gain.gain.setValueAtTime(.08, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(.001, audioContext.currentTime + duration);
+        oscillator.connect(gain).connect(audioContext.destination);
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + duration);
+      } catch (error) {}
+    }
+
+    function renderReview() {
+      elements.resultPage.classList.remove("active");
+      elements.reviewPage.classList.add("active");
+
+      let html = "";
+      for (let group = 0; group < 5; group++) {
+        const questions = state.questions.slice(group * 4, group * 4 + 4);
+        html += `<h3 class="review-category">${categoryNames[group]} — ${categoryScore(group)}/4</h3>`;
+
+        questions.forEach((question, localIndex) => {
+          const globalIndex = group * 4 + localIndex;
+          const answer = state.answers[globalIndex];
+          const isCorrect = answer && answer.correct;
+
+          if (question.type === "single-choice") {
+            html += `
+              <article class="review-item ${isCorrect ? "correct-review" : "wrong-review"}">
+                <p><strong>Question ${globalIndex + 1}.</strong> ${question.task}</p>
+                <p><span class="review-label">Student Answer:</span> <span class="${isCorrect ? "green-text" : "red-text"}">${answer?.selected || "No answer"}</span></p>
+                <p><span class="review-label">Correct Answer:</span> <span class="green-text">${question.correctAnswer}</span></p>
+                <p><span class="review-label">Explanation:</span> ${question.explanation}</p>
+              </article>`;
+          } else {
+            html += `
+              <article class="review-item ${isCorrect ? "correct-review" : "wrong-review"}">
+                <p><strong>Question ${globalIndex + 1}. Target Word:</strong> ${question.targetWord}</p>
+                <p><span class="review-label">Student's 3 selections:</span> <span class="${isCorrect ? "green-text" : "red-text"}">${answer?.selected?.join(", ") || "No answer"}</span></p>
+                <p><span class="review-label">Correct 3 synonyms:</span> <span class="green-text">${question.correctSynonyms.join(", ")}</span></p>
+                <p><span class="review-label">Antonym distractor:</span> <span class="red-text">${question.antonym}</span></p>
+                <p><span class="review-label">Explanation:</span> ${question.explanation}</p>
+              </article>`;
+          }
+        });
+      }
+      elements.reviewContent.innerHTML = html;
+    }
+
+    function buildReport() {
+      const stats = getLocalStats();
+      return [
+        "WOMEN AND POWER — VOCABULARY QUIZ 1",
+        `${quizConfig.unit} | ${quizConfig.title} | ${quizConfig.lesson}`,
+        "",
+        `Final Score: ${state.score.toFixed(2)} /20`,
+        `Correct Answers: ${state.correct}`,
+        `Wrong Answers: ${state.wrong}`,
+        `Accuracy: ${((state.correct / 20) * 100).toFixed(2)}%`,
+        `Time Taken: ${quizTimer.getDisplayTime()}`,
+        `Attempts: ${stats.attempts}`,
+        `Best Score: ${stats.bestScore.toFixed(2)} /20`,
+        "",
+        "CATEGORY BREAKDOWN",
+        ...categoryNames.map((name, index) => `${name}: ${categoryScore(index)}/4`)
+      ].join("\n");
+    }
+
+    function saveResults() {
+      const blob = new Blob([buildReport()], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "women-and-power-quiz-results.txt";
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function restartQuiz() {
+      clearTimeout(state.synonymTimer);
+      state.currentIndex = 0;
+      state.answers = [];
+      state.score = 0;
+      state.correct = 0;
+      state.wrong = 0;
+      state.completed = false;
+      setupQuestions();
+      quizTimer.reset();
+      elements.resultPage.classList.remove("active");
+      elements.reviewPage.classList.remove("active");
+      elements.quizView.style.display = "block";
+      renderQuestion();
+      quizTimer.start();
+    }
+
+    function handleKeyboard(event) {
+      if (state.completed || elements.reviewPage.classList.contains("active")) return;
+      const key = event.key;
+      if (["1", "2", "3", "4"].includes(key)) {
+        const target = document.querySelectorAll(".choice-button")[Number(key) - 1];
+        if (target && !target.disabled) {
+          event.preventDefault();
+          target.click();
+        }
+      }
+      if (key === "ArrowLeft" && !elements.previousButton.disabled) elements.previousButton.click();
+      if ((key === "ArrowRight" || key === "Enter") && !elements.nextButton.disabled) elements.nextButton.click();
+    }
+
+    elements.previousButton.addEventListener("click", () => {
+      if (state.currentIndex > 0) {
+        state.currentIndex--;
+        renderQuestion();
+      }
+    });
+
+    elements.nextButton.addEventListener("click", () => {
+      if (!state.answers[state.currentIndex]) return;
+      if (state.currentIndex === 19) showResultPage();
+      else {
+        state.currentIndex++;
+        renderQuestion();
+      }
+    });
+
+    document.getElementById("reviewButton").addEventListener("click", renderReview);
+    document.getElementById("backResultsButton").addEventListener("click", () => {
+      elements.reviewPage.classList.remove("active");
+      elements.resultPage.classList.add("active");
+    });
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("saveButton").addEventListener("click", saveResults);
+    document.getElementById("restartButton").addEventListener("click", restartQuiz);
+    document.addEventListener("keydown", handleKeyboard);
+
+    setupQuestions();
+    quizTimer.render();
+    renderQuestion();
+    quizTimer.start();
+  </script>
+ 
+</body></html>

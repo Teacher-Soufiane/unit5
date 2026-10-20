@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English2BAC Quizzes — Unit 5 Grammar Quiz 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;family=Poppins:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;min-height:100%}
+    body{font-family:Poppins,Cairo,sans-serif;color:#0b2a5b}
+    button{font-family:inherit}
+    button:focus-visible,.chip:focus-visible,.slot:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+    .app-wrapper{width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));padding-bottom:24px;background:linear-gradient(180deg,#e6f0fc 0%,#f8fbff 100%)}
+    .quiz-card{width:100%;max-width:1150px;margin:auto;padding:0 16px}
+    .top{width:100%;background:#fff;border-bottom:4px solid #1a6fd4;padding-bottom:6px;margin-bottom:28px}
+    .quiz-header{max-width:1320px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 24px}
+    .header-teacher-img,.header-logo-img{height:64px;width:auto;max-width:25%;object-fit:contain}
+    .header-title{text-align:center;line-height:1.35;min-width:0}
+    .title-line1{font-size:clamp(20px,3.2vw,34px);font-weight:800}
+    .title-line2,.title-line3{font-size:clamp(12px,1.5vw,17px);font-weight:600;color:#5b82b8}
+    .info-bar{max-width:1320px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#0b2a5b;color:#fff;font-weight:800;text-transform:uppercase;font-size:clamp(10px,1.3vw,16px);padding:14px 20px}
+    .info-bar span:nth-child(2){text-align:center;flex:1}
+    .card{background:#fff;border-radius:22px;box-shadow:0 8px 28px rgba(11,42,91,.10);padding:20px;margin-bottom:18px}
+    .instr-box{background:linear-gradient(90deg,#0b5cbf,#1976d2);color:#fff;font-weight:800;text-transform:uppercase;border-radius:16px;padding:18px 20px;font-size:clamp(13px,1.6vw,17px)}
+    .task{margin:24px 8px;font-size:clamp(15px,1.8vw,19px);font-weight:600;line-height:1.6;text-align:center}
+    .slots{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+    .slot{min-width:84px;min-height:56px;border:2px dashed #9db8dd;border-radius:14px;background:#f3f8ff;display:flex;align-items:center;justify-content:center;padding:4px;font-weight:700;color:#9db8dd}
+    .slot.over{border-color:#1976d2;background:#e3f0ff}
+    .chip{font-weight:700;background:#fff;border:2px solid #1976d2;color:#0b2a5b;border-radius:12px;padding:10px 14px;cursor:grab;user-select:none;font-size:clamp(13px,1.5vw,17px);box-shadow:0 2px 6px rgba(11,42,91,.12)}
+    .chip:hover:not(:disabled){background:#f3f8ff}
+    .chip:disabled{cursor:default}
+    .slot .chip{border-color:#0b2a5b}
+    .chip.ok{background:#dcfce7;border-color:#16a34a}.chip.bad{background:#fee2e2;border-color:#dc2626}
+    .pool-label{font-weight:700;font-size:12px;text-align:center;margin-bottom:6px;color:#5b82b8}
+    .pool{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;min-height:64px;padding:12px;border-radius:14px;background:#eef4fc}
+    .tile-actions{display:flex;gap:10px;justify-content:center;margin-top:14px}
+    .hint-row{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+    .hint-text{color:#92400e;background:#fef3c7;border-radius:10px;padding:6px 12px;font-size:14px}
+    .feedback{margin-top:12px;font-weight:800;font-size:18px;min-height:1em}
+    .feedback.ok{color:#16a34a}.feedback.bad{color:#dc2626}
+    .explanation{margin-top:8px;background:#f1f6fc;border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.5}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin:0 0 18px;gap:8px}
+    .btn{font-weight:700;background:#0b2a5b;color:#fff;border:0;border-radius:14px;padding:14px 22px;cursor:pointer;box-shadow:0 4px 12px rgba(11,42,91,.18)}
+    .btn:hover:not(:disabled){filter:brightness(1.12)}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .btn.light,.nav .btn{background:#dfeaf8;color:#0b2a5b}
+    .counter{font-weight:800;white-space:nowrap}
+    .stats-card h2{margin:0 0 12px;font-size:clamp(18px,2.2vw,26px);font-weight:800}
+    .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+    .stat{background:#f1f6fc;border-radius:12px;padding:10px 14px;font-size:13px;font-weight:600}
+    .stat b{display:block;font-size:clamp(15px,1.8vw,19px);font-weight:800;margin-top:2px}
+    .stat.timer{background:#0b2a5b;color:#fff}
+    .center{text-align:center}
+    .badge{width:190px;height:190px;border-radius:50%;background:#0b2a5b;color:#fff;margin:12px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+    .badge b{font-size:38px}
+    .remark{font-size:30px;font-weight:800;color:#1976d2;min-height:44px}
+    .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin:14px 0;text-align:left}
+    .summary div{background:#f1f6fc;border-radius:10px;padding:8px 12px;font-size:14px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+    .rev{border-radius:10px;padding:10px 14px;margin:8px 0;font-size:14px;line-height:1.5}
+    .rev.ok{background:#dcfce7;border-left:5px solid #16a34a}.rev.bad{background:#fee2e2;border-left:5px solid #dc2626}
+    .rev-level{background:#0b2a5b;color:#fff;border-radius:10px;padding:6px 12px;margin-top:14px;font-weight:700}
+    [hidden]{display:none!important}
+    #confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+    #printArea{display:none}
+    @media(min-width:600px){.header-teacher-img,.header-logo-img{height:80px}}
+    @media(min-width:1024px){.header-teacher-img,.header-logo-img{height:96px}}
+    @media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:640px){.header-teacher-img,.header-logo-img{height:45px}.quiz-header{padding:8px 12px}.card{padding:14px;border-radius:16px}.btn{padding:10px 14px}.info-bar{padding:12px 10px}}
+    @media print{body>*:not(#printArea){display:none!important}#printArea{display:block;padding:20px;font-family:Arial,sans-serif;color:#111}}
+  </style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  
+  
+  
+ <script>(function(){var ok=true;try{window.localStorage.getItem("__t")}catch(e){ok=false}
+if(!ok){var m={};try{Object.defineProperty(window,"localStorage",{configurable:true,value:{
+getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},
+setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}}}})}catch(e2){}}})();</script></head>
+ <body class="w-full" style="background: linear-gradient(rgb(230, 240, 252) 0%, rgb(248, 251, 255) 100%);">
+  <div class="app-wrapper">
+   <div class="top">
+    <header class="quiz-header"><img class="header-teacher-img" loading="lazy" src="teacher.png" alt="Teacher Soufiane">
+     <div class="header-title">
+      <h1 class="title-line1" style="color: rgb(11, 42, 91); font-weight: 800; font-style: normal; font-size: 32px;">English2BAC Quizzes</h1>
+      <div class="title-line2" style="color: rgb(91, 130, 184); font-weight: 600; font-style: normal; font-size: 16px;">Learn • Practice • Succeed</div>
+      <div class="title-line3" style="color: rgb(91, 130, 184); font-weight: 600; font-style: normal; font-size: 16px;">with Teacher.Soufiane</div>
+     </div><img class="header-logo-img" loading="lazy" src="logo.png" alt="Level-UP 2BAC">
+    </header>
+    <div class="canva-banner info-bar" style="background: rgb(11, 42, 91);"><span class="" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">UNIT: 5</span> <span class="" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">THE PASSIVE VOICE</span> <span class="" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">GRAMMAR QUIZ 2</span>
+    </div>
+   </div>
+   <main class="quiz-card">
+    <div id="quizView">
+     <section class="canva-card card" aria-label="Quiz question" style="background: rgb(255, 255, 255);">
+      <h2 id="instr" class="instr-box"></h2>
+      <div id="task" class="task"></div>
+      <div id="slots" class="slots" aria-label="Sentence slots"></div>
+      <div class="pool-label" style="color: rgb(91, 130, 184); font-weight: 700; font-style: normal; font-size: 12px;">WORD TILES — drag them into the slots, or tap a tile to place it</div>
+      <div id="pool" class="pool" aria-label="Available word tiles"></div>
+      <div class="tile-actions"><button class="btn light" type="button" id="resetBtn" style="background: rgb(223, 234, 248); color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 16px;">↺ Reset</button> <button class="btn" type="button" id="checkBtn" style="background: rgb(11, 42, 91); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Check Answer</button>
+      </div>
+      <div class="hint-row"><button class="btn light" type="button" id="hintBtn" style="background: rgb(223, 234, 248); color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 16px;">💡 Hint</button> <span id="hintText" class="hint-text" hidden=""></span>
+      </div>
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+      <div id="explanation" class="explanation" hidden=""></div>
+     </section>
+     <nav class="nav" aria-label="Question navigation"><button class="btn" type="button" id="prevBtn" style="background: rgb(223, 234, 248); color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 16px;">◀ Previous</button> <span id="counter" class="counter" aria-live="polite"></span> <button class="btn" type="button" id="nextBtn">Next ▶</button>
+     </nav>
+     <section class="canva-card card stats-card" aria-label="Live statistics" style="background: rgb(255, 255, 255);">
+      <h2 class="" style="color: rgb(11, 42, 91); font-weight: 800; font-style: normal; font-size: 24px;">LIVE STATISTICS</h2>
+      <div class="stats">
+       <div class="stat">
+        <span class="" style="color: rgb(11, 42, 91); font-weight: 400; font-style: normal; font-size: 16px;">✅ Correct</span><b id="stCorrect">0</b>
+       </div>
+       <div class="stat">
+        <span class="" style="color: rgb(11, 42, 91); font-weight: 400; font-style: normal; font-size: 16px;">❌ Wrong</span><b id="stWrong">0</b>
+       </div>
+       <div class="stat">
+        <span class="" style="color: rgb(11, 42, 91); font-weight: 400; font-style: normal; font-size: 16px;">Current Score</span><b id="stScore">0.00 /20</b>
+       </div>
+       <div class="stat">
+        <span class="" style="color: rgb(11, 42, 91); font-weight: 400; font-style: normal; font-size: 16px;">Remaining</span><b id="stRemain">20</b>
+       </div>
+       <div class="stat">
+        <span class="" style="color: rgb(11, 42, 91); font-weight: 400; font-style: normal; font-size: 16px;">Progress</span><b id="stProgress">0 / 20</b>
+       </div>
+       <div class="stat timer">
+        <span class="" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">Timer</span><b id="stTimer">00:00</b>
+       </div>
+      </div>
+     </section>
+    </div>
+    <section class="canva-card card center" id="resultView" hidden="" style="background: rgb(255, 255, 255);">
+     <h2 class="" style="color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 24px;">QUIZ — Unit 5 • THE PASSIVE VOICE • GRAMMAR QUIZ 2</h2>
+     <div class="badge">
+      <b id="finalScore">0.00</b><span>/20</span>
+     </div>
+     <div class="remark" id="remark" aria-live="polite"></div>
+     <p id="remarkText"></p>
+     <div class="summary" id="summary"></div>
+     <div class="actions"><button class="btn" type="button" id="reviewBtn" style="background: rgb(11, 42, 91); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Review My Answers</button> <button class="btn" type="button" id="printBtn" style="background: rgb(11, 42, 91); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Print Results</button> <button class="btn" type="button" id="saveBtn" style="background: rgb(11, 42, 91); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Save Results</button> <button class="btn light" type="button" id="restartBtn" style="background: rgb(223, 234, 248); color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 16px;">Restart Quiz</button>
+     </div>
+    </section>
+    <section class="canva-card card" id="reviewView" hidden="" style="background: rgb(255, 255, 255);">
+     <div id="reviewList"></div>
+     <div class="actions"><button class="btn" type="button" id="backBtn" style="background: rgb(11, 42, 91); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Back to Results</button> <button class="btn light" type="button" id="restartBtn2" style="background: rgb(223, 234, 248); color: rgb(11, 42, 91); font-weight: 700; font-style: normal; font-size: 16px;">Restart Quiz</button>
+     </div>
+    </section>
+   </main>
+  </div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="printArea"></div>
+  <script>
+    const quizConfig = {
+      unit:"5",title:"THE PASSIVE VOICE",lesson:"GRAMMAR QUIZ 2",
+      levels:[
+        {name:"Present Simple Passive",instr:"BUILD THE SENTENCE — PRESENT SIMPLE PASSIVE.",rule:"Present simple passive = subject + am/is/are + past participle (+ by + agent)."},
+        {name:"Past Simple Passive",instr:"BUILD THE SENTENCE — PAST SIMPLE PASSIVE.",rule:"Past simple passive = subject + was/were + past participle (+ by + agent)."},
+        {name:"Present Continuous Passive",instr:"BUILD THE SENTENCE — PRESENT CONTINUOUS PASSIVE.",rule:"Present continuous passive = subject + am/is/are + being + past participle (+ by + agent)."},
+        {name:"Past Continuous Passive",instr:"BUILD THE SENTENCE — PAST CONTINUOUS PASSIVE.",rule:"Past continuous passive = subject + was/were + being + past participle (+ by + agent)."},
+        {name:"Present Perfect Passive",instr:"BUILD THE SENTENCE — PRESENT PERFECT PASSIVE.",rule:"Present perfect passive = subject + has/have + been + past participle (+ by + agent)."},
+        {name:"Past Perfect Passive",instr:"BUILD THE SENTENCE — PAST PERFECT PASSIVE.",rule:"Past perfect passive = subject + had + been + past participle (+ by + agent)."},
+        {name:"Future and Modal Passive",instr:"BUILD THE SENTENCE — FUTURE AND MODAL PASSIVE.",rule:"Future/modal passive = subject + will/modal + be + past participle (+ by + agent)."},
+        {name:"BAC Final Challenge",instr:"BAC FINAL CHALLENGE — BUILD THE SENTENCE.",rule:"Modal perfect passive = subject + will/should + have + been + past participle (+ by + agent)."}
+      ],
+      hints:[
+        "Think: subject + am/is/are + past participle.","Think: subject + was/were + past participle.",
+        "Think: subject + am/is/are + being + past participle.","Think: subject + was/were + being + past participle.",
+        "Think: subject + has/have + been + past participle.","Think: subject + had + been + past participle.",
+        "Think: subject + will/modal + be + past participle.","Think: a modal verb + have + been + past participle, with the doer introduced by ‘by’."
+      ],
+      remarks:[
+        {min:18,label:"Excellent!",text:"Outstanding! You build passive sentences accurately in every tense and with modal verbs."},
+        {min:16,label:"Very Good",text:"You build most passive sentences correctly. Check the tenses where you lost points."},
+        {min:14,label:"Good",text:"Good work. Revise the auxiliary patterns (be, being, been, have) for each tense."},
+        {min:12,label:"Fairly Good",text:"You know the main patterns but need more practice ordering auxiliaries and past participles."},
+        {min:10,label:"Pass",text:"You reached the pass mark. Review each passive pattern and practise building sentences."},
+        {min:0,label:"Fail",text:"Review the passive tense by tense: subject + auxiliary + past participle (+ by + agent)."}
+      ],
+      questions:[]
+    };
+    const Q=(level,tiles,alts=[])=>{const lv=quizConfig.levels[level-1];quizConfig.questions.push({level,category:lv.name,question:lv.instr,tiles,answer:tiles,alts,hint:quizConfig.hints[level-1],explanation:lv.rule,points:1})};
+    Q(1,["Argan oil","is","produced","in Morocco"]);
+    Q(1,["The samples","are","carefully","examined","by","the laboratory team"],[["The samples","are","examined","carefully","by","the laboratory team"]]);
+    Q(1,["English","is","spoken","in several countries"]);
+    Q(2,["Tutankhamun's tomb","was","discovered","by","archaeologists"]);
+    Q(2,["A new song","was","composed","by","the young musician"]);
+    Q(3,["The new medicine","is","being","tested","by","researchers"]);
+    Q(3,["The rare bird","is","being","photographed","by","a wildlife expert"]);
+    Q(3,["The old documents","are","being","examined","by","the archivist"]);
+    Q(4,["The main road","was","being","widened","by","the construction team"]);
+    Q(4,["The stage","was","being","prepared","by","the technicians"]);
+    Q(5,["The data","has","been","stored","by","the research team"]);
+    Q(5,["The invitations","have","been","printed","by","the school secretary"]);
+    Q(6,["The map","had","been","checked","by","the expedition leader"]);
+    Q(6,["The equipment","had","been","packed","by","the volunteers"]);
+    Q(6,["The laboratory","had","been","cleaned","by","the staff"]);
+    Q(6,["The documents","had","been","translated","by","the interpreter"]);
+    Q(7,["The new policy","will","be","announced","by the school board","next month"],[["The new policy","will","be","announced","next month","by the school board"]]);
+    Q(7,["Personal information","must","be","protected","online"]);
+    Q(8,["The final report","will","have","been","completed","by the research team"]);
+    Q(8,["The password","should","have","been","changed","immediately"],[["The password","should","immediately","have","been","changed"]]);
+
+    const $=id=>document.getElementById(id),questions=quizConfig.questions,total=questions.length;
+    let answers=[],current=0,finished=false,seconds=0,timerId=null,audioCtx,remarkRun=0,lastReport=null;
+    const shuffle=arr=>{const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+    const format=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0");
+    const sentence=seq=>seq.join(" ")+".";
+    const slotText=i=>answers[i].slots.map(id=>id===null?"—":questions[i].tiles[id]);
+    const isRight=i=>answers[i].locked&&answers[i].ok;
+    const correctCount=()=>questions.filter((_,i)=>isRight(i)).length;
+    const answeredCount=()=>answers.filter(a=>a.locked).length;
+    function tone(notes,type){
+      try{
+        audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
+        if(audioCtx.state==="suspended")audioCtx.resume();
+        notes.forEach((f,i)=>{
+          const o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime+i*.13;
+          o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);
+          o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+.22);
+        });
+      }catch(e){}
+    }
+    function initState(){
+      answers=questions.map(q=>{
+        const ids=q.tiles.map((_,i)=>i);let order;
+        do{order=shuffle(ids)}while(order.length>1&&order.every((v,k)=>v===k));
+        return{order,slots:Array(ids.length).fill(null),locked:false,ok:false,hint:false,msg:""};
+      });
+      current=0;finished=false;
+    }
+    function updateStats(){
+      const c=correctCount(),a=answeredCount();
+      $("stCorrect").textContent=c;$("stWrong").textContent=a-c;$("stRemain").textContent=total-a;
+      $("stScore").textContent=c.toFixed(2)+" /20";$("stProgress").textContent=a+" / "+total;$("stTimer").textContent=format(seconds);
+    }
+    function makeChip(id,inSlot){
+      const a=answers[current],chip=document.createElement("button");
+      chip.type="button";chip.className="chip";chip.textContent=questions[current].tiles[id];
+      chip.draggable=!a.locked;chip.disabled=a.locked;
+      chip.addEventListener("dragstart",e=>e.dataTransfer.setData("text/plain",String(id)));
+      chip.addEventListener("click",()=>inSlot?unplace(id):place(id));
+      return chip;
+    }
+    function renderBoard(){
+      const q=questions[current],a=answers[current],slotBox=$("slots"),pool=$("pool");
+      slotBox.replaceChildren();pool.replaceChildren();
+      a.slots.forEach((id,k)=>{
+        const sl=document.createElement("div");sl.className="slot";sl.setAttribute("aria-label","Slot "+(k+1));
+        if(id===null)sl.textContent=String(k+1);
+        sl.addEventListener("dragover",e=>{if(!a.locked){e.preventDefault();sl.classList.add("over")}});
+        sl.addEventListener("dragleave",()=>sl.classList.remove("over"));
+        sl.addEventListener("drop",e=>{e.preventDefault();sl.classList.remove("over");const n=Number(e.dataTransfer.getData("text/plain"));if(Number.isInteger(n)&&n>=0&&n<q.tiles.length)place(n,k)});
+        if(id!==null){const chip=makeChip(id,true);if(a.locked)chip.classList.add(a.ok||q.tiles[id]===q.answer[k]?"ok":"bad");sl.appendChild(chip)}
+        slotBox.appendChild(sl);
+      });
+      a.order.filter(id=>!a.slots.includes(id)).forEach(id=>pool.appendChild(makeChip(id,false)));
+      pool.ondragover=e=>{if(!a.locked)e.preventDefault()};
+      pool.ondrop=e=>{e.preventDefault();const n=Number(e.dataTransfer.getData("text/plain"));if(Number.isInteger(n)&&n>=0&&n<q.tiles.length)unplace(n)};
+      $("checkBtn").disabled=a.locked||a.slots.includes(null);
+      $("resetBtn").disabled=a.locked;
+    }
+    function place(id,target){
+      const a=answers[current];if(a.locked||finished)return;
+      const from=a.slots.indexOf(id);
+      if(target===undefined){target=a.slots.indexOf(null);if(target<0)return}
+      const other=a.slots[target];a.slots[target]=id;
+      if(from>=0&&from!==target)a.slots[from]=other;
+      renderBoard();
+    }
+    function unplace(id){const a=answers[current];if(a.locked)return;const k=a.slots.indexOf(id);if(k>=0){a.slots[k]=null;renderBoard()}}
+    function resetSentence(){const a=answers[current];if(a.locked)return;a.slots.fill(null);renderBoard()}
+    function paintFeedback(i){
+      const q=questions[i],a=answers[i],feedback=$("feedback");
+      if(!a.locked){feedback.textContent="";feedback.className="feedback";$("explanation").hidden=true;return}
+      const good=["Excellent!","Great Job!","Perfect!","Keep Going!"],bad=["Almost!","Review this rule.","Keep learning!","You'll get the next one!"];
+      if(!a.msg)a.msg=(a.ok?good:bad)[Math.floor(Math.random()*4)];
+      feedback.textContent=a.msg;feedback.className="feedback "+(a.ok?"ok":"bad");
+      $("explanation").textContent="Correct sentence: "+sentence(q.answer)+" — "+q.explanation;
+      $("explanation").hidden=false;
+    }
+    function showQuestion(i){
+      current=i;const q=questions[i],a=answers[i];
+      $("instr").textContent=q.question;$("task").textContent="Question "+(i+1)+"  •  "+q.points+" point";
+      $("counter").textContent=(i+1)+" / "+total;$("hintText").textContent=q.hint;$("hintText").hidden=!a.hint;
+      renderBoard();paintFeedback(i);
+      $("prevBtn").disabled=i===0;$("nextBtn").disabled=!a.locked;
+      $("nextBtn").textContent=i===total-1?"Finish ✔":"Next ▶";updateStats();
+    }
+    function checkAnswer(){
+      const q=questions[current],a=answers[current];if(a.locked||a.slots.includes(null))return;
+      const mine=slotText(current).join("|");
+      a.ok=[q.answer,...q.alts].some(s=>s.join("|")===mine);a.locked=true;
+      renderBoard();paintFeedback(current);tone(a.ok?[660,880]:[220,180],a.ok?"sine":"triangle");
+      $("nextBtn").disabled=false;updateStats();
+    }
+    function goNext(){if(!answers[current].locked)return;current<total-1?showQuestion(current+1):showResults()}
+    function goPrev(){if(current>0)showQuestion(current-1)}
+    function levelBreakdown(){
+      return quizConfig.levels.map((lv,n)=>{
+        const idx=questions.map((q,i)=>q.level===n+1?i:-1).filter(i=>i>=0);
+        return{name:"Level "+(n+1)+" — "+lv.name,got:idx.filter(isRight).length,of:idx.length};
+      });
+    }
+    function addSummaryRow(label,value){
+      const div=document.createElement("div"),b=document.createElement("b");
+      b.textContent=label+": ";div.append(b,document.createTextNode(String(value)));$("summary").appendChild(div);
+    }
+    function showResults(){
+      if(finished)return;
+      finished=true;clearInterval(timerId);timerId=null;
+      const score=correctCount(),r=quizConfig.remarks.find(x=>score>=x.min),time=format(seconds);
+      let store={};try{store=JSON.parse(localStorage.getItem("unit5PassiveQuiz2")||"{}")||{}}catch(e){}
+      store.attempts=(Number(store.attempts)||0)+1;store.best=Math.max(Number(store.best)||0,score);
+      store.last=score;store.time=time;
+      try{localStorage.setItem("unit5PassiveQuiz2",JSON.stringify(store))}catch(e){}
+      $("quizView").hidden=true;$("reviewView").hidden=true;$("resultView").hidden=false;
+      $("finalScore").textContent=score.toFixed(2);
+      const rows=[
+        ["Final Score",score.toFixed(2)+" /20"],["Correct Answers",score],["Wrong Answers",total-score],
+        ["Accuracy",Math.round(score/total*100)+"%"],["Time Taken",time],
+        ["Number of Attempts",store.attempts],["Best Score",store.best.toFixed(2)+" /20"],
+        ...levelBreakdown().map(l=>[l.name,l.got+"/"+l.of])
+      ];
+      $("summary").replaceChildren();rows.forEach(([label,value])=>addSummaryRow(label,value));
+      lastReport={score,time,rows,remark:r};
+      spinRemark(r);tone([523,659,784,1046],"sine");
+      if(score>=18)launchConfetti();
+    }
+    function spinRemark(final){
+      const labels=["Fail","Pass","Fairly Good","Good","Very Good","Excellent!"];
+      const run=++remarkRun;let n=0,elapsed=0,delay=60;
+      $("remarkText").textContent="";
+      function step(){
+        if(run!==remarkRun)return;
+        if(elapsed>=3000){$("remark").textContent=final.label;$("remarkText").textContent=final.text;return}
+        $("remark").textContent=labels[n++%labels.length];elapsed+=delay;setTimeout(step,delay);
+      }
+      step();
+    }
+    function launchConfetti(){
+      const cv=$("confetti"),ctx=cv.getContext("2d");if(!ctx)return;
+      cv.width=innerWidth;cv.height=innerHeight;
+      const ps=Array.from({length:140},()=>({
+        x:Math.random()*cv.width,y:-20-Math.random()*cv.height,v:2+Math.random()*4,s:5+Math.random()*6,
+        c:["#2563eb","#16a34a","#dc2626","#facc15","#1e3a5f"][Math.floor(Math.random()*5)]
+      }));
+      const end=Date.now()+4000;
+      function frame(){
+        ctx.clearRect(0,0,cv.width,cv.height);
+        ps.forEach(p=>{p.y+=p.v;ctx.fillStyle=p.c;ctx.fillRect(p.x,p.y,p.s,p.s)});
+        if(Date.now()<end)requestAnimationFrame(frame);else ctx.clearRect(0,0,cv.width,cv.height);
+      }
+      frame();
+    }
+    function reviewLine(parent,label,value){
+      const b=document.createElement("b");b.textContent=label;
+      parent.append(b,document.createTextNode(value),document.createElement("br"));
+    }
+    function showReview(){
+      $("resultView").hidden=true;$("reviewView").hidden=false;
+      const list=$("reviewList");list.replaceChildren();let lastLevel=0;
+      questions.forEach((q,i)=>{
+        if(q.level!==lastLevel){
+          lastLevel=q.level;const heading=document.createElement("h2");
+          heading.className="rev-level";heading.textContent="Level "+q.level+" — "+quizConfig.levels[q.level-1].name;
+          list.appendChild(heading);
+        }
+        const item=document.createElement("div");item.className="rev "+(isRight(i)?"ok":"bad");
+        reviewLine(item,"Q"+(i+1)+".","");reviewLine(item,"Your answer: "," "+slotText(i).join(" "));
+        reviewLine(item,"Correct answer: "," "+sentence(q.answer));
+        const b=document.createElement("b");b.textContent="Explanation: ";item.append(b,document.createTextNode(q.explanation));
+        list.appendChild(item);
+      });
+    }
+    function reportText(){
+      const r=lastReport;
+      return "ENGLISH2BAC QUIZZES — Unit "+quizConfig.unit+" • "+quizConfig.title+" • "+quizConfig.lesson+
+        "\n\n"+r.rows.map(x=>x[0]+": "+x[1]).join("\n")+"\n\nRemark: "+r.remark.label;
+    }
+    function printResults(){
+      if(!lastReport)return;
+      const area=$("printArea");area.replaceChildren();
+      const h2=document.createElement("h2");h2.textContent="English2BAC Quizzes — Unit "+quizConfig.unit;area.appendChild(h2);
+      const h3=document.createElement("h3");h3.textContent=quizConfig.title+" — "+quizConfig.lesson;area.appendChild(h3);
+      lastReport.rows.forEach(([label,value])=>{
+        const p=document.createElement("p"),b=document.createElement("b");b.textContent=label+": ";
+        p.append(b,document.createTextNode(String(value)));area.appendChild(p);
+      });
+      const p=document.createElement("p"),b=document.createElement("b");b.textContent="Remark: ";
+      p.append(b,document.createTextNode(lastReport.remark.label));area.appendChild(p);
+      window.print();
+    }
+    function saveResults(){
+      if(!lastReport)return;
+      const url=URL.createObjectURL(new Blob([reportText()],{type:"text/plain;charset=utf-8"}));
+      const a=document.createElement("a");a.href=url;a.download="unit5-grammar-quiz2-results.txt";
+      document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    }
+    function restartQuiz(){
+      remarkRun++;clearInterval(timerId);timerId=null;seconds=0;initState();
+      $("resultView").hidden=true;$("reviewView").hidden=true;$("quizView").hidden=false;
+      showQuestion(0);timerId=setInterval(()=>{seconds++;updateStats()},1000);
+    }
+    $("hintBtn").addEventListener("click",()=>{if(!answers[current].locked){answers[current].hint=true;$("hintText").hidden=false}});
+    $("checkBtn").addEventListener("click",checkAnswer);
+    $("resetBtn").addEventListener("click",resetSentence);
+    $("nextBtn").addEventListener("click",goNext);
+    $("prevBtn").addEventListener("click",goPrev);
+    $("reviewBtn").addEventListener("click",showReview);
+    $("backBtn").addEventListener("click",()=>{$("reviewView").hidden=true;$("resultView").hidden=false});
+    $("printBtn").addEventListener("click",printResults);
+    $("saveBtn").addEventListener("click",saveResults);
+    $("restartBtn").addEventListener("click",restartQuiz);
+    $("restartBtn2").addEventListener("click",restartQuiz);
+    document.addEventListener("keydown",e=>{
+      if($("quizView").hidden||e.altKey||e.ctrlKey||e.metaKey)return;
+      const a=answers[current];
+      if(/^[1-9]$/.test(e.key)&&!a.locked){
+        const rest=a.order.filter(id=>!a.slots.includes(id));
+        if(rest[Number(e.key)-1]!==undefined)place(rest[Number(e.key)-1]);
+      }else if(e.key==="Backspace"&&!a.locked){
+        const k=a.slots.map(v=>v!==null).lastIndexOf(true);
+        if(k>=0){e.preventDefault();unplace(a.slots[k])}
+      }else if((e.key==="Enter"||e.key===" ")&&e.target===document.body){
+        e.preventDefault();a.locked?goNext():checkAnswer();
+      }else if(e.key==="ArrowRight"){e.preventDefault();goNext()}
+      else if(e.key==="ArrowLeft"){e.preventDefault();goPrev()}
+    });
+    restartQuiz();
+  </script>
+ 
+</body></html>
