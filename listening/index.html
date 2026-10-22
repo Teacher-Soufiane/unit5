@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en"><head><script>(function(){var ok=true;try{window.localStorage.getItem("__t")}catch(e){ok=false}
+if(!ok){var m={};try{Object.defineProperty(window,"localStorage",{configurable:true,value:{
+getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},
+setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}}}})}catch(e2){}}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expressing Concession | Listening Quiz 1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+:root{--navy:#17365d;--blue:#2563eb;--green:#15803d;--red:#b91c1c;--line:#dbe5f0}
+*{box-sizing:border-box}html,body{margin:0;padding:0;width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh))}
+body{font-family:Poppins,sans-serif;color:#18314e}.quiz-container{width:100%;max-width:100%;min-height:calc(100 * min(var(--vh, 1vh), 1vh));background:#f3f7fc}.quiz-card{width:100%;max-width:1100px;margin:0 auto;padding:22px}
+.quiz-header{background:#eaf4ff;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 22px;border-bottom:1px solid #d6e6f5}
+.header-teacher-img,.header-logo-img{height:64px;width:auto;max-width:none;object-fit:contain;flex:none}
+.header-title{text-align:center;line-height:1.2;min-width:0}.title-line1{font-family:Poppins,sans-serif;font-size:26px;font-weight:800;color:#1e3a5f}.title-line2{font-family:Poppins,sans-serif;font-size:18px;font-weight:400;color:#2563eb}.title-line3{font-family:Poppins,sans-serif;font-size:14px;font-weight:400;color:#64748b}
+.info-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 22px;background:#fff;border-bottom:1px solid var(--line);font-weight:700;font-size:13px;color:var(--navy)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 35px #183d6510;padding:clamp(16px,3vw,32px)}
+.phase{background:#dbeafe;color:var(--navy);padding:12px 16px;font-weight:800;border-radius:11px;margin-bottom:18px}
+.instruction{background:#17365d;color:white;padding:17px 20px;font-weight:800;letter-spacing:.035em;border-radius:11px;margin:18px 0 0}
+.task{font-size:18px;line-height:1.55;font-weight:600;margin:19px 0}
+.task-label{font-size:12px;color:#64748b;font-weight:700;letter-spacing:.05em}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tile,.chip,.order-item{border:1.5px solid var(--line);background:#f8fbff;color:#17365d;border-radius:11px;padding:13px 15px;text-align:left;font:inherit;overflow-wrap:anywhere}
+.tile{cursor:pointer;min-height:58px}.tile:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.tile.selected,.chip.selected{background:#dbeafe;border-color:var(--blue)}.tile.correct,.chip.correct,.order-item.correct,.slot.correct{background:#dcfce7;border-color:var(--green);color:#14532d}.tile.wrong,.chip.wrong,.order-item.wrong,.slot.wrong{background:#fee2e2;border-color:var(--red);color:#7f1d1d}
+.tile.muted{background:#f1f5f9;color:#64748b}.tile:disabled{cursor:default;opacity:1}
+button:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}
+.match-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px}.match-rows,.chip-tray,.order-list{display:flex;flex-direction:column;gap:9px;min-width:0}
+.match-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,0.75fr);align-items:center;gap:10px;padding:10px;background:#f8fbff;border-radius:11px;min-width:0;overflow-wrap:anywhere}
+.slot{min-height:51px;border:2px dashed #a8bbd1;border-radius:9px;padding:5px;display:flex;align-items:center;justify-content:center;min-width:0}.slot.over,.chip-tray.over,.order-item.over{outline:2px solid var(--blue)}
+.chip{cursor:grab;touch-action:none;user-select:none;width:100%;position:relative;z-index:1}.chip.dragging,.order-item.dragging{z-index:20;box-shadow:0 12px 30px #17365d45;pointer-events:none}
+.order-item{display:flex;align-items:center;gap:9px;touch-action:none;user-select:none;cursor:grab}.order-text{flex:1;min-width:0}.arrow-controls{display:flex;gap:4px}.arrow-controls button{border:1px solid #b6c9dd;border-radius:7px;padding:4px 8px;background:white;cursor:pointer;touch-action:manipulation}
+.primary,.secondary{border:0;border-radius:10px;padding:11px 17px;font:600 14px Poppins,sans-serif;cursor:pointer}.primary{background:#2563eb;color:white}.secondary{background:#e8f0fb;color:#17365d}.primary:disabled,.secondary:disabled{opacity:.48;cursor:not-allowed}
+.feedback{margin-top:16px;padding:13px 16px;border-radius:10px;background:#edf5ff;color:#17365d;line-height:1.55}
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:24px}.counter{font-weight:800;white-space:nowrap}
+.stats{display:flex;align-items:center;justify-content:space-between;gap:8px 13px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:15px;margin-top:18px;font-size:13px;font-weight:600}.stats span{white-space:nowrap}
+.audio-panel{background:#f0f6ff;border:1px solid #cbdff5;border-radius:12px;padding:15px;margin-bottom:17px}.speakers{display:flex;justify-content:center;gap:38px;text-align:center}.avatar{font-size:30px;display:grid;place-items:center;width:51px;height:51px;background:white;border-radius:50%;margin:auto}.audio-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0}.audio-controls button{border:1px solid #bbd0e7;background:#fff;border-radius:9px;padding:8px 14px;min-width:70px;font-weight:700}.audio-controls button:disabled{opacity:.45}.audio-track{height:6px;background:#d2e1f1;border-radius:99px;overflow:hidden}.audio-progress{height:100%;width:0;background:var(--blue)}.audio-error{color:#9f1239;font-size:13px;text-align:center;margin-top:9px}
+.score-circle{width:170px;height:170px;border-radius:50%;border:10px solid #2563eb;display:flex;align-items:center;justify-content:center;flex-direction:column;margin:20px auto;background:#eff6ff;color:#17365d}.score-circle strong{font-size:29px}.remark{text-align:center;font-size:26px;font-weight:800;color:var(--navy);min-height:40px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.summary-cell{background:#f1f6fc;border-radius:10px;padding:12px;font-size:13px}.summary-cell strong{display:block;font-size:18px}
+.breakdown{margin:18px 0;padding:0;list-style:none}.breakdown li{border-bottom:1px solid var(--line);padding:9px 0;display:flex;justify-content:space-between;gap:10px}
+details{border:1px solid var(--line);border-radius:11px;padding:12px 16px;margin:16px 0}summary{cursor:pointer;font-weight:700}.transcript p{margin:9px 0;line-height:1.6}
+.review-line{padding:11px;background:#f3f7fc;border-radius:9px;margin:8px 0;overflow-wrap:anywhere}.review-line.correct{border-left:4px solid var(--green)}.review-line.wrong{border-left:4px solid var(--red)}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.confetti{position:fixed;top:-20px;width:9px;height:14px;pointer-events:none;animation:fall 3s linear forwards;z-index:99}@keyframes fall{to{transform:translateY(calc(110 * min(var(--vh, 1vh), 1vh))) rotate(600deg);opacity:0}}
+@media(min-width:600px){.header-teacher-img,.header-logo-img{height:80px}}
+@media(min-width:1024px){.header-teacher-img,.header-logo-img{height:96px}}
+@media(max-width:640px){.header-teacher-img,.header-logo-img{height:45px}.quiz-header{padding:8px 12px}.title-line1{font-size:clamp(11px,3.2vw,19px)}.title-line2{font-size:clamp(9px,2.5vw,14px)}.title-line3{font-size:clamp(8px,2vw,11px)}.info-bar{font-size:10px;padding:11px 8px;text-align:center}.quiz-card{padding:11px}.panel{padding:15px}.task{font-size:16px}.choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{padding:10px;font-size:13px}.match-layout{grid-template-columns:1fr}.chip-tray{display:flex;flex-direction:row;flex-wrap:wrap}.chip-tray .chip{width:auto;max-width:100%;flex:1 1 42%}.match-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);font-size:12px}.slot .chip{font-size:12px;padding:7px}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{font-size:11px}}
+@media(max-width:350px){.choice-grid{grid-template-columns:1fr}.header-teacher-img,.header-logo-img{height:35px}}
+@media print{.quiz-header,.info-bar,.actions,.nav-row,.stats,.audio-panel,#quizView,#reviewView{display:none!important}.quiz-card{max-width:none}.panel{border:0;box-shadow:none}.transcript{display:block!important}details{border:0}details summary{display:none}}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  
+  
+  
+ <style>[hidden]{display:none!important}</style></head>
+ <body data-template-id="__page-root">
+  <div class="quiz-container">
+   <header class="quiz-header canva-header" data-template-id="quiz-header" id="quiz-header">
+    <img data-template-id="teacher-image" class="canva-image header-teacher-img" loading="lazy" id="teacher-image" src="teacher.png" alt="Teacher Soufiane">
+    <div class="header-title">
+     <div data-template-id="title-line1" class="canva-text title-line1" id="title-line1">English2BAC Quizzes</div>
+     <div data-template-id="title-line2" class="canva-text title-line2" id="title-line2">Learn • Practice • Succeed</div>
+     <div data-template-id="title-line3" class="canva-text title-line3" id="title-line3">with Teacher.Soufiane</div>
+    </div><img data-template-id="logo-image" class="canva-image header-logo-img" loading="lazy" id="logo-image" src="logo.png" alt="Level-UP 2BAC">
+   </header>
+   <div class="info-bar"><span data-template-id="info-unit" class="canva-text" id="info-unit">UNIT: 5</span><span data-template-id="info-topic" class="canva-text" id="info-topic">EXPRESSING CONCESSION</span><span data-template-id="info-lesson" class="canva-text" id="info-lesson">LISTENING - QUIZ 1</span>
+   </div>
+   <main class="quiz-card">
+    <section id="quizView" class="panel canva-panel" data-template-id="quiz-panel">
+     <div id="phaseBanner" class="phase" aria-live="polite"></div>
+     <div id="audioPanel" class="audio-panel" hidden="" aria-label="Dialogue audio">
+      <div class="speakers">
+       <div>
+        <div class="avatar" aria-hidden="true">
+         👨
+        </div><span data-template-id="speaker-michael" class="canva-text" id="speaker-michael"></span>
+       </div>
+       <div>
+        <div class="avatar" aria-hidden="true">
+         👩
+        </div><span data-template-id="speaker-layla" class="canva-text" id="speaker-layla"></span>
+       </div>
+      </div>
+      <div class="audio-controls" id="audioControls" tabindex="0" aria-label="Audio controls; use Space to play or pause, arrows to seek">
+       <button id="audioBack" type="button" aria-label="Skip back ten seconds" disabled="">◀◀ 10</button><button id="audioPlay" type="button" aria-label="Play or pause" disabled="">▶</button><button id="audioForward" type="button" aria-label="Skip forward ten seconds" disabled="">10 ▶▶</button>
+      </div>
+      <div class="audio-track">
+       <div id="audioProgress" class="audio-progress"></div>
+      </div>
+      <p id="audioError" class="audio-error" role="status"></p>
+     </div>
+     <div id="taskLabel" class="task-label"></div>
+     <h1 id="instruction" class="instruction"></h1>
+     <p id="taskText" class="task"></p>
+     <div id="answerArea"></div>
+     <div id="feedback" class="feedback" hidden="" aria-live="polite"></div>
+     <div class="nav-row"><button id="previous" class="secondary" type="button">◀ Previous</button><span id="counter" class="counter"></span><button id="next" class="primary" type="button" disabled="">Next ▶</button>
+     </div>
+     <div class="stats" aria-live="polite"><span id="correctStat"></span><span id="wrongStat"></span><span id="remainingStat"></span><span id="scoreStat"></span><span id="timerStat"></span>
+     </div>
+    </section>
+    <section id="resultView" class="panel" hidden="" aria-labelledby="resultHeading">
+     <h1 id="resultHeading" data-template-id="result-heading" class="canva-text">Quiz Results</h1>
+     <p data-template-id="result-context" class="canva-text text-center" id="result-context"></p>
+     <div class="score-circle"><strong id="finalScore"></strong><span>/48</span>
+     </div>
+     <div id="remark" class="remark" aria-live="polite"></div>
+     <h2 data-template-id="summary-heading" class="canva-text font-bold mb-3" id="summary-heading"></h2>
+     <div id="summaryGrid" class="summary-grid"></div>
+     <h2 data-template-id="breakdown-heading" class="canva-text font-bold mt-6" id="breakdown-heading">Category Breakdown</h2>
+     <ul id="breakdown" class="breakdown"></ul>
+     <details id="resultTranscript"><summary data-template-id="transcript-label" class="canva-text" id="transcript-label"></summary>
+      <div class="transcript transcript-content"></div>
+     </details>
+     <div class="actions"><button id="reviewButton" data-template-id="review-button" class="canva-button primary" type="button">Review My Answers</button><button id="restartButton" data-template-id="restart-button" class="canva-button secondary" type="button">Restart Quiz</button><button id="printButton" data-template-id="print-button" class="canva-button secondary" type="button">Print Results</button><button id="saveButton" data-template-id="save-button" class="canva-button secondary" type="button">Save Results</button>
+     </div>
+    </section>
+    <section id="reviewView" class="panel" hidden="" aria-labelledby="reviewHeading">
+     <h1 id="reviewHeading" data-template-id="review-heading" class="canva-text">Review Your Answers</h1>
+     <details id="reviewTranscript"><summary data-template-id="review-transcript-label" class="canva-text" id="review-transcript-label">Review My Answers</summary>
+      <div class="transcript transcript-content"></div>
+     </details>
+     <div id="reviewContent"></div>
+     <div class="nav-row"><button id="reviewPrevious" class="secondary" type="button">◀ Previous</button><span id="reviewCounter" class="counter"></span><button id="reviewNext" class="primary" type="button">Next ▶</button>
+     </div><button id="backResults" data-template-id="back-results-button" class="canva-button secondary mt-5" type="button">Back to Results</button>
+    </section>
+   </main>
+  </div>
+  <script>
+'use strict';
+/* The question bank is application data, not editable presentation text. */
+const quizConfig={
+unit:"5",title:"EXPRESSING CONCESSION",lesson:"LISTENING - QUIZ 1",totalPoints:48,
+audioFileUrl:"https://raw.githubusercontent.com/Teacher-Soufiane/unit5-listening/main/Unit5_Expressing_Concession_Intro_and_Listening.mp3",
+audioTranscript:[
+["Michael","Layla, do you think working women have more difficulties than working men when managing family life?"],
+["Layla","Yes, I do. Although many women have full-time jobs, they are still expected to do most of the housework."],
+["Michael","I understand, but managing a job and a family is difficult for men, too."],
+["Layla","That's true. However, women often face extra pressure because people expect them to take care of the children and the home."],
+["Michael","Despite having demanding jobs, some women manage to organise their time quite well."],
+["Layla","That's possible, but good organisation cannot solve every problem, especially when there is little support at home."],
+["Michael","Even though both partners may be tired after work, shouldn't they share household responsibilities equally?"],
+["Layla","Absolutely! In spite of working long hours, many women still spend their evenings cooking, cleaning, and helping their children."],
+["Michael","Perhaps couples should discuss their responsibilities and make a fair schedule."],
+["Layla","I agree. Although changing traditional attitudes takes time, sharing the housework would reduce women's stress."],
+["Michael","Some employers could also offer flexible working hours to help parents."],
+["Layla","Yes, but even though flexible hours are useful, not every workplace offers them."],
+["Michael","That's a fair point. Despite these difficulties, many women continue to succeed in their careers."],
+["Layla","They do, but success shouldn't mean sacrificing their health or personal lives."],
+["Michael","I agree. In spite of facing different challenges, both men and women deserve support."],
+["Layla","Exactly. However, families and employers must recognise that women cannot be expected to do everything alone."],
+["Michael","So, a fairer balance requires cooperation at home and understanding at work."],
+["Layla","Definitely. Although balancing work and family isn't always easy, sharing responsibilities can make life better for everyone."]
+],
+questions:[]
+};
+const q=quizConfig.questions;
+function single(label,instruction,task,choices,answer,explanation){q.push({type:"single-choice",taskLabel:label,question:instruction,task,choices,correctAnswer:answer,explanation,points:1})}
+function matching(label,instruction,task,rows,chips,explanation){q.push({type:"matching",taskLabel:label,question:instruction,task,rows:rows.map((text,i)=>({id:"r"+i,text})),chips:chips.map((text,i)=>({id:"c"+i,text,matchesRowId:"r"+i})),explanation,points:rows.length})}
+const T={
+1:"Task 1 — Complete the Sentence",2:"Task 2 — Match the Word with its Meaning",3:"Task 3 — Predict the Listening",
+4:"Task 4 — Choose the Best Summary",5:"Task 5 — Identify the Main Opinion",6:"Task 6 — Match the Expression with its Idea",
+7:"Task 7 — Understand the Opinion",8:"Task 8 — Understand the Reason",9:"Task 9 — Understand the Suggestion",
+10:"Task 10 — Listen for a Detail",11:"Task 11 — True or False",12:"Task 12 — Identify the Expression",
+13:"Task 13 — Identify the Structure",14:"Task 14 — Identify the Contrast",15:"Task 15 — Choose the Correct Expression",
+16:"Task 16 — Choose the Correct Sentence",17:"Task 17 — Choose the Sentence with the Same Meaning",
+18:"Task 18 — Put the Ideas in Order",19:"Task 19 — Match the Problem with the Solution",20:"Task 20 — Overall Listening Check"
+};
+single(T[1],"COMPLETE THE SENTENCE.","______ she works full time, she still does most of the housework.",["Although","Despite","In spite of","However"],"Although","'Although' is followed by a complete clause (she works full time) and introduces a contrast.");
+single(T[1],"COMPLETE THE SENTENCE.","______ having a demanding job, Sara finds time to exercise.",["Despite","Although","Even though","However"],"Despite","'Despite' is followed by a noun phrase or a gerund (having a demanding job).");
+single(T[1],"COMPLETE THE SENTENCE.","He is very tired. ______, he helps his children with their homework.",["However","Although","Despite","Even though"],"However","'However' introduces a contrasting idea in a new sentence, followed by a comma.");
+single(T[1],"COMPLETE THE SENTENCE.","In spite of ______ long hours, many women still cook every evening.",["working","they work","to work","worked"],"working","'In spite of' is followed by a noun phrase or a gerund (-ing form): 'working'.");
+matching(T[2],"MATCH THE WORD WITH ITS MEANING.","Drag each word to the meaning it matches.",[
+"Cooking, cleaning and other jobs done at home","A person or company that gives people jobs","A plan that shows when things will be done","A feeling of worry or mental pressure","Able to change easily to suit different needs"
+],["housework","employer","schedule","stress","flexible"],"These five words appear in the conversation: housework, employer, schedule, stress and flexible.");
+q.push({type:"multi-select-exact",taskLabel:T[3],question:"PREDICT THE LISTENING.",task:"You are going to hear two adults talking about working women. Which topics are you most likely to hear? Select THREE.",options:["Women balancing a career and housework","Sharing household responsibilities at home","Flexible working hours for parents","A football match at the stadium","Choosing a holiday destination","Buying a new smartphone"],correctOptions:["Women balancing a career and housework","Sharing household responsibilities at home","Flexible working hours for parents"],explanation:"The speakers discuss balancing a career and housework, sharing household responsibilities, and flexible working hours. A football match, a holiday destination and a smartphone are unrelated.",points:3});
+single(T[4],"CHOOSE THE BEST SUMMARY.","What is the conversation mainly about?",["Two adults discuss how working women balance careers and housework.","Two colleagues compare the salaries of men and women at work.","Two friends plan a family dinner for the coming weekend.","Two parents argue about which school their children should attend."],"Two adults discuss how working women balance careers and housework.","Michael and Layla debate the pressure working women face when managing a career and household responsibilities.");
+single(T[5],"IDENTIFY THE MAIN OPINION.","What is Layla's main opinion?",["Women still face extra pressure at home despite working.","Men and women face exactly the same difficulties at home.","Women should stop working to take care of their children.","Employers already offer enough support to working parents."],"Women still face extra pressure at home despite working.","Layla argues that women are still expected to do most of the housework and childcare even when they have full-time jobs.");
+matching(T[6],"MATCH THE EXPRESSION WITH ITS IDEA.","Drag each expression to the idea that follows it in the conversation.",[
+"..., they are still expected to do most of the housework.","..., some women manage to organise their time quite well.","..., many women still spend their evenings cooking and cleaning.","..., not every workplace offers flexible hours."
+],["Although many women have full-time jobs","Despite having demanding jobs","In spite of working long hours","Even though flexible hours are useful"],"Each concession expression introduces the contrast heard in the conversation: Although... (housework), Despite... (organise their time), In spite of... (cooking and cleaning), Even though... (not every workplace).");
+single(T[7],"UNDERSTAND THE OPINION.","According to Michael, who finds it difficult to manage a job and a family?",["Both men and women","Only women with young children","Only men with demanding jobs","Women who work part time"],"Both men and women","Michael says that managing a job and a family is difficult for men, too.");
+single(T[8],"UNDERSTAND THE REASON.","According to Layla, what extra pressure do women often face?",["People expect them to take care of the children and the home.","People expect them to earn more money than their partners.","People expect them to work longer hours than other workers.","People expect them to change jobs after having children."],"People expect them to take care of the children and the home.","Layla says women face extra pressure because people expect them to take care of the children and the home.");
+single(T[9],"UNDERSTAND THE SUGGESTION.","What does Michael suggest couples should do?",["Discuss their responsibilities and make a fair schedule","Hire someone else to do all the housework for them","Spend their free evenings outside the house together","Share the same job to have more time at home"],"Discuss their responsibilities and make a fair schedule","Michael says couples should discuss their responsibilities and make a fair schedule.");
+single(T[10],"LISTEN FOR A DETAIL.","Why does Layla say flexible working hours are not a complete solution?",["Because not every workplace offers them","Because they cost employers too much money","Because most parents do not want to use them","Because they reduce the salaries of women"],"Because not every workplace offers them","Layla says that even though flexible hours are useful, not every workplace offers them.");
+single(T[11],"CHOOSE TRUE OR FALSE.","Layla says women are still expected to do most of the housework.",["True","False"],"True","Layla says that although many women have full-time jobs, they are still expected to do most of the housework.");
+single(T[11],"CHOOSE TRUE OR FALSE.","Michael thinks managing a job and a family is difficult only for women.",["True","False"],"False","Michael says managing a job and a family is difficult for men, too.");
+single(T[11],"CHOOSE TRUE OR FALSE.","Layla thinks sharing the housework would reduce women's stress.",["True","False"],"True","Layla says that sharing the housework would reduce women's stress.");
+single(T[11],"CHOOSE TRUE OR FALSE.","Layla says women can be expected to do everything alone.",["True","False"],"False","Layla says families and employers must recognise that women cannot be expected to do everything alone.");
+single(T[12],"IDENTIFY THE EXPRESSION.","\"Although many women have full-time jobs, they are still expected to do most of the housework.\" Which concession expression is used?",["although","despite","in spite of","however"],"although","The sentence uses 'although' followed by a complete clause.");
+single(T[12],"IDENTIFY THE EXPRESSION.","\"Despite having demanding jobs, some women manage to organise their time quite well.\" Which concession expression is used?",["although","despite","even though","however"],"despite","The sentence uses 'despite' followed by a gerund phrase (having demanding jobs).");
+single(T[12],"IDENTIFY THE EXPRESSION.","\"In spite of working long hours, many women still spend their evenings cooking, cleaning, and helping their children.\" Which concession expression is used?",["although","despite","in spite of","even though"],"in spite of","The sentence uses 'in spite of' followed by a gerund phrase (working long hours).");
+single(T[12],"IDENTIFY THE EXPRESSION.","\"Even though both partners may be tired after work, shouldn't they share household responsibilities equally?\" Which concession expression is used?",["although","despite","even though","in spite of"],"even though","The sentence uses 'even though' followed by a complete clause.");
+single(T[13],"IDENTIFY THE STRUCTURE.","\"Despite having demanding jobs, some women manage to organise their time quite well.\" What follows 'despite' in this sentence?",["A gerund phrase (having demanding jobs)","A complete clause with subject and verb","An infinitive with 'to' (to have jobs)","A past simple verb on its own (had)"],"A gerund phrase (having demanding jobs)","'Despite' is followed by a noun, a noun phrase or a gerund; here it is followed by the gerund phrase 'having demanding jobs'.");
+single(T[14],"IDENTIFY THE CONTRAST.","\"Even though flexible hours are useful, not every workplace offers them.\" What is the contrast?",["Flexible hours are useful, but not every workplace offers them.","Flexible hours are useless, so no workplace offers them.","Every workplace offers them because they are useful.","Employers dislike them because they are very useful."],"Flexible hours are useful, but not every workplace offers them.","'Even though' contrasts the advantage (they are useful) with the limitation (not every workplace offers them).");
+single(T[15],"CHOOSE THE CORRECT EXPRESSION.","______ he was tired, he cooked dinner for the family.",["Although","Despite","In spite of","However"],"Although","'Although' is followed by a complete clause (he was tired).");
+single(T[15],"CHOOSE THE CORRECT EXPRESSION.","______ the long hours, she enjoys her job.",["Despite","Although","Even though","However"],"Despite","'Despite' is followed by a noun phrase (the long hours).");
+single(T[15],"CHOOSE THE CORRECT EXPRESSION.","She is very busy. ______, she always finds time for her children.",["However","Although","Despite","In spite of"],"However","'However' introduces a contrasting idea in a new sentence.");
+single(T[15],"CHOOSE THE CORRECT EXPRESSION.","In spite of ______ tired, he helped with the housework.",["being","he was","to be","been"],"being","'In spite of' is followed by a gerund: 'being'.");
+single(T[16],"CHOOSE THE CORRECT SENTENCE.","Which sentence is grammatically correct?",["Despite working full time, she does the housework.","Despite she works full time, she does the housework.","Although of working full time, she does the housework.","In spite she works full time, she does the housework."],"Despite working full time, she does the housework.","'Despite' must be followed by a gerund or a noun phrase, not by a full clause.");
+single(T[17],"CHOOSE THE SENTENCE WITH THE SAME MEANING.","\"Although she works long hours, she cooks every evening.\"",["In spite of working long hours, she cooks every evening.","She works long hours because she cooks every evening.","She cooks every evening so she works long hours.","She does not cook every evening because she works long hours."],"In spite of working long hours, she cooks every evening.","'Although + clause' and 'In spite of + gerund' both express a contrast between working long hours and cooking every evening.");
+q.push({type:"ordering",taskLabel:T[18],question:"PUT THE IDEAS IN ORDER.",task:"Put the ideas in the order in which they are discussed in the conversation.",items:[
+{id:"i1",text:"Women are still expected to do most of the housework",correctPosition:1},
+{id:"i2",text:"Managing a job and a family is difficult for men too",correctPosition:2},
+{id:"i3",text:"Couples could make a fair schedule",correctPosition:3},
+{id:"i4",text:"Flexible hours are useful but not offered everywhere",correctPosition:4},
+{id:"i5",text:"A fairer balance needs cooperation at home and at work",correctPosition:5}
+],explanation:"The speakers first mention women's housework, then that men also find it difficult, then a fair schedule for couples, then flexible hours, and finally the need for cooperation at home and at work.",points:5});
+matching(T[19],"MATCH THE PROBLEM WITH THE SOLUTION.","Drag each solution to the problem it solves.",[
+"Couples argue about who does which household task.","Parents struggle to combine work with family life.","Both partners are tired after a long day at work.","Families and employers expect women to do everything."
+],["Make a fair schedule together","Offer flexible working hours","Share household responsibilities equally","Recognise that women need support"],"Each problem has a matching solution from the conversation: a fair schedule, flexible working hours, equal sharing of responsibilities, and recognising that women need support.");
+single(T[20],"OVERALL LISTENING CHECK.","What is Layla's final conclusion?",["Sharing responsibilities can make life better for everyone.","Women should work fewer hours than men do.","Employers should pay women higher salaries.","Traditional attitudes will change very quickly."],"Sharing responsibilities can make life better for everyone.","Layla ends by saying that although balancing work and family isn't always easy, sharing responsibilities can make life better for everyone.");
+
+const $=id=>document.getElementById(id);
+function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
+function shuffle(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function shuffledNotIdentity(items){let a=shuffle(items);if(a.length>1&&a.every((x,i)=>x===items[i]))[a[0],a[1]]=[a[1],a[0]];return a}
+let states=[],current=0,reviewIndex=0,mode="quiz",attempts=0,best=0,elapsed=0,timerId=null,remarkTimer=null,selectionTimer=null,audioContext=null;
+
+/* Independent count-up timer. */
+const timer={
+start(){if(timerId)return;timerId=setInterval(()=>{elapsed++;$('timerStat').textContent="Timer: "+timer.format()},1000)},
+pause(){clearInterval(timerId);timerId=null},
+reset(){timer.pause();elapsed=0;$('timerStat').textContent="Timer: 00:00"},
+format(){return String(Math.floor(elapsed/60)).padStart(2,"0")+":"+String(elapsed%60).padStart(2,"0")}
+};
+function readStorage(){try{attempts=Number(localStorage.getItem("concessionAttempts"))||0;best=Number(localStorage.getItem("concessionBest"))||0}catch{}}
+function writeStorage(score){try{localStorage.setItem("concessionAttempts",String(attempts));localStorage.setItem("concessionBest",String(best));localStorage.setItem("concessionLast",String(score));localStorage.setItem("concessionTime",timer.format())}catch{}}
+function sound(kind){if($('muteEffects')?.checked)return;try{audioContext ||=new(window.AudioContext||window.webkitAudioContext)();const o=audioContext.createOscillator(),g=audioContext.createGain(),t=audioContext.currentTime;o.type="sine";o.frequency.setValueAtTime(kind==="wrong"?240:kind==="click"?470:kind==="complete"?660:520,t);o.frequency.exponentialRampToValueAtTime(kind==="wrong"?180:kind==="complete"?990:kind==="click"?420:780,t+.15);g.gain.setValueAtTime(.045,t);g.gain.exponentialRampToValueAtTime(.001,t+.19);o.connect(g).connect(audioContext.destination);o.start(t);o.stop(t+.2)}catch{}}
+function startState(){states=q.map(item=>({locked:false,earned:0,order:item.type==="single-choice"?shuffle(item.choices):item.type==="multi-select-exact"?shuffle(item.options):item.type==="matching"?shuffledNotIdentity(item.chips.map(c=>c.id)):item.type==="ordering"?shuffledNotIdentity(item.items.map(i=>i.id)):[],selected:[],placements:{},answer:null}))}
+function phase(index){return index<6?"PRE-LISTENING":index<8?"WHILE-LISTENING — First Listening: General Understanding":index<17?"WHILE-LISTENING — Second Listening: Specific Information":index<23?"WHILE-LISTENING — Third Listening: Understanding the Function":"POST-LISTENING"}
+
+/* The provided recording URL is a filename placeholder. Sandbox audio-file playback
+   is unavailable; controls remain visibly unavailable rather than claiming to play audio. */
+const audioPlayer={
+show(index){$('audioPanel').hidden=index<6;if(index>=6)$('audioError').textContent="Audio couldn't be loaded — ask your teacher for the printed transcript."},
+reset(){$('audioPanel').hidden=true;$('audioProgress').style.width="0%"}
+};
+function updateStats(){const answered=states.filter(s=>s.locked),correct=answered.filter((s,i)=>s.earned===q[states.indexOf(s)].points).length,wrong=answered.length-correct,score=answered.reduce((sum,s)=>sum+s.earned,0);$('correctStat').textContent="✅ Correct: "+correct;$('wrongStat').textContent="❌ Wrong: "+wrong;$('remainingStat').textContent="Remaining: "+(32-answered.length);$('scoreStat').textContent="Score: "+score.toFixed(2)+" /48";$('timerStat').textContent="Timer: "+timer.format();return{correct,wrong,score}}
+function feedback(text){$('feedback').textContent=text;$('feedback').hidden=false}
+function finish(points,answer){const s=states[current];if(s.locked)return;s.locked=true;s.earned=points;s.answer=answer;updateStats();$('next').disabled=false;sound(points===q[current].points?"correct":"wrong")}
+function render(){clearTimeout(selectionTimer);mode="quiz";$('quizView').hidden=false;$('resultView').hidden=true;$('reviewView').hidden=true;const item=q[current],s=states[current];$('phaseBanner').textContent=phase(current);audioPlayer.show(current);$('taskLabel').textContent=item.taskLabel;$('instruction').textContent=item.question;$('taskText').textContent=item.task;$('counter').textContent=`${current+1} / ${q.length}`;$('previous').disabled=current===0;$('next').disabled=!s.locked;$('next').textContent=current===q.length-1?"See Results ▶":"Next ▶";$('feedback').hidden=!s.locked;if(s.locked)$('feedback').textContent=(s.earned===item.points?"Well done! ":"Keep practising! ")+item.explanation;const area=$('answerArea');area.replaceChildren();({ "single-choice":renderSingle,matching:renderMatching,"multi-select-exact":renderMulti,ordering:renderOrdering})[item.type](area,item,s);updateStats()}
+function renderSingle(area,item,s){const grid=node("div","choice-grid");s.order.forEach((choice,index)=>{const button=node("button","tile",choice);button.type="button";button.dataset.choice=index;if(s.locked){button.disabled=true;button.classList.add(choice===item.correctAnswer?"correct":choice===s.answer?"wrong":"");}button.addEventListener("click",()=>{if(s.locked)return;s.answer=choice;finish(choice===item.correctAnswer?1:0,choice);grid.querySelectorAll("button").forEach(b=>{b.disabled=true;if(b.textContent===item.correctAnswer)b.classList.add("correct");else if(b===button)b.classList.add("wrong")});feedback((s.earned?"Well done! ":"Keep practising! ")+item.explanation)});grid.append(button)});area.append(grid)}
+/* TYPE D: selection is read from state on every activation; the 500 ms window
+   allows a third selection to be deselected before one all-or-nothing grade. */
+function renderMulti(area,item,s){const grid=node("div","choice-grid");const buttons=new Map();function paint(){buttons.forEach((b,value)=>{b.className="tile";b.disabled=s.locked;if(s.locked)b.classList.add(item.correctOptions.includes(value)?"correct":s.selected.includes(value)?"wrong":"muted");else if(s.selected.includes(value))b.classList.add("selected")})}s.order.forEach((value,index)=>{const button=node("button","tile",value);button.type="button";button.dataset.choice=index;button.addEventListener("click",()=>{if(s.locked)return;clearTimeout(selectionTimer);const selected=new Set(s.selected);selected.has(value)?selected.delete(value):selected.size<3&&selected.add(value);s.selected=[...selected];paint();sound("click");if(s.selected.length===3)selectionTimer=setTimeout(()=>{if(mode!=="quiz"||states[current]!==s||s.locked||s.selected.length!==3)return;const good=item.correctOptions.every(x=>s.selected.includes(x));finish(good?3:0,[...s.selected]);paint();feedback((good?"Well done! ":"Keep practising! ")+item.explanation)},500)});buttons.set(value,button);grid.append(button)});area.append(grid);paint()}
+/* Pointer capture keeps dragging consistent on touchscreens and with a mouse. */
+function pointerDrag(element,onDrop){element.addEventListener("pointerdown",event=>{if(event.button!==0||event.target.closest(".arrow-controls"))return;event.preventDefault();element.setPointerCapture(event.pointerId);const startX=event.clientX,startY=event.clientY;element.classList.add("dragging");const move=e=>{element.style.transform=`translate(${e.clientX-startX}px,${e.clientY-startY}px)`};const end=e=>{element.removeEventListener("pointermove",move);element.removeEventListener("pointerup",end);element.removeEventListener("pointercancel",cancel);element.releasePointerCapture(e.pointerId);element.style.transform="";element.classList.remove("dragging");if(e.type==="pointerup")onDrop(document.elementFromPoint(e.clientX,e.clientY),element)};const cancel=e=>{element.removeEventListener("pointermove",move);element.removeEventListener("pointerup",end);element.removeEventListener("pointercancel",cancel);element.releasePointerCapture(e.pointerId);element.style.transform="";element.classList.remove("dragging")};element.addEventListener("pointermove",move);element.addEventListener("pointerup",end);element.addEventListener("pointercancel",cancel)})}
+/* TYPE C: chips may be placed, swapped and returned before the one graded check. */
+function renderMatching(area,item,s){const layout=node("div","match-layout"),rows=node("div","match-rows"),tray=node("div","chip-tray"),chips=new Map(),slots=new Map();tray.dataset.tray="true";item.rows.forEach(row=>{const line=node("div","match-row"),label=node("span","",row.text),slot=node("div","slot");slot.dataset.row=row.id;line.append(label,slot);rows.append(line);slots.set(row.id,slot)});s.order.forEach(id=>{const chip=item.chips.find(c=>c.id===id),el=node("button","chip",chip.text);el.type="button";el.dataset.chip=id;chips.set(id,el);tray.append(el);if(!s.locked)pointerDrag(el,(target)=>{const destination=target?.closest("[data-row],[data-tray]");if(!destination||!layout.contains(destination))return;const from=Object.keys(s.placements).find(r=>s.placements[r]===id);if(destination.dataset.tray){if(from)delete s.placements[from]}else{const rowId=destination.dataset.row,existing=s.placements[rowId];if(from)delete s.placements[from];if(existing&&existing!==id){if(from)s.placements[from]=existing;else delete s.placements[rowId]}s.placements[rowId]=id}positionChips();sound("click")})});function positionChips(){s.order.forEach(id=>{const rowId=Object.keys(s.placements).find(r=>s.placements[r]===id);(rowId?slots.get(rowId):tray).append(chips.get(id))});check.hidden=s.locked||Object.keys(s.placements).length!==item.rows.length;if(s.locked)item.rows.forEach(row=>{const slot=slots.get(row.id),placed=item.chips.find(c=>c.id===s.placements[row.id]);slot.classList.add(placed?.matchesRowId===row.id?"correct":"wrong");if(placed?.matchesRowId!==row.id)slot.append(node("small","block ml-2","Correct: "+item.chips.find(c=>c.matchesRowId===row.id).text))})}const check=node("button","primary mt-4","Check Answers");check.type="button";check.addEventListener("click",()=>{if(s.locked||Object.keys(s.placements).length!==item.rows.length)return;const count=item.rows.filter(row=>item.chips.find(c=>c.id===s.placements[row.id])?.matchesRowId===row.id).length;finish(count,{...s.placements});positionChips();feedback(`${count} of ${item.points} pairs correct. ${item.explanation}`)});layout.append(rows,tray);area.append(layout,check);positionChips()}
+/* TYPE E: dragging and arrow buttons mutate the same order; checking grades
+   each current position without changing the student's displayed order. */
+function renderOrdering(area,item,s){const list=node("div","order-list"),check=node("button","primary mt-4","Check Answers");function paint(){list.replaceChildren();s.order.forEach((id,index)=>{const value=item.items.find(x=>x.id===id),row=node("div","order-item");row.dataset.item=id;if(s.locked)row.classList.add(value.correctPosition===index+1?"correct":"wrong");row.append(node("span","order-text",value.text));if(!s.locked){const controls=node("div","arrow-controls");["▲","▼"].forEach((text,offset)=>{const b=node("button","",text);b.type="button";b.setAttribute("aria-label",text==="▲"?"Move up":"Move down");b.disabled=offset===0?index===0:index===s.order.length-1;b.addEventListener("click",()=>{const next=index+(offset===0?-1:1);[s.order[index],s.order[next]]=[s.order[next],s.order[index]];paint();sound("click")});controls.append(b)});row.append(controls);pointerDrag(row,target=>{const hit=target?.closest("[data-item]");if(!hit||!list.contains(hit)||hit.dataset.item===id)return;const from=s.order.indexOf(id),to=s.order.indexOf(hit.dataset.item);s.order.splice(from,1);s.order.splice(to,0,id);paint();sound("click")})}list.append(row)})}check.type="button";check.hidden=s.locked;check.addEventListener("click",()=>{if(s.locked)return;const points=s.order.filter((id,i)=>item.items.find(x=>x.id===id).correctPosition===i+1).length;finish(points,[...s.order]);paint();check.hidden=true;const correct=node("div","feedback","Correct order: "+[...item.items].sort((a,b)=>a.correctPosition-b.correctPosition).map(x=>x.text).join(" → "));area.append(correct);feedback(`${points} of 5 positions correct. ${item.explanation}`)});area.append(list,check);paint();if(s.locked)area.append(node("div","feedback","Correct order: "+[...item.items].sort((a,b)=>a.correctPosition-b.correctPosition).map(x=>x.text).join(" → ")))}
+function buildTranscript(){document.querySelectorAll(".transcript-content").forEach(container=>{container.replaceChildren();quizConfig.audioTranscript.forEach(([speaker,text])=>{const p=node("p");p.append(node("strong","",speaker+": "),document.createTextNode(text));container.append(p)})})}
+function remarkFor(score){return score<24?"Fail":score<28.8?"Pass":score<33.6?"Fairly Good":score<38.4?"Good":score<43.2?"Very Good":"Excellent!"}
+function showResults(){timer.pause();mode="result";$('quizView').hidden=true;$('reviewView').hidden=true;$('resultView').hidden=false;const stats=updateStats();$('finalScore').textContent=stats.score.toFixed(2);attempts++;best=Math.max(best,stats.score);writeStorage(stats.score);const summary=[["Final Score",stats.score.toFixed(2)+" /48"],["Correct Answers",stats.correct],["Wrong Answers",stats.wrong],["Accuracy",((stats.score/48)*100).toFixed(1)+"%"],["Time Taken",timer.format()],["Attempts",attempts],["Best Score",best.toFixed(2)+" /48"]];$('summaryGrid').replaceChildren(...summary.map(([label,value])=>{const el=node("div","summary-cell");el.append(node("span","",label),node("strong","",String(value)));return el}));$('breakdown').replaceChildren(...Object.values(T).map(label=>{const items=q.map((x,i)=>({x,i})).filter(({x})=>x.taskLabel===label),earned=items.reduce((a,{i})=>a+states[i].earned,0),total=items.reduce((a,{x})=>a+x.points,0),li=node("li");li.append(node("span","",label),node("strong","",earned+"/"+total));return li}));$('resultTranscript').open=false;const remarks=["Fail","Pass","Fairly Good","Good","Very Good","Excellent!"];let step=0;clearTimeout(remarkTimer);function cycle(){if(mode!=="result")return;$('remark').textContent=remarks[step%remarks.length];step++;if(step<20)remarkTimer=setTimeout(cycle,65+step*9);else $('remark').textContent=remarkFor(stats.score)}cycle();if(stats.score>=38.4)confetti()}
+function confetti(){for(let i=0;i<55;i++){const piece=node("i","confetti");piece.style.left=Math.random()*100+"%";piece.style.background=["#2563eb","#16a34a","#f59e0b","#ef4444"][i%4];piece.style.animationDelay=Math.random()*1.2+"s";document.body.append(piece);setTimeout(()=>piece.remove(),4500)}}
+function renderReview(){mode="review";$('quizView').hidden=true;$('resultView').hidden=true;$('reviewView').hidden=false;const item=q[reviewIndex],s=states[reviewIndex],box=$('reviewContent');box.replaceChildren(node("p","task-label",item.taskLabel),node("h2","instruction",item.question),node("p","task",item.task));function line(text,correct){box.append(node("div","review-line "+(correct?"correct":"wrong"),text))}
+if(item.type==="single-choice"){line("Student Answer: "+s.answer,s.answer===item.correctAnswer);line("Correct Answer: "+item.correctAnswer,true)}
+else if(item.type==="multi-select-exact"){line("Student selections: "+s.answer.join("; "),s.earned===3);line("Correct selections: "+item.correctOptions.join("; "),true)}
+else if(item.type==="matching"){item.rows.forEach(row=>{const actual=item.chips.find(c=>c.id===s.answer[row.id]),correct=item.chips.find(c=>c.matchesRowId===row.id);line(row.text+" — Yours: "+(actual?.text||"None")+" | Correct: "+correct.text,actual?.id===correct.id)})}
+else{s.answer.forEach((id,i)=>{const actual=item.items.find(x=>x.id===id),expected=item.items.find(x=>x.correctPosition===i+1);line((i+1)+". Yours: "+actual.text+" | Correct: "+expected.text,actual.id===expected.id)})}
+box.append(node("div","feedback",item.explanation));$('reviewCounter').textContent=`${reviewIndex+1} / ${q.length}`;$('reviewPrevious').disabled=reviewIndex===0;$('reviewNext').disabled=reviewIndex===q.length-1}
+function restart(){clearTimeout(remarkTimer);clearTimeout(selectionTimer);document.querySelectorAll(".confetti").forEach(x=>x.remove());timer.reset();audioPlayer.reset();startState();current=0;reviewIndex=0;render();timer.start()}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function saveReport(){const stats=updateStats(),rows=Object.values(T).map(label=>{const indexes=q.map((x,i)=>x.taskLabel===label?i:-1).filter(i=>i>=0);return `<li>${escapeHtml(label)}: ${indexes.reduce((n,i)=>n+states[i].earned,0)}/${indexes.reduce((n,i)=>n+q[i].points,0)}</li>`}).join("");const transcript=quizConfig.audioTranscript.map(([speaker,text])=>`<p><b>${escapeHtml(speaker)}:</b> ${escapeHtml(text)}</p>`).join("");const html=`<!doctype html><html lang="en"><meta charset="utf-8"><title>Quiz results</title><body style="font:16px sans-serif;max-width:850px;margin:32px auto"><h1>English2BAC Quizzes</h1><p>UNIT: 5 · EXPRESSING CONCESSION · LISTENING - QUIZ 1</p><h2>Final Score: ${stats.score.toFixed(2)} /48 — ${escapeHtml(remarkFor(stats.score))}</h2><p>Correct: ${stats.correct} · Wrong: ${stats.wrong} · Accuracy: ${((stats.score/48)*100).toFixed(1)}% · Time: ${timer.format()} · Attempts: ${attempts} · Best: ${best.toFixed(2)} /48</p><h2>Per-task breakdown</h2><ul>${rows}</ul><h2>Transcript</h2>${transcript}</body></html>`;const blob=new Blob([html],{type:"text/html"}),url=URL.createObjectURL(blob),a=node("a");a.href=url;a.download="expressing-concession-results.html";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+$('previous').addEventListener("click",()=>{if(current>0){current--;render()}});
+$('next').addEventListener("click",()=>{if(!states[current].locked)return;if(current===q.length-1)showResults();else{current++;render()}});
+$('reviewButton').addEventListener("click",()=>{reviewIndex=0;$('reviewTranscript').open=false;renderReview()});
+$('reviewPrevious').addEventListener("click",()=>{if(reviewIndex>0){reviewIndex--;renderReview()}});
+$('reviewNext').addEventListener("click",()=>{if(reviewIndex<q.length-1){reviewIndex++;renderReview()}});
+$('backResults').addEventListener("click",()=>{mode="result";$('reviewView').hidden=true;$('resultView').hidden=false});
+$('restartButton').addEventListener("click",restart);
+$('printButton').addEventListener("click",()=>window.print());
+$('saveButton').addEventListener("click",saveReport);
+document.addEventListener("keydown",event=>{if(event.altKey||event.ctrlKey||event.metaKey||["INPUT","TEXTAREA"].includes(document.activeElement.tagName))return;if(document.activeElement.closest("#audioControls"))return;if(mode==="quiz"){if(/^[1-6]$/.test(event.key)){const button=$('answerArea').querySelector(`.tile[data-choice="${Number(event.key)-1}"]`);if(button&&!button.disabled){event.preventDefault();button.click()}}else if(event.key==="ArrowLeft"){event.preventDefault();$('previous').click()}else if(event.key==="ArrowRight"){event.preventDefault();$('next').click()}else if(event.key==="Enter"&&document.activeElement===document.body){const check=$('answerArea').querySelector(".primary");if(check&&!check.hidden)check.click();else $('next').click()}}else if(mode==="review"){if(event.key==="ArrowLeft")$('reviewPrevious').click();if(event.key==="ArrowRight")$('reviewNext').click()}});
+buildTranscript();readStorage();restart();
+</script>
+ 
+</body></html>
