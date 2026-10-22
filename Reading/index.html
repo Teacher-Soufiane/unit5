@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en"><head><script>(function(){var ok=true;try{window.localStorage.getItem("__t")}catch(e){ok=false}
+if(!ok){var m={};try{Object.defineProperty(window,"localStorage",{configurable:true,value:{
+getItem:function(k){return Object.prototype.hasOwnProperty.call(m,k)?m[k]:null},
+setItem:function(k,v){m[k]=String(v)},removeItem:function(k){delete m[k]},clear:function(){m={}}}})}catch(e2){}}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English2BAC Quizzes — Women and Power</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e3a5f;
+      --blue: #2563eb;
+      --light-blue: #eaf4ff;
+      --green: #15803d;
+      --green-soft: #dcfce7;
+      --red: #dc2626;
+      --red-soft: #fee2e2;
+      --gray: #64748b;
+      --border: #cbd5e1;
+      --ink: #14213d;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+    html { background: #eef6ff; }
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      color: var(--ink);
+      background: #eef6ff;
+      font-family: "Poppins", sans-serif;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    .passage-sentence:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 3px;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .quiz-header {
+      background-color: #eaf4ff;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 24px;
+      border: 1px solid #cfe2f8;
+      border-radius: 18px 18px 0 0;
+    }
+
+    .header-teacher-img,
+    .header-logo-img {
+      height: 64px;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-title {
+      text-align: center;
+      line-height: 1.2;
+      min-width: 0;
+    }
+
+    .title-line1 {
+      font-family: "Poppins", sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #1e3a5f;
+    }
+
+    .title-line2 {
+      font-family: "Poppins", sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #2563eb;
+    }
+
+    .title-line3 {
+      font-family: "Poppins", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #64748b;
+    }
+
+    .info-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy);
+      color: white;
+      padding: 12px 20px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      font-size: .84rem;
+    }
+
+    .info-center { text-align: center; }
+    .info-right { text-align: right; }
+
+    .quiz-body {
+      background: #f8fbff;
+      padding: 22px;
+      border-radius: 0 0 18px 18px;
+      box-shadow: 0 18px 50px rgba(30, 58, 95, .14);
+    }
+
+    .passage-card {
+      border: 1px solid #a9d2fa;
+      border-radius: 14px;
+      background: white;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .passage-toggle {
+      width: 100%;
+      border: 0;
+      padding: 14px 18px;
+      background: white;
+      color: var(--navy);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .passage-toggle:hover { background: #f2f8ff; }
+
+    .passage-content {
+      display: none;
+      border-top: 1px solid #d7e9fb;
+      padding: 18px;
+      max-height: calc(40 * min(var(--vh, 1vh), 1vh));
+      overflow-y: auto;
+    }
+
+    .passage-content.is-open { display: block; }
+
+    .passage-heading {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 0 0 12px;
+    }
+
+    .passage-paragraph {
+      display: flex;
+      align-items: flex-start;
+      margin: 0 0 16px;
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .paragraph-number {
+      display: inline-block;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: #1e3a5f;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      text-align: center;
+      line-height: 22px;
+      font-size: 13px;
+      margin-right: 8px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .passage-sentence { border-radius: 5px; transition: background .18s, color .18s; }
+    .evidence-mode .passage-sentence { cursor: pointer; padding: 4px 3px; }
+    .evidence-mode .passage-sentence:hover,
+    .evidence-mode .passage-sentence:focus { background: #dbeafe; }
+    .sentence-selected { background: #bfdbfe !important; }
+    .sentence-correct { background: var(--green-soft) !important; color: #166534; font-weight: 700; }
+    .sentence-wrong { background: var(--red-soft) !important; color: #991b1b; font-weight: 700; }
+
+    .instruction-box {
+      background: var(--navy);
+      color: white;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-align: center;
+      letter-spacing: .025em;
+      margin-bottom: 18px;
+    }
+
+    .task-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .task-text {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.65;
+      font-weight: 600;
+      color: #243b5a;
+    }
+
+    .choice-list { display: grid; gap: 11px; margin-top: 18px; }
+    .choice-button {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 16px;
+      background: white;
+      border: 2px solid #d5e1ee;
+      border-radius: 12px;
+      color: #243b5a;
+      text-align: left;
+      transition: transform .16s, border-color .16s, background .16s;
+    }
+    .choice-button:hover:not(:disabled) { border-color: var(--blue); transform: translateY(-1px); background: #f7fbff; }
+    .choice-button:disabled { cursor: default; }
+    .choice-key {
+      min-width: 26px;
+      height: 26px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #e8f1fa;
+      color: var(--navy);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+    .choice-button.correct { border-color: var(--green); background: var(--green-soft); color: #166534; }
+    .choice-button.wrong { border-color: var(--red); background: var(--red-soft); color: #991b1b; }
+
+    .check-button, .nav-button, .result-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 700;
+      transition: transform .16s, opacity .16s, background .16s;
+    }
+
+    .check-button {
+      background: var(--blue);
+      color: white;
+      margin-top: 16px;
+    }
+    .check-button:hover:not(:disabled),
+    .nav-button:hover:not(:disabled),
+    .result-button:hover { transform: translateY(-1px); }
+    button:disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      display: none;
+      line-height: 1.55;
+    }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--green-soft); border-left: 5px solid var(--green); color: #166534; }
+    .feedback.bad { background: var(--red-soft); border-left: 5px solid var(--red); color: #991b1b; }
+    .feedback strong { display: block; margin-bottom: 4px; }
+
+    .chart-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+      gap: 18px;
+      margin: 0;
+    }
+    .chart-section {
+      border: 1px solid #d9e5ef;
+      border-radius: 12px;
+      padding: 14px;
+      background: #fbfdff;
+    }
+    .chart-section h3 { margin: 0 0 12px; color: var(--navy); font-size: 1rem; }
+    .match-list, .tile-list { display: grid; gap: 10px; }
+    .match-row {
+      width: 100%;
+      text-align: left;
+      border: 2px solid #cbd5e1;
+      background: white;
+      border-radius: 10px;
+      padding: 12px;
+      color: #243b5a;
+    }
+    .match-row.active { border-color: var(--blue); box-shadow: 0 0 0 3px #dbeafe; }
+    .match-row.row-correct { border-color: var(--green); background: var(--green-soft); }
+    .match-row.row-wrong { border-color: var(--red); background: var(--red-soft); }
+    .date-label { display: block; font-weight: 800; }
+    .match-slot { display: block; color: var(--gray); font-size: .84rem; margin-top: 4px; }
+    .correct-note { display: block; margin-top: 7px; color: #167136; font-size: .82rem; font-weight: 700; }
+    .info-tile {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #cbd5e1;
+      background: white;
+      color: #334155;
+      border-radius: 9px;
+      padding: 11px;
+      font-size: .9rem;
+    }
+    .info-tile:hover:not(:disabled) { border-color: var(--blue); background: #eff6ff; }
+    .info-tile.used { background: #e5e7eb; color: #94a3b8; }
+    .hint { min-height: 22px; margin-top: 8px; color: var(--blue); font-size: .85rem; font-weight: 600; }
+    .shake { animation: shake .35s; }
+    @keyframes shake { 20%,60% { transform: translateX(-5px); } 40%,80% { transform: translateX(5px); } }
+
+    .navigation-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .nav-button { background: var(--navy); color: white; }
+    #previous-button { justify-self: start; }
+    #next-button { justify-self: end; }
+    .counter { font-weight: 800; color: var(--navy); white-space: nowrap; }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: nowrap;
+      margin-top: 14px;
+      padding: 12px;
+      background: #eaf4ff;
+      color: #334155;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .89rem;
+    }
+    .stats-row span { white-space: nowrap; }
+
+    .result-page, .review-page { display: none; }
+    .result-page.visible, .review-page.visible { display: block; }
+    .quiz-page.hidden { display: none; }
+
+    .result-header {
+      background: var(--navy);
+      color: white;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+    .result-header p { margin: 4px 0; font-weight: 700; }
+    .score-badge {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 28px auto 18px;
+      background: linear-gradient(135deg, #0f766e, #22c55e);
+      border: 9px solid #dcfce7;
+      box-shadow: 0 12px 30px rgba(21, 128, 61, .23);
+      color: white;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .remark {
+      min-height: 42px;
+      text-align: center;
+      color: var(--navy);
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+    .result-line { text-align: center; line-height: 1.7; margin: 12px 0 22px; }
+    .summary-card {
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      border: 1px solid #d9e5ef;
+    }
+    .summary-card h2 { margin-top: 0; color: var(--navy); }
+    .summary-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .summary-item { padding: 10px; border-radius: 8px; background: #f4f8fc; }
+    .breakdown { margin-top: 16px; padding-top: 14px; border-top: 1px solid #d8e4ed; }
+    .breakdown p { margin: 8px 0; }
+    .result-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+    .result-button { background: var(--navy); color: white; }
+    .result-button.secondary { background: #e2edf7; color: var(--navy); }
+
+    .review-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 14px; }
+    .review-card { background: white; border: 1px solid #d9e5ef; border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+    .review-card h2 { color: var(--navy); margin-top: 0; font-size: 1.15rem; }
+    .review-card h3 { margin-bottom: 8px; font-size: 1rem; }
+    .review-answer { padding: 10px; border-radius: 8px; margin: 8px 0; }
+    .review-answer.good { background: var(--green-soft); color: #166534; }
+    .review-answer.bad { background: var(--red-soft); color: #991b1b; }
+    .review-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .review-table th, .review-table td { padding: 9px; border: 1px solid #d8e3ed; text-align: left; vertical-align: top; }
+    .review-table th { background: #eaf4ff; color: var(--navy); }
+
+    #confetti-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 20; display: none; }
+    .confetti { position: absolute; width: 10px; height: 16px; animation: fall 2.8s linear forwards; }
+    @keyframes fall { to { transform: translateY(calc(100 * min(var(--vh, 1vh), 1vh))) rotate(720deg); opacity: 0; } }
+
+    @media (min-width: 600px) {
+      .header-teacher-img, .header-logo-img { height: 80px; }
+    }
+    @media (min-width: 1024px) {
+      .header-teacher-img, .header-logo-img { height: 96px; }
+    }
+    @media (max-width: 640px) {
+      .app-shell { padding: 8px; }
+      .quiz-header { padding: 8px 12px; gap: 8px; }
+      .header-teacher-img, .header-logo-img { height: 45px; }
+      .title-line1 { font-size: 16px; }
+      .title-line2 { font-size: 11px; }
+      .title-line3 { font-size: 9px; }
+      .info-bar { grid-template-columns: 1fr; text-align: center; gap: 4px; padding: 10px; font-size: .74rem; }
+      .info-center, .info-right { text-align: center; }
+      .quiz-body { padding: 12px; }
+      .passage-content { max-height: calc(50 * min(var(--vh, 1vh), 1vh)); padding: 14px; }
+      .passage-paragraph { text-align: left; font-size: 15px; }
+      .instruction-box { font-size: .89rem; padding: 13px; }
+      .task-card { padding: 15px; }
+      .chart-board { grid-template-columns: 1fr; }
+      .stats-row { flex-wrap: wrap; gap: 8px 13px; font-size: .8rem; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .review-table { font-size: .76rem; }
+    }
+
+    @media print {
+      body { background: white; }
+      .quiz-header, .info-bar, .quiz-body > .passage-card, .quiz-page, .result-actions, #confetti-layer { display: none !important; }
+      .app-shell { max-width: none; padding: 0; }
+      .result-page { display: block !important; }
+      .result-header { color: #000; background: white; border: 1px solid #000; }
+      .score-badge { color: #000; background: white; border-color: #000; box-shadow: none; }
+      .summary-card { border-color: #000; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  
+  
+  
+ <style>[hidden]{display:none!important}</style></head>
+ <body data-template-id="__page-root">
+  <main class="app-shell">
+   <header class="quiz-header">
+    <img data-template-id="teacher-image" class="canva-image header-teacher-img" loading="lazy" id="teacher-image" src="teacher.png" alt="Teacher Soufiane">
+    <div class="header-title">
+     <div data-template-id="title-line-1" class="canva-text title-line1" id="title-line-1">English2BAC Quizzes</div>
+     <div data-template-id="title-line-2" class="canva-text title-line2" id="title-line-2">Learn • Practice • Succeed</div>
+     <div data-template-id="title-line-3" class="canva-text title-line3" id="title-line-3">with Teacher.Soufiane</div>
+    </div><img data-template-id="levelup-logo" class="canva-image header-logo-img" loading="lazy" id="levelup-logo" src="logo.png" alt="Level-UP 2BAC">
+   </header>
+   <section class="info-bar" aria-label="Quiz information">
+    <span data-template-id="unit-label" class="canva-text" id="unit-label">UNIT: 5</span> <span data-template-id="quiz-title-label" class="canva-text info-center" id="quiz-title-label">WOMEN AND POWER</span> <span data-template-id="lesson-label" class="canva-text info-right" id="lesson-label">READING COMPREHENSION</span>
+   </section>
+   <section class="quiz-body">
+    <div id="quiz-page" class="quiz-page">
+     <section class="passage-card" aria-label="Reading passage">
+      <button id="passage-toggle" class="passage-toggle" type="button" aria-expanded="false"> <span data-template-id="passage-toggle-label" class="canva-text" id="passage-toggle-label">📖 Read the Passage</span> </button>
+      <div id="passage-content" class="passage-content">
+       <div id="passage-text">
+        <div class="passage-paragraph" data-paragraph-id="p1"><span class="paragraph-number">1</span><span class="paragraph-text"><span class="passage-sentence" data-sentence-id="s1">Fatima Ezzahra El Mansouri was born on 3 January 1976 in Marrakech, Morocco.</span> <span class="passage-sentence" data-sentence-id="s2">She studied law and later became a lawyer specialising in commercial and real-estate transactions.</span> <span class="passage-sentence" data-sentence-id="s3">In 2008, she joined the Authenticity and Modernity Party (PAM).</span> <span class="passage-sentence" data-sentence-id="s4">In June 2009, she became the first woman to serve as mayor of Marrakech, holding the position until 2015.</span> <span class="passage-sentence" data-sentence-id="s5">She returned to the same position in September 2021.</span> <span class="passage-sentence" data-sentence-id="s6">Her career shows how education, professional experience, and determination can help women reach important leadership positions.</span></span>
+        </div>
+        <div class="passage-paragraph" data-paragraph-id="p2"><span class="paragraph-number">2</span><span class="paragraph-text"><span class="passage-sentence" data-sentence-id="s7">In October 2021, El Mansouri was appointed Minister of National Territory Planning, Urban Planning, Housing and City Policy.</span> <span class="passage-sentence" data-sentence-id="s8">In this role, she worked on issues related to housing, urban development, and the organisation of cities.</span> <span class="passage-sentence" data-sentence-id="s9">She also coordinated the collective leadership of the PAM from February 2024.</span> <span class="passage-sentence" data-sentence-id="s10">On 29 September 2026, King Mohammed VI appointed her Head of Government, making her the first woman in Morocco's history to hold this office.</span> <span class="passage-sentence" data-sentence-id="s11">Her achievements represent an important milestone for women's participation in Moroccan politics.</span></span>
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="instruction-box" aria-live="polite">
+      <span id="question-instruction"></span>
+     </section>
+     <section id="task-area" class="task-card" aria-live="polite"></section>
+     <div class="navigation-row">
+      <button data-template-id="previous-button" id="previous-button" class="canva-button nav-button" type="button"></button>
+      <div id="question-counter" class="counter" aria-live="polite"></div><button data-template-id="next-button" id="next-button" class="canva-button nav-button" type="button"></button>
+     </div>
+     <div class="stats-row" aria-live="polite">
+      <span id="correct-stat">✅ Correct: 0</span> <span id="wrong-stat">❌ Wrong: 0</span> <span id="remaining-stat">Remaining: 15</span> <span id="score-stat">Score: 0 /15</span> <span id="timer-stat">Timer 00:00</span>
+     </div>
+    </div>
+    <section id="result-page" class="result-page">
+     <div class="result-header">
+      <p id="result-quiz-name">ENGLISH2BAC QUIZZES</p>
+      <p id="result-unit">UNIT 5 / WOMEN AND POWER / READING COMPREHENSION</p>
+     </div>
+     <div id="final-score" class="score-badge">
+      0 /15
+     </div>
+     <div id="animated-remark" class="remark">
+      Keep Practising
+     </div>
+     <div id="results-line" class="result-line"></div>
+     <section class="summary-card">
+      <h2>Performance Summary</h2>
+      <div id="summary-grid" class="summary-grid"></div>
+      <div id="task-breakdown" class="breakdown"></div>
+     </section>
+     <div class="result-actions">
+      <button data-template-id="review-button" id="review-button" class="canva-button result-button" type="button">Review My Answers</button> <button data-template-id="restart-button" id="restart-button" class="canva-button result-button secondary" type="button">Restart Quiz</button> <button data-template-id="print-button" id="print-button" class="canva-button result-button secondary" type="button">Print Results</button> <button data-template-id="save-button" id="save-button" class="canva-button result-button secondary" type="button">Save Results</button>
+     </div>
+    </section>
+    <section id="review-page" class="review-page">
+     <div class="review-top">
+      <h1>Review My Answers</h1>
+      <div>
+       <button data-template-id="review-passage-button" id="review-passage-button" class="canva-button result-button secondary" type="button"></button> <button data-template-id="back-results-button" id="back-results-button" class="canva-button result-button" type="button"></button>
+      </div>
+     </div>
+     <section id="review-passage" class="passage-card" style="display:none">
+      <button id="review-passage-toggle" class="passage-toggle" type="button" aria-expanded="true">📖 Hide Passage</button>
+      <div id="review-passage-content" class="passage-content is-open">
+       <h2 class="passage-heading">Women at the Top</h2>
+       <div id="review-passage-text"></div>
+      </div>
+     </section>
+     <div id="review-content"></div>
+    </section>
+   </section>
+  </main>
+  <div id="confetti-layer" aria-hidden="true"></div>
+  <script>
+    const quizConfig = {
+      unit: "5",
+      title: "WOMEN AND POWER",
+      lesson: "READING COMPREHENSION",
+      passageTitle: "Women at the Top",
+      randomizeQuestions: false,
+      randomizeChoices: true,
+      timerEnabled: true,
+      totalPoints: 15,
+      questions: [
+        { type:"single-choice", category:"Best Title", question:"CHOOSE THE BEST TITLE FOR THE PASSAGE.", task:"Which title best captures the central idea of the profile?", choices:["From Legal Practice to Public Leadership","The Challenges of Managing Morocco's Major Cities","The Role of Political Parties in Urban Development","How Professional Lawyers Influence Commercial Transactions"], correctAnswer:"From Legal Practice to Public Leadership", explanation:"The profile traces El Mansouri's path from legal practice to municipal and national leadership, making this title the best summary of its central idea.", points:1 },
+        { type:"single-choice", category:"True / False / Not Given", question:"DECIDE IF THE STATEMENT IS TRUE, FALSE, OR NOT GIVEN.", task:"Fatima Ezzahra El Mansouri became mayor of Marrakech for the first time in 2009.", choices:["True","False","Not Given"], correctAnswer:"True", explanation:"The profile states that she became mayor in June 2009.", points:1 },
+        { type:"single-choice", category:"True / False / Not Given", question:"DECIDE IF THE STATEMENT IS TRUE, FALSE, OR NOT GIVEN.", task:"Before entering politics, El Mansouri worked as a medical doctor.", choices:["True","False","Not Given"], correctAnswer:"False", explanation:"The profile identifies her professional background as law and legal practice, not medicine.", points:1 },
+        { type:"single-choice", category:"Multiple Choice", question:"CHOOSE THE BEST ANSWER ACCORDING TO THE TEXT.", task:"Which political party did El Mansouri join in 2008?", choices:["The Authenticity and Modernity Party","The Constitutional Union","The Justice and Development Party","The National Rally of Independents"], correctAnswer:"The Authenticity and Modernity Party", explanation:"The profile states that she joined the Authenticity and Modernity Party (PAM) in 2008.", points:1 },
+        { type:"single-choice", category:"Multiple Choice", question:"CHOOSE THE BEST ANSWER ACCORDING TO THE TEXT.", task:"Which area was part of El Mansouri's ministerial responsibilities from 2021?", choices:["National defence and foreign affairs","Housing and urban planning","Agriculture and fisheries","Sports and cultural heritage"], correctAnswer:"Housing and urban planning", explanation:"Her ministerial portfolio included national territory planning, urban planning, housing, and city policy.", points:1 },
+        { type:"evidence-click", category:"Find the Evidence", question:"CLICK THE SENTENCE IN THE PASSAGE THAT SUPPORTS THIS ANSWER.", claim:"Find the sentence that proves El Mansouri returned to the position of mayor after her first term ended.", correctSentenceId:"s5", explanation:"The sentence 'She returned to the same position in September 2021' directly proves that she became mayor again after her first term, which ended in 2015.", points:1 },
+        { type:"single-choice", category:"Find the Evidence", question:"CHOOSE THE SENTENCE THAT BEST SUPPORTS THE CLAIM.", task:"Which sentence best demonstrates that El Mansouri's political career extended beyond municipal government into national executive leadership?", choices:["In 2008, she joined the Authenticity and Modernity Party (PAM).","In June 2009, she became the first woman to serve as mayor of Marrakech.","In October 2021, El Mansouri was appointed Minister of National Territory Planning, Urban Planning, Housing and City Policy.","She returned to the same position in September 2021."], correctAnswer:"In October 2021, El Mansouri was appointed Minister of National Territory Planning, Urban Planning, Housing and City Policy.", explanation:"The ministerial appointment demonstrates a move from local government into a national executive role. The other sentences concern party membership or municipal leadership.", points:1 },
+        { type:"single-choice", category:"Vocabulary in Context", question:"CHOOSE THE MEANING THAT FITS THE WORD AS USED IN THE PASSAGE.", task:"In the expression 'a lawyer specialising in commercial and real-estate transactions,' what does 'specialising in' mean?", choices:["Having particular knowledge or expertise in a field","Refusing to work in a professional field","Studying many unrelated subjects briefly","Changing jobs without professional training"], correctAnswer:"Having particular knowledge or expertise in a field", explanation:"'Specialising in' means focusing on a particular area and developing expertise in it.", points:1 },
+        { type:"single-choice", category:"Vocabulary in Context", question:"CHOOSE THE MEANING THAT FITS THE WORD AS USED IN THE PASSAGE.", task:"In the final sentence, what does 'milestone' mean?", choices:["A difficult examination","An important achievement or stage","A temporary professional disagreement","A building used for public meetings"], correctAnswer:"An important achievement or stage", explanation:"A milestone is an important achievement or significant stage in a process.", points:1 },
+        { type:"single-choice", category:"Reference Words", question:"WHAT DOES THE UNDERLINED WORD REFER TO?", task:"Read the following sentence from the text: ‘Her career shows how education, professional experience, and determination can help women reach important leadership positions.’ What does ‘Her career’ refer to in this sentence?", choices:["The political and professional path she followed throughout her working life","The ministerial responsibilities she assumed in October 2021 only","The period she spent serving as mayor of Marrakech","The legal specialisation she pursued before entering politics"], correctAnswer:"The political and professional path she followed throughout her working life", explanation:"‘Her career’ refers to her overall professional and political journey, not just one position or stage of her working life.", points:1 },
+        { type:"single-choice", category:"Reference Words", question:"CHOOSE THE MEANING THAT FITS THE EXPRESSION IN CONTEXT.", task:"Read the following sentences: 'In October 2021, El Mansouri was appointed Minister of National Territory Planning, Urban Planning, Housing and City Policy. In this role, she worked on issues related to housing, urban development, and the organisation of cities.' Which of the following could replace 'In this role' without changing the meaning of the passage?", choices:["While practising law in the private sector","During her service in the national government","After leaving municipal politics permanently","While leading the opposition in parliament"], correctAnswer:"During her service in the national government", explanation:"The expression refers to her ministerial position within the national government. The other options describe different professional or political circumstances.", points:1 },
+        { type:"single-choice", category:"Inference", question:"CHOOSE THE MOST LOGICAL CONCLUSION BASED ON THE TEXT.", task:"What can be inferred from El Mansouri's progression from lawyer to mayor, minister, and Head of Government?", choices:["Professional and political experience can lead to greater leadership responsibilities.","Legal education automatically guarantees political success.","Local government positions are more important than all national positions.","Women can only become leaders after working as lawyers."], correctAnswer:"Professional and political experience can lead to greater leadership responsibilities.", explanation:"Her career progression illustrates how professional experience and political involvement can accompany increasing leadership responsibilities. It does not prove that this path guarantees success for everyone.", points:1 },
+        { type:"single-choice", category:"Inference", question:"CHOOSE THE MOST LOGICAL CONCLUSION BASED ON THE TEXT.", task:"What can be inferred from the statement that El Mansouri became the first woman in Morocco's history to hold the office of Head of Government?", choices:["Women had never participated in any Moroccan political activity before 2026.","Her appointment represented a historic development for women's political representation.","All barriers to women's participation in politics had disappeared.","Her appointment ended the role of political parties in Morocco."], correctAnswer:"Her appointment represented a historic development for women's political representation.", explanation:"Being the first woman to hold this office is a historic milestone, but it does not establish that every barrier to women's political participation has disappeared.", points:1 },
+        { type:"chart-matching", category:"Complete the Chart", question:"COMPLETE THE CHART: MATCH EACH DATE OR NUMBER TO WHAT IT REFERS TO.", items:[{id:"n1",label:"3 January 1976",correctInfoId:"E"},{id:"n2",label:"2008",correctInfoId:"C"},{id:"n3",label:"June 2009",correctInfoId:"F"},{id:"n4",label:"2015",correctInfoId:"G"}], infoOptions:[{id:"A",text:"The month and year she returned as mayor of Marrakech"},{id:"B",text:"The date of her appointment as Head of Government"},{id:"C",text:"The year she joined the Authenticity and Modernity Party"},{id:"D",text:"The month and year she was appointed minister"},{id:"E",text:"The date of her birth"},{id:"F",text:"The month and year she first became mayor of Marrakech"},{id:"G",text:"The year her first period as mayor ended"},{id:"H",text:"The month and year she began coordinating the PAM's collective leadership"}], passThreshold:3, explanation:"3 January 1976 is her date of birth; 2008 is the year she joined the Authenticity and Modernity Party; June 2009 is when she first became mayor of Marrakech; and 2015 is the year her first period as mayor ended.", points:1 },
+        { type:"chart-matching", category:"Complete the Chart", question:"COMPLETE THE CHART: MATCH EACH DATE OR NUMBER TO WHAT IT REFERS TO.", items:[{id:"n5",label:"September 2021",correctInfoId:"A"},{id:"n6",label:"October 2021",correctInfoId:"D"},{id:"n7",label:"February 2024",correctInfoId:"H"},{id:"n8",label:"29 September 2026",correctInfoId:"B"}], infoOptions:[{id:"A",text:"The month and year she returned as mayor of Marrakech"},{id:"B",text:"The date of her appointment as Head of Government"},{id:"C",text:"The year she joined the Authenticity and Modernity Party"},{id:"D",text:"The month and year she was appointed minister"},{id:"E",text:"The date of her birth"},{id:"F",text:"The month and year she first became mayor of Marrakech"},{id:"G",text:"The year her first period as mayor ended"},{id:"H",text:"The month and year she began coordinating the PAM's collective leadership"}], passThreshold:3, explanation:"September 2021 is when she returned as mayor; October 2021 is when she was appointed minister; February 2024 is when she began coordinating the PAM's collective leadership; and 29 September 2026 is the date of her appointment as Head of Government.", points:1 }
+      ]
+    };
+
+    const state = {
+      currentIndex: 0,
+      answers: Array(15).fill(null),
+      chartStates: {},
+      timerSeconds: 0,
+      completed: false
+    };
+
+    const correctMessages = ["Excellent!", "Great Job!", "Perfect!", "Keep Going!"];
+    const incorrectMessages = ["Almost!", "Review the passage.", "Keep learning!", "You'll get the next one!"];
+    const pickMessage = list => list[Math.floor(Math.random() * list.length)];
+
+    /* Self-contained count-up timer module. */
+    const timer = (() => {
+      let intervalId = null;
+      const format = seconds => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+      const update = () => document.getElementById("timer-stat").textContent = `Timer ${format(state.timerSeconds)}`;
+      return {
+        start() {
+          if (intervalId) return;
+          intervalId = setInterval(() => { state.timerSeconds += 1; update(); }, 1000);
+          update();
+        },
+        pause() { clearInterval(intervalId); intervalId = null; },
+        reset() { this.pause(); state.timerSeconds = 0; update(); },
+        format,
+        update
+      };
+    })();
+
+    const passagePanel = (() => {
+      const content = document.getElementById("passage-content");
+      const toggle = document.getElementById("passage-toggle");
+      const toggleText = document.querySelector("[data-template-id='passage-toggle-label']");
+      const text = document.getElementById("passage-text");
+
+      function setOpen(open, scroll) {
+        content.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        toggleText.textContent = open ? "📖 Hide the Passage" : "📖 Read the Passage";
+        if (open && scroll) content.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function clearEvidenceState() {
+        text.classList.remove("evidence-mode");
+        text.querySelectorAll(".passage-sentence").forEach(sentence => {
+          sentence.classList.remove("sentence-selected", "sentence-correct", "sentence-wrong");
+          sentence.removeAttribute("tabindex");
+          sentence.onclick = null;
+        });
+      }
+
+      /* Evidence mode turns every existing segmented sentence into a target. */
+      function enableEvidence(question, onSelect) {
+        setOpen(true, true);
+        clearEvidenceState();
+        text.classList.add("evidence-mode");
+        text.querySelectorAll(".passage-sentence").forEach(sentence => {
+          sentence.tabIndex = 0;
+          sentence.onclick = () => onSelect(sentence.dataset.sentenceId);
+        });
+      }
+
+      toggle.addEventListener("click", () => setOpen(!content.classList.contains("is-open"), false));
+      return { setOpen, clearEvidenceState, enableEvidence, content, text };
+    })();
+
+    function playSound(type) {
+      try {
+        const context = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const frequencies = { correct: 660, wrong: 210, click: 420, complete: 784 };
+        oscillator.frequency.value = frequencies[type] || 420;
+        oscillator.type = type === "wrong" ? "sine" : "triangle";
+        gain.gain.setValueAtTime(.08, context.currentTime);
+        gain.gain.exponentialRampToValueAtTime(.001, context.currentTime + (type === "complete" ? .55 : .2));
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+        oscillator.start();
+        oscillator.stop(context.currentTime + (type === "complete" ? .55 : .2));
+      } catch (_) {}
+    }
+
+    function shuffle(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function sentenceText(id) {
+      return document.querySelector(`[data-sentence-id="${id}"]`)?.textContent.trim() || "";
+    }
+
+    function getScore() {
+      return state.answers.reduce((total, answer) => total + (answer?.correct ? 1 : 0), 0);
+    }
+
+    function updateStats() {
+      const correct = getScore();
+      const answered = state.answers.filter(Boolean).length;
+      document.getElementById("correct-stat").textContent = `✅ Correct: ${correct}`;
+      document.getElementById("wrong-stat").textContent = `❌ Wrong: ${answered - correct}`;
+      document.getElementById("remaining-stat").textContent = `Remaining: ${15 - answered}`;
+      document.getElementById("score-stat").textContent = `Score: ${correct} /15`;
+    }
+
+    function setAnswer(index, answer) {
+      if (state.answers[index]) return;
+      state.answers[index] = answer;
+      updateStats();
+    }
+
+    function feedbackHtml(correct, explanation, extra = "") {
+      return `<div class="feedback show ${correct ? "good" : "bad"}"><strong>${pickMessage(correct ? correctMessages : incorrectMessages)}</strong>${extra}${explanation}</div>`;
+    }
+
+    function renderSingleChoice(question, index) {
+      const answer = state.answers[index];
+      const choices = answer?.choiceOrder || (quizConfig.randomizeChoices ? shuffle(question.choices) : question.choices);
+      const taskArea = document.getElementById("task-area");
+      taskArea.innerHTML = `<p class="task-text">${question.task}</p><div class="choice-list" id="choice-list"></div><div id="single-feedback"></div>`;
+      const list = document.getElementById("choice-list");
+
+      choices.forEach((choice, choiceIndex) => {
+        const button = document.createElement("button");
+        button.className = "choice-button";
+        button.type = "button";
+        button.dataset.choice = choice;
+        button.innerHTML = `<span class="choice-key">${choiceIndex + 1}</span><span>${choice}</span>`;
+        if (answer) {
+          button.disabled = true;
+          if (choice === question.correctAnswer) button.classList.add("correct");
+          if (!answer.correct && choice === answer.selected) button.classList.add("wrong");
+        } else {
+          button.addEventListener("click", () => evaluateSingleChoice(index, question, choice, choices));
+        }
+        list.appendChild(button);
+      });
+
+      if (answer) document.getElementById("single-feedback").innerHTML = feedbackHtml(answer.correct, question.explanation);
+    }
+
+    function evaluateSingleChoice(index, question, selected, choiceOrder) {
+      const correct = selected === question.correctAnswer;
+      setAnswer(index, { type: "single-choice", selected, correct, choiceOrder });
+      playSound(correct ? "correct" : "wrong");
+      renderQuestion();
+    }
+
+    function renderEvidence(question, index) {
+      const answer = state.answers[index];
+      const taskArea = document.getElementById("task-area");
+      taskArea.innerHTML = `<p class="task-text">${question.claim}</p><button id="check-evidence" class="check-button" type="button" disabled>Check Evidence</button><div id="evidence-feedback"></div>`;
+
+      if (answer) {
+        passagePanel.setOpen(true, false);
+        passagePanel.clearEvidenceState();
+        const selected = document.querySelector(`[data-sentence-id="${answer.selectedSentenceId}"]`);
+        const correct = document.querySelector(`[data-sentence-id="${question.correctSentenceId}"]`);
+        if (selected && !answer.correct) selected.classList.add("sentence-wrong");
+        if (correct) correct.classList.add("sentence-correct");
+        document.getElementById("check-evidence").style.display = "none";
+        document.getElementById("evidence-feedback").innerHTML = feedbackHtml(answer.correct, question.explanation);
+        return;
+      }
+
+      let selectedSentenceId = null;
+      const checkButton = document.getElementById("check-evidence");
+
+      passagePanel.enableEvidence(question, sentenceId => {
+        selectedSentenceId = sentenceId;
+        passagePanel.text.querySelectorAll(".passage-sentence").forEach(item => item.classList.toggle("sentence-selected", item.dataset.sentenceId === sentenceId));
+        checkButton.disabled = false;
+        playSound("click");
+      });
+
+      checkButton.addEventListener("click", () => {
+        if (!selectedSentenceId) return;
+        const correct = selectedSentenceId === question.correctSentenceId;
+        setAnswer(index, { type: "evidence-click", selectedSentenceId, correct });
+        playSound(correct ? "correct" : "wrong");
+        renderQuestion();
+      });
+    }
+
+    /* Chart state uses assignments[itemId] = infoId and activeItemId as the only matching source of truth. */
+    function getChartState(index, question) {
+      if (!state.chartStates[index]) {
+        state.chartStates[index] = {
+          assignments: {},
+          activeItemId: null,
+          tileOrder: quizConfig.randomizeChoices ? shuffle(question.infoOptions).map(option => option.id) : question.infoOptions.map(option => option.id)
+        };
+      }
+      return state.chartStates[index];
+    }
+
+    function renderChart(question, index) {
+      const answer = state.answers[index];
+      const chartState = getChartState(index, question);
+      const optionById = Object.fromEntries(question.infoOptions.map(option => [option.id, option]));
+      const usedIds = new Set(Object.values(chartState.assignments));
+      const taskArea = document.getElementById("task-area");
+      taskArea.innerHTML = `<div class="chart-board">
+        <section class="chart-section"><h3>Dates / Numbers</h3><div id="match-list" class="match-list"></div></section>
+        <section class="chart-section"><h3>Information</h3><div id="tile-list" class="tile-list"></div><div id="chart-hint" class="hint"></div></section>
+      </div><button id="check-chart" class="check-button" type="button" ${Object.keys(chartState.assignments).length === 4 && !answer ? "" : "disabled"}>Check Answers</button><div id="chart-feedback"></div>`;
+
+      const matchList = document.getElementById("match-list");
+      question.items.forEach((item, itemIndex) => {
+        const assignedId = chartState.assignments[item.id];
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "match-row";
+        button.dataset.itemId = item.id;
+        if (!answer && chartState.activeItemId === item.id) button.classList.add("active");
+        if (answer) {
+          const isCorrect = answer.assignments[item.id] === item.correctInfoId;
+          button.classList.add(isCorrect ? "row-correct" : "row-wrong");
+        }
+        const assignedText = assignedId ? optionById[assignedId].text : "Choose information";
+        button.innerHTML = `<span class="date-label">${itemIndex + 1}. ${item.label}</span><span class="match-slot">${assignedText}</span>${answer && answer.assignments[item.id] !== item.correctInfoId ? `<span class="correct-note">Correct: ${optionById[item.correctInfoId].text}</span>` : ""}`;
+        if (answer) button.disabled = true;
+        else button.addEventListener("click", () => {
+          if (chartState.assignments[item.id]) delete chartState.assignments[item.id];
+          chartState.activeItemId = item.id;
+          playSound("click");
+          renderChart(question, index);
+        });
+        matchList.appendChild(button);
+      });
+
+      const tileList = document.getElementById("tile-list");
+      chartState.tileOrder.forEach(optionId => {
+        const option = optionById[optionId];
+        const tile = document.createElement("button");
+        tile.type = "button";
+        tile.className = "info-tile";
+        tile.textContent = option.text;
+        if (usedIds.has(option.id)) tile.classList.add("used");
+        tile.disabled = Boolean(answer) || usedIds.has(option.id);
+        if (!answer) {
+          tile.addEventListener("click", () => {
+            const hint = document.getElementById("chart-hint");
+            if (!chartState.activeItemId) {
+              hint.textContent = "Select a date first.";
+              hint.classList.remove("shake");
+              void hint.offsetWidth;
+              hint.classList.add("shake");
+              return;
+            }
+            chartState.assignments[chartState.activeItemId] = option.id;
+            const next = question.items.find(item => !chartState.assignments[item.id]);
+            chartState.activeItemId = next ? next.id : null;
+            playSound("click");
+            renderChart(question, index);
+          });
+        }
+        tileList.appendChild(tile);
+      });
+
+      if (answer) {
+        const correctMatches = question.items.filter(item => answer.assignments[item.id] === item.correctInfoId).length;
+        document.getElementById("check-chart").style.display = "none";
+        document.getElementById("chart-feedback").innerHTML = feedbackHtml(answer.correct, question.explanation, `<strong>${correctMatches} / 4 matches correct</strong>`);
+      } else {
+        document.getElementById("check-chart").addEventListener("click", () => {
+          if (Object.keys(chartState.assignments).length !== 4) return;
+          const correctMatches = question.items.filter(item => chartState.assignments[item.id] === item.correctInfoId).length;
+          const correct = correctMatches >= question.passThreshold;
+          setAnswer(index, { type: "chart-matching", assignments: {...chartState.assignments}, correct, correctMatches });
+          playSound(correct ? "correct" : "wrong");
+          renderQuestion();
+        });
+      }
+    }
+
+    function renderQuestion() {
+      const question = quizConfig.questions[state.currentIndex];
+      const currentAnswer = state.answers[state.currentIndex];
+      document.getElementById("question-instruction").textContent = question.question;
+      document.getElementById("question-counter").textContent = `${state.currentIndex + 1} / 15`;
+      document.getElementById("previous-button").disabled = state.currentIndex === 0;
+      document.getElementById("next-button").disabled = !currentAnswer;
+      document.getElementById("next-button").textContent = state.currentIndex === 14 ? "Finish ▶" : "Next ▶";
+
+      passagePanel.clearEvidenceState();
+      if (question.type !== "evidence-click" && !currentAnswer) passagePanel.setOpen(false, false);
+
+      if (question.type === "single-choice") renderSingleChoice(question, state.currentIndex);
+      if (question.type === "evidence-click") renderEvidence(question, state.currentIndex);
+      if (question.type === "chart-matching") renderChart(question, state.currentIndex);
+      updateStats();
+      timer.update();
+    }
+
+    function navigate(direction) {
+      if (direction > 0 && !state.answers[state.currentIndex]) return;
+      if (direction > 0 && state.currentIndex === 14) {
+        showResults();
+        return;
+      }
+      state.currentIndex = Math.max(0, Math.min(14, state.currentIndex + direction));
+      renderQuestion();
+    }
+
+    function remarkFor(score) {
+      if (score <= 4) return "Keep Practising";
+      if (score <= 7) return "Developing";
+      if (score <= 10) return "Fair";
+      if (score <= 12) return "Good";
+      if (score <= 14) return "Very Good";
+      return "Excellent!";
+    }
+
+    function taskBreakdown() {
+      const tasks = ["Best Title","True / False / Not Given","Multiple Choice","Find the Evidence","Vocabulary in Context","Reference Words","Inference","Complete the Chart"];
+      return tasks.map(task => {
+        const indices = quizConfig.questions.map((question, index) => question.category === task ? index : -1).filter(index => index !== -1);
+        const earned = indices.reduce((sum, index) => sum + (state.answers[index]?.correct ? 1 : 0), 0);
+        return { task, earned, total: indices.length };
+      });
+    }
+
+    function animateRemark(finalRemark) {
+      const node = document.getElementById("animated-remark");
+      const labels = ["Keep Practising","Developing","Fair","Good","Very Good","Excellent!"];
+      let elapsed = 0;
+      let delay = 65;
+      const cycle = () => {
+        node.textContent = labels[Math.floor(Math.random() * labels.length)];
+        elapsed += delay;
+        delay = Math.min(420, delay * 1.16);
+        if (elapsed < 3000) setTimeout(cycle, delay);
+        else node.textContent = finalRemark;
+      };
+      cycle();
+    }
+
+    function showResults() {
+      state.completed = true;
+      timer.pause();
+      const score = getScore();
+      const attempts = Number(localStorage.getItem("womenPowerAttempts") || "0") + 1;
+      const best = Math.max(score, Number(localStorage.getItem("womenPowerBestScore") || "0"));
+      localStorage.setItem("womenPowerAttempts", attempts);
+      localStorage.setItem("womenPowerBestScore", best);
+      localStorage.setItem("womenPowerLastScore", score);
+      localStorage.setItem("womenPowerTimeTaken", timer.format(state.timerSeconds));
+
+      document.getElementById("quiz-page").classList.add("hidden");
+      document.getElementById("result-page").classList.add("visible");
+      document.getElementById("final-score").textContent = `${score} /15`;
+
+      const remark = remarkFor(score);
+      animateRemark(remark);
+      const encouragements = {
+        "Keep Practising": "Keep practising —",
+        "Developing": "Nice effort —",
+        "Fair": "Good progress —",
+        "Good": "Well done —",
+        "Very Good": "Great work —",
+        "Excellent!": "Excellent work!"
+      };
+      document.getElementById("results-line").innerHTML = remark === "Excellent!"
+        ? `Reading Score: ${score}/15<br><strong>Excellent work!</strong> You correctly answered ${score} out of 15 questions.`
+        : `Reading Score: ${score}/15<br><strong>${encouragements[remark]}</strong> You correctly answered ${score} out of 15 questions.`;
+
+      const wrong = 15 - score;
+      document.getElementById("summary-grid").innerHTML = [
+        ["Final Score", `${score} /15`],
+        ["Percentage", `${Math.round((score / 15) * 100)}%`],
+        ["Correct Answers", score],
+        ["Wrong Answers", wrong],
+        ["Time Taken", timer.format(state.timerSeconds)],
+        ["Number of Attempts", attempts],
+        ["Best Score", `${best} /15`]
+      ].map(([label, value]) => `<div class="summary-item"><strong>${label}</strong><br>${value}</div>`).join("");
+
+      document.getElementById("task-breakdown").innerHTML = `<strong>Per-task breakdown</strong>${taskBreakdown().map(item => `<p>${item.task}: <strong>${item.earned}/${item.total}</strong></p>`).join("")}`;
+      if (score >= 14) launchConfetti();
+      playSound("complete");
+    }
+
+    function launchConfetti() {
+      const layer = document.getElementById("confetti-layer");
+      layer.innerHTML = "";
+      layer.style.display = "block";
+      const colors = ["#2563eb","#22c55e","#f59e0b","#ec4899","#14b8a6"];
+      for (let i = 0; i < 90; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.top = `${-20 - Math.random() * 30}px`;
+        piece.style.background = colors[i % colors.length];
+        piece.style.animationDelay = `${Math.random() * .7}s`;
+        layer.appendChild(piece);
+      }
+      setTimeout(() => layer.style.display = "none", 4000);
+    }
+
+    function createReviewPassage() {
+      const source = document.getElementById("passage-text").cloneNode(true);
+      source.querySelectorAll(".passage-sentence").forEach(item => {
+        item.classList.remove("sentence-selected", "sentence-correct", "sentence-wrong");
+        item.onclick = null;
+        item.removeAttribute("tabindex");
+      });
+      quizConfig.questions.forEach((question, index) => {
+        const answer = state.answers[index];
+        if (question.type === "evidence-click" && answer) {
+          const correct = source.querySelector(`[data-sentence-id="${question.correctSentenceId}"]`);
+          const selected = source.querySelector(`[data-sentence-id="${answer.selectedSentenceId}"]`);
+          if (correct) correct.classList.add("sentence-correct");
+          if (!answer.correct && selected) selected.classList.add("sentence-wrong");
+        }
+      });
+      const holder = document.getElementById("review-passage-text");
+      holder.replaceChildren(...Array.from(source.childNodes));
+    }
+
+    function showReview() {
+      document.getElementById("result-page").classList.remove("visible");
+      document.getElementById("review-page").classList.add("visible");
+      createReviewPassage();
+      const grouped = {};
+      quizConfig.questions.forEach((question, index) => {
+        if (!grouped[question.category]) grouped[question.category] = [];
+        grouped[question.category].push({ question, index, answer: state.answers[index] });
+      });
+
+      document.getElementById("review-content").innerHTML = Object.entries(grouped).map(([category, records]) => `
+        <section class="review-card"><h2>${category}</h2>
+        ${records.map(({question, index, answer}) => {
+          if (question.type === "single-choice") return `<article><h3>${index + 1}. ${question.task}</h3><div class="review-answer ${answer.correct ? "good" : "bad"}">Student Answer: ${answer.selected}</div><div class="review-answer good">Correct Answer: ${question.correctAnswer}</div><p><strong>Explanation:</strong> ${question.explanation}</p></article>`;
+          if (question.type === "evidence-click") return `<article><h3>${index + 1}. Claim: ${question.claim}</h3><div class="review-answer ${answer.correct ? "good" : "bad"}">Student's Selected Sentence: ${sentenceText(answer.selectedSentenceId)}</div><div class="review-answer good">Correct Sentence: ${sentenceText(question.correctSentenceId)}</div><p><strong>Explanation:</strong> ${question.explanation}</p></article>`;
+          const optionById = Object.fromEntries(question.infoOptions.map(option => [option.id, option.text]));
+          return `<article><h3>${index + 1}. Complete the Chart</h3><table class="review-table"><thead><tr><th>Date / Number</th><th>Student's Match</th><th>Correct Match</th><th>Result</th></tr></thead><tbody>${question.items.map(item => { const ok = answer.assignments[item.id] === item.correctInfoId; return `<tr><td>${item.label}</td><td>${optionById[answer.assignments[item.id]]}</td><td>${optionById[item.correctInfoId]}</td><td>${ok ? "✅" : "❌"}</td></tr>`; }).join("")}</tbody></table><p><strong>${answer.correctMatches} / 4 matches correct</strong></p><p><strong>Explanation:</strong> ${question.explanation}</p></article>`;
+        }).join("")}</section>
+      `).join("");
+    }
+
+    function restartQuiz() {
+      state.currentIndex = 0;
+      state.answers = Array(15).fill(null);
+      state.chartStates = {};
+      state.completed = false;
+      passagePanel.clearEvidenceState();
+      passagePanel.setOpen(false, false);
+      timer.reset();
+      document.getElementById("confetti-layer").style.display = "none";
+      document.getElementById("result-page").classList.remove("visible");
+      document.getElementById("review-page").classList.remove("visible");
+      document.getElementById("quiz-page").classList.remove("hidden");
+      timer.start();
+      renderQuestion();
+    }
+
+    function saveResults() {
+      const score = getScore();
+      const report = [
+        "ENGLISH2BAC QUIZZES",
+        "UNIT 5 / WOMEN AND POWER / READING COMPREHENSION",
+        "",
+        `Reading Score: ${score}/15`,
+        `Time Taken: ${timer.format(state.timerSeconds)}`,
+        "",
+        "Per-task breakdown:",
+        ...taskBreakdown().map(item => `${item.task}: ${item.earned}/${item.total}`)
+      ].join("\n");
+      const blob = new Blob([report], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "women-and-power-quiz-results.txt";
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById("previous-button").addEventListener("click", () => navigate(-1));
+    document.getElementById("next-button").addEventListener("click", () => navigate(1));
+    document.getElementById("review-button").addEventListener("click", showReview);
+    document.getElementById("restart-button").addEventListener("click", restartQuiz);
+    document.getElementById("print-button").addEventListener("click", () => window.print());
+    document.getElementById("save-button").addEventListener("click", saveResults);
+    document.getElementById("back-results-button").addEventListener("click", () => {
+      document.getElementById("review-page").classList.remove("visible");
+      document.getElementById("result-page").classList.add("visible");
+    });
+
+    document.getElementById("review-passage-button").addEventListener("click", () => {
+      const panel = document.getElementById("review-passage");
+      const visible = panel.style.display !== "none";
+      panel.style.display = visible ? "none" : "block";
+      document.getElementById("review-passage-button").textContent = visible ? "📖 Show Passage" : "📖 Hide Passage";
+    });
+
+    document.getElementById("review-passage-toggle").addEventListener("click", () => {
+      const content = document.getElementById("review-passage-content");
+      const open = content.classList.toggle("is-open");
+      document.getElementById("review-passage-toggle").textContent = open ? "📖 Hide Passage" : "📖 Show Passage";
+    });
+
+    document.addEventListener("keydown", event => {
+      if (state.completed || document.getElementById("review-page").classList.contains("visible")) return;
+      const question = quizConfig.questions[state.currentIndex];
+      if (question.type === "single-choice" && !state.answers[state.currentIndex] && /^[1-4]$/.test(event.key)) {
+        const buttons = [...document.querySelectorAll(".choice-button")];
+        buttons[Number(event.key) - 1]?.click();
+      }
+      if (event.key === "ArrowLeft") document.getElementById("previous-button").click();
+      if (event.key === "ArrowRight" && !document.getElementById("next-button").disabled) document.getElementById("next-button").click();
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("previous-button").textContent = "◀ Previous";
+      document.getElementById("next-button").textContent = "Next ▶";
+      document.getElementById("review-passage-button").textContent = "📖 Show Passage";
+      document.getElementById("back-results-button").textContent = "Back to Results";
+      updateStats();
+      timer.start();
+      renderQuestion();
+    });
+  </script>
+ 
+</body></html>
